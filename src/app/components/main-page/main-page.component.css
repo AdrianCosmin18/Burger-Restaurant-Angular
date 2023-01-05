@@ -1,0 +1,19 @@
+section{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+
+.card-img-burger{
+  width: 300px;
+  height: 300px;
+}
+
+.card{
+  border: 0px;
+}

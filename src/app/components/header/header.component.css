@@ -1,0 +1,55 @@
+.nav-header{
+  display: flex;
+  gap: 40px;
+  background-color: #ffc244;
+}
+
+p , article, section{
+  margin: 0px;
+}
+
+.logo{
+  width: 80px;
+  margin: 10px auto 10px 10%;
+  border-radius: 50%;
+}
+
+.mb-3{
+  gap: 5px;
+}
+
+.order-group{
+  display: flex;
+}
+
+.order-group-text{
+  font-size: 20px;
+}
+
+.order-group-img{
+  width: 30px;
+  height: 30px;
+}
+
+.user-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.userLogo{
+  width: 30px;
+  height: 30px;
+}
+
+
+.nav-menu{
+  background-color: #b5393a;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+}
+

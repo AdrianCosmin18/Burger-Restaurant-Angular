@@ -1,0 +1,44 @@
+{
+  "burgers": [
+    {
+      "id": 1,
+      "name": "Tasty Burger",
+      "type": "beef",
+      "describe": "O felie de carne de vită tocată, preparată pe grătar, asezonată cu sare și piper, sos Big Tasty și trei felii de brânză topită cu Emmentaler, salată crocantă Big Tasty, roșie proaspătă și ceapă, chiflă Big Tasty cu susan.",
+      "ingredients": "Carne vită (tocată și congelată)(carne vită, condimente pentru Grill (Sare Iodată, piper negru măcinat, extract piper negru)), Chiflă Big Tasty (produs decongelat) [făină albă de GRÂU, apă, zahăr, SEMINȚE DE SUSAN, drojdie, ulei vegetal rafinat nehidrogenat de floarea-soarelui, sare iodata, agent de tratare al făinii (emulsifiant: esteri mono și diacetil-tartrici ai mono și digliceridelor cu acizi grași, făină albă de GRÂU, agent antiaglomerant: carbonat de calciu, antioxidant: acid ascorbic, enzime], Preparat din BRÂNZĂ topită cu Emmentaler, 45% grăsime (BRÂNZĂ 45%, BRÂNZĂ Emmentaler 15%, apă, UNT, LAPTE praf degresat, săruri de topire (E331), proteine din LAPTE, arom naturală de BRÂNZĂ, praf de zer, sare, corector de aciditate acid lactic (E330), agent antiaglomerant: lecitină din floarea soarelui). Pe bază de lapte pastetaurizat, Sos Big Tasty [ulei de rapiță, apă, SMÂNTÂNĂ, zahăr , oțet, aromă, GĂLBENUȘ DE OU, amidon din porumb modificat, sare , condimente, extract de drojdie, agent îngroșare E415, acidifiant (E270), conservant E202, aromă de fum], Salată iceberg, Roșie, Ceapă.",
+      "src": "../../../assets/bigTasty.png"
+    },
+    {
+      "id": 2,
+      "name": "Quarter Pounder",
+      "type": "beef",
+      "describe": "Îți prezentăm un burger căruia n-ai cum să-i reziști: o felie mare de carne suculentă însoțită de două felii aurii de brânză topită cu Cheddar, castraveți murați, ceapă albă, ketchup și muștar. Toate așezate atent într-o chiflă pufoasă, presărată cu susan.",
+      "ingredients": "Carne de vită (din produs congelat) (tocată și congelată) (carne de vită, condimente pentru Grill (Sare Iodată, piper negru măcinat, extract piper negru)),Chiflă quarter pounder (produs decongelat) [făină albă de GRÂU (origine UE), apă, zahăr,  glazură (proteină vegetală (mazăre), dextroză)), ulei de floarea-soarelui, drojdie, SEMINȚE DE SUSAN, aromă naturală, sare iodată, ameliorator (emulsifiant: E472e, antioxidant: E300, enzime), agent de îngroșare: E412] BRÂNZĂ topită cu Cheddar, 45% grăsime (BRÂNZĂ Cheddar 51%, apă potabilă, BRÂNZĂ 9%, UNT, LAPTE praf degresat, săruri de topire (E331), aromă naturală de BRÂNZĂ, proteine din LAPTE, sare, coloranți (beta-caroten extract de ardei), regulator de aciditate (E330), agent antiaglomerant: lecitină din floarea-soarelui),Ketchup (pastă de tomate (66%) 184 gr roșii/100 g ketchup, sirop de fructoză-glucoză, oțet, sare, extract de condimente),Castraveți murați (castraveți, apă, sare, oțet, agent de întărire (E509), aromă naturală, conservant E202), MUȘTAR (apă, oțet, SEMINȚE DE MUȘTAR 13%, sare, condimente, aromă naturală de cuișoare, extract de condimente), Ceapă.",
+      "src": "../../../assets/quarterPounder.png"
+    },
+    {
+      "id": 3,
+      "name": "Big Burger",
+      "type": "beef",
+      "describe": "Două felii de carne de vită tocată preparate pe grătar, asezonate cu sare și piper, sos Big Mac și brânză topită cu Cheddar, salată crocantă, ceapă, felii de castraveţi muraţi, chiflă Big Mac cu susan.",
+      "ingredients": "Carne de vită (din produs congelat) (tocată și congelată) (carne de vită, condimente pentru Grill (Sare Iodată, piper negru măcinat, extract piper negru)),\n\nChiflă Big Mac (produs decongelat)[făină albă de grâu (origine UE), apă, zahăr, glazură (proteină vegetală (mazăre), dextroză)), drojdie, ulei de floarea-soarelui, semințe de susan, sare iodată, aromă naturală, ameliorator (emulsifiant: E472e, antioxidant: E300, enzime), amidon din cartofi],\n\nBrânză topită cu Cheddar, 45% grăsime (brânză cheddar 51%, apă potabilă, brânză 9%, UNT, lapte praf degresat, săruri emulsionare (E331), aromă naturală de BRÂNZĂ, proteine din lapte, sare, colorant (beta-caroten, extract de ardei), corector de aciditate, acid lactic (E330), agent antiaglomerant: lecitină din floarea-soarelui)\n\nBrânză topită cu Cheddar, 45% grăsime (brânză cheddar 51%, apă potabilă, brânză 9%, UNT, lapte praf degresat, săruri emulsionare (E331), aromă naturală de BRÂNZĂ, proteine din lapte, sare, colorant (beta-caroten, extract de ardei), corector de aciditate, acid lactic (E330), agent antiaglomerant: lecitină din floarea-soarelui),\n\nSos Big Mac [apă, ulei de rapiță,  oțet, castraveți, sirop de glucoză-fructoză, zahăr, amidon din porumb modificat, gălbenuș de ou, condimente (conține muȘtar), sare, agent îngroșare (E415), arome naturale, extract de drojdie, agent de întărire (E509)],\n\nSalată iceberg,\n\nCastraveți murați (castraveți, apă, sare, oțet, agent de întărire (E509), aromă naturală, conservant E202),\n\nCeapă hidratată.",
+      "src": "../../../assets/bigMac.png"
+    },
+    {
+      "id": 4,
+      "name": "Dublu Cheeseburger",
+      "type": "beef",
+      "describe": "Două felii de carne de vită tocată, asezonate pe grill cu condiment special din sare și piper, două felii de brânză topită cu Cheddar, sos, castraveţi ușor crocanţi și ceapă, așezate într-o chiflă proaspătă caramelizată.",
+      "ingredients": "Chiflă regular (produs decongelat) [făină albă de GRÂU (origine UE), apă, zahăr, glazură (proteină vegetală (mazăre), dextroză)), ulei de floarea-soarelui, drojdie, sare iodată, ameliorator (emulsifiant: E472e, antioxidant: E300), enzime). Poate conține SEMINȚE DE SUSAN]\n\nCarne de vită 2 bucăți (din produs congelat) (tocată și congelată) (carne de vită, condimente pentru Grill (Sare Iodată, piper negru măcinat, extract piper negru)) ,\n\nBrânză topită cu Cheddar 2 bucăți, 45% grăsime (brânză cheddar 51%, apă potabilă, brânză 9 %, UNT, lapte praf degresat, săruri de topire (E331), aromă naturală de BRÂNZĂ, proteine din lapte, sare, coloranți (beta-caroten extract de ardei), regulator de aciditate (E330), agent antiaglomerant: lecitină din floarea-soarelui),\n\nKetchup (pastă de tomate (66%), 184 gr roșii/100 g ketchup, sirop de fructoză-glucoză, oțet, sare, extract de condimente), castraveți murați (castraveți, apă, sare, oțet, agent de întărire (E509), aromă naturală, conservant E202),\n\nCeapă hidratată,\n\nMUȘTAR (apă, oțet, semințe de muștar 13%, sare, condimente, aromă naturală de cuișoare, extract de condimente).",
+      "src": "../../../assets/dubluCheese.png"
+    },
+    {
+      "id": 5,
+      "name": "Chicken Burger",
+      "type": "chicken",
+      "describe": "O felie de carne de piept de pui într-un strat crocant de pesmet auriu, însoţită de salată verde, sos McChicken și chiflă cu susan.",
+      "ingredients": "Carne piept de pui (tocată și congelată) în pesmet [carne piept de pui (55%), FĂINĂ DE GRÂU, ulei vegetal (floarea soarelui, rapiță), apa, GRIȘ DE GRÂU DUR, GLUTEN DE GRÂU, făină de orez, arome (conțin GRÂU), amidon, sare, agenți de creștere (difosfați, carbonați de sodiu), zahăr, extract de drojdie, condimente, drojdie, extract de condimente, ierburi, ulei pentru prăjit [ulei vegetal (floarea soarelui, rapiță, în proporții variabile), antispumant E900)]], Chiflă quarter pounder (produs decongelat) [făină albă de GRÂU, apă, zahar, ulei vegetal rafinat nehidrogenat de floarea-soarelui, SEMINȚE DE SUSAN, drojdie, sare iodată, agent de tratare al făinii (emulsifiant: esteri mono și diacetil-tartrici ai mono și digliceridelor cu acizi grași, făină albă de GRÂU, agent antiaglomerant: carbonat de calciu, antioxidant: acid ascorbic, enzime], Sos McChicken (apă, ulei rapiță, dextroză, amidon din porumb modificat, oțet, GĂLBENUȘ DE OU, sare, zahăr, condimente (conține SEMINȚE DE MUȘTAR), extract de condimente, agent îngroșare E415), Salată iceberg. \" Chifla quarter pounder(produs decongelat) [faina alba de GRAU, apa, zahar, ulei vegetal rafinat nehidrogenat de floarea-soarelui, SEMINTE DE SUSAN, drojdie, sare iodata, agent de tratare al fainii (emulsifiant: esteri mono si diacetil-tartrici ai mono si digliceridelor cu acizi grasi, faina alba de GRAU, agent antiaglomerant: carbonat de calciu, antioxidant: acid ascorbic, enzime], Sos McChicken (apa, ulei rapita, dextroza, amidon din porumb modificat, otet, GALBENUS DE OU, sare, zahar, condimente (contine SEMINTE DE MUSTAR), extract de condimente, agent ingrosare E415), Salata iceberg",
+      "src": "../../../assets/McChicken.png"
+    }
+  ]
+}
