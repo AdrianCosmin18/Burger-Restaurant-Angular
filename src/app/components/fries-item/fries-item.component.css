@@ -1,5 +1,7 @@
 .card{
   border: 1px solid grey;
+  width: 35rem;
+  padding-bottom: 3%;
 }
 
 .card-div{

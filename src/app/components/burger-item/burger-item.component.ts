@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Burger} from "../../interfaces/burger";
+import {Fries} from "../../interfaces/fries";
 
 @Component({
   selector: 'app-burger-item',

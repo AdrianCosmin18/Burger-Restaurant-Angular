@@ -1,7 +1,6 @@
-export interface Burger{
+export interface Fries{
   id?: number,
   name: string,
-  type: string,
   price: number,
   describe: string,
   ingredients: string,

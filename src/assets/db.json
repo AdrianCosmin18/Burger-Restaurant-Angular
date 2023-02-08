@@ -2,7 +2,7 @@
   "burgers": [
     {
       "id": 1,
-      "name": "Tasty Burger",
+      "name": "Big Tasty",
       "type": "beef",
       "describe": "O felie de carne de vită tocată, preparată pe grătar, asezonată cu sare și piper, sos Big Tasty și trei felii de brânză topită cu Emmentaler, salată crocantă Big Tasty, roșie proaspătă și ceapă, chiflă Big Tasty cu susan.",
       "ingredients": "Carne vită (tocată și congelată)(carne vită, condimente pentru Grill (Sare Iodată, piper negru măcinat, extract piper negru)), Chiflă Big Tasty (produs decongelat) [făină albă de GRÂU, apă, zahăr, SEMINȚE DE SUSAN, drojdie, ulei vegetal rafinat nehidrogenat de floarea-soarelui, sare iodata, agent de tratare al făinii (emulsifiant: esteri mono și diacetil-tartrici ai mono și digliceridelor cu acizi grași, făină albă de GRÂU, agent antiaglomerant: carbonat de calciu, antioxidant: acid ascorbic, enzime], Preparat din BRÂNZĂ topită cu Emmentaler, 45% grăsime (BRÂNZĂ 45%, BRÂNZĂ Emmentaler 15%, apă, UNT, LAPTE praf degresat, săruri de topire (E331), proteine din LAPTE, arom naturală de BRÂNZĂ, praf de zer, sare, corector de aciditate acid lactic (E330), agent antiaglomerant: lecitină din floarea soarelui). Pe bază de lapte pastetaurizat, Sos Big Tasty [ulei de rapiță, apă, SMÂNTÂNĂ, zahăr , oțet, aromă, GĂLBENUȘ DE OU, amidon din porumb modificat, sare , condimente, extract de drojdie, agent îngroșare E415, acidifiant (E270), conservant E202, aromă de fum], Salată iceberg, Roșie, Ceapă.",
@@ -104,6 +104,39 @@
       "ingredients": "Felie PEȘTE în înveliș pane (din produs congelat) ( cod filet de Alaska (75%), apă, făină de grâu și porumb, amidon modificat din grâu, făină de porumb, sare, amidon din porumb, drojdie, agent de îngroșare E466); grăsime pentru prăjit (ulei vegetal, antispumant E900),\n\nChiflă regular (produs decongelat) [făină albă de GRÂU (origine UE), apă, zahăr, glazură (proteină  vegetală (mazăre), dextroză)), ulei de floarea-soarelui, drojdie, sare iodată, ameliorator (emulsifiant: E472e, antioxidant: E300), enzime). Poate conține SEMINȚE DE SUSAN]\n\nSos Tartar (apă, ulei de rapiță, castraveți, oțet, ceapă, amidon din porumb modificat, gălbenuș de ou, sare, zahăr, făină,  muștar, pătrunjel uscat, capere, agent îngroșare E415, conservant E202, agent de întărire (E509), arome).\n\nBrânză topită cu Cheddar, 45% grăsime (brânză cheddar 51%, apă potabilă, brânză 9%, UNT, lapte praf degresat, săruri de topire (E331), aromă naturală de BRÂNZĂ, proteine din lapte, sare, coloranți (beta-caroten, extract de ardei), regulator de aciditate (E330), agent antiaglomerant: lecitină din floarea-soarelui).",
       "src": "../../../assets/filetFish.png"
     }
-
+  ],
+  "cartofi": [
+    {
+      "id": 1,
+      "name": "Cartofi Dipping Strips",
+      "price": 7.9,
+      "describe": "Cartofi prăjiți aurii, condimentați din plin cu ceapă și piper negru, creați special pentru a-i savura alături de sosul preferat.",
+      "ingredients": "Cartofi, ulei vegetal (ulei de floarea soarelui, ulei de răpiță, în proporții variabile), amidon modificat, făină de porumb, făină de orez, sare, amidon, piper negru, praf de usturoi, arome, agenți de creștere (difosfat de sodiu, bicarbonat de sodiu), praf de ceapă, condimente, agenți de îngroșare gumă de xantan, dextroză\n\nUlei pentru prăjit [ulei vegetal (floarea soarelui, rapiță, în proporții variabile), antispumant E900)]",
+      "src": ""
+    },
+    {
+      "id": 2,
+      "name": "Cartofi prăjiți - porție mare",
+      "price": 7.9,
+      "describe": "Cartofi preparaţi în ulei, asezonați cu sare înainte de a fi serviţi.\n",
+      "ingredients": "Cartofi [Cartofi (tăiați, prăjiți, congelați), ulei vegetal (floarea soarelui, rapiță, în proporții variabile), dextroză, stabilizator: difosfat de sodiu); sare iodata; ulei pentru prăjit [ulei vegetal (floarea soarelui, rapiță, în proporții variabile), antispumant E900)]",
+      "src": ""
+    },
+    {
+      "id": 3,
+      "name": "Cartofi prăjiți - porție medie",
+      "price": 6.5,
+      "describe": "Cartofi preparaţi în ulei, asezonați cu sare înainte de a fi serviţi.\n",
+      "ingredients": "Cartofi [Cartofi (tăiați, prăjiți, congelați), ulei vegetal (floarea soarelui, rapiță, în proporții variabile), dextroză, stabilizator: difosfat de sodiu); sare iodata; ulei pentru prăjit [ulei vegetal (floarea soarelui, rapiță, în proporții variabile), antispumant E900)]",
+      "src": ""
+    },
+    {
+      "id": 4,
+      "name": "Cartofi prăjiți - porție medie",
+      "price": 5,
+      "describe": "Cartofi preparaţi în ulei, asezonați cu sare înainte de a fi serviţi.\n",
+      "ingredients": "Cartofi [Cartofi (tăiați, prăjiți, congelați), ulei vegetal (floarea soarelui, rapiță, în proporții variabile), dextroză, stabilizator: difosfat de sodiu); sare iodata; ulei pentru prăjit [ulei vegetal (floarea soarelui, rapiță, în proporții variabile), antispumant E900)]",
+      "src": ""
+    }
   ]
 }

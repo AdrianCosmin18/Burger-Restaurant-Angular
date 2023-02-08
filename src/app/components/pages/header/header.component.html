@@ -1,21 +1,21 @@
 
 <section class="nav nav-header">
-    <img class="logo" src="../../../assets/logo.png" alt="">
+    <img class="logo" src="../../../../assets/logo.png" routerLink="/mainPage">
 
   <article class="mb-3 d-flex align-items-center order-group">
-    <img class="order-group-img" src="../../../assets/basket.png" alt="">
+    <i class="pi pi-cart-plus" style="font-size: 2rem"></i>
     <p class="order-group-text">Comanda mea</p>
   </article>
 
   <article class="mb-3 user-group">
-    <img class="userLogo" src="../../../assets/userLogo.png" alt="">
+    <i class="pi pi-user" style="font-size: 2rem"></i>
     <p><strong>Cont</strong></p>
   </article>
 </section>
 
 <section class="nav nav-menu">
   <div class="btn-group">
-    <button type="button" class="btn btn-danger">Burgeri</button>
+    <button type="button" class="btn btn-danger" routerLink="/burgers">Burgeri</button>
     <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
       <span class="visually-hidden">Toggle Dropdown</span>
     </button>
@@ -23,26 +23,24 @@
       <li><a class="dropdown-item" href="#">Pui</a></li>
       <li><a class="dropdown-item" href="#">Vita</a></li>
       <li><a class="dropdown-item" href="#">Porc</a></li>
-      <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item" href="#">Peste</a></li>
     </ul>
   </div>
 
   <!-- Example single danger button -->
   <div class="btn-group">
-    <button type="button" class="btn btn-danger">Cartofi</button>
+    <button type="button" class="btn btn-danger" routerLink="/fries">Cartofi</button>
     <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
       <span class="visually-hidden">Toggle Dropdown</span>
     </button>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="#">Cartofi Dipping Strips</a></li>
-      <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item" href="#">Cartofi prăjiți</a></li>
     </ul>
   </div>
 
   <div class="btn-group">
-    <button type="button" class="btn btn-danger">Bauturi</button>
+    <button type="button" class="btn btn-danger" routerLink="/drinks">Bauturi</button>
     <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
       <span class="visually-hidden">Toggle Dropdown</span>
     </button>
