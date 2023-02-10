@@ -1,0 +1,17 @@
+
+.container{
+  max-width: 50%;
+  margin-top: 5%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.total-amount{
+  font-size: 25px;
+}
+
+.footer{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+}

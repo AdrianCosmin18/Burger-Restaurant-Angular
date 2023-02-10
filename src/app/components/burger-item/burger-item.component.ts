@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Product} from "../../interfaces/burger";
-import {AngularFireDatabase} from "@angular/fire/compat/database";
-import {burgers} from "../../../assets/data/burgers";
 
 @Component({
   selector: 'app-burger-item',

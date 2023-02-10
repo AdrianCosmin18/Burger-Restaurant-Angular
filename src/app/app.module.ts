@@ -23,6 +23,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DesertPageComponent } from './components/pages/desert-page/desert-page.component';
 import { DesertItemComponent } from './components/desert-item/desert-item.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/login", pathMatch: "full"},
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
   {path: "fries", component: FriesPageComponent},
   {path: "drinks", component: DrinksPageComponent},
   {path: "deserts", component: DesertPageComponent},
+  {path: "cart", component: CartComponent},
   {path: "**", component: MainPageComponent}
 ]
 
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     DesertPageComponent,
     DesertItemComponent,
+    CartItemComponent,
   ],
   imports: [
     BrowserModule,

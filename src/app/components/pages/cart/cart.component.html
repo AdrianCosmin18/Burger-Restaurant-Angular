@@ -1,1 +1,13 @@
-<p>cart works!</p>
+<section>
+  <div class="container border">
+    <app-cart-item *ngFor="let product of products"
+                   [product] = "product"
+    style="display: flex; justify-content: center">
+    </app-cart-item>
+
+    <article class="footer">
+      <span class="badge text-bg-warning total-amount">{{totalAmount()}} RON</span>
+      <button class="btn btn-danger">Plaseaza comanda</button>
+    </article>
+  </div>
+</section>
