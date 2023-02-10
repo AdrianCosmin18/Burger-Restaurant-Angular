@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Fries} from "../../interfaces/fries";
 import {Product} from "../../interfaces/burger";
 
 @Component({

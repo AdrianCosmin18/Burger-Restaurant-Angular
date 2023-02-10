@@ -20,7 +20,7 @@ import { AngularFireModule } from '@angular/fire/compat'
 import {environment} from "../environments/environment";
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DesertPageComponent } from './components/pages/desert-page/desert-page.component';
 import { DesertItemComponent } from './components/desert-item/desert-item.component';
 
@@ -60,7 +60,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

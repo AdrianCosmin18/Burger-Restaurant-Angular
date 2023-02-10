@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Drink} from "../../../interfaces/drink";
 import {BurgerService} from "../../../services/burger.service";
 import {Product} from "../../../interfaces/burger";
 

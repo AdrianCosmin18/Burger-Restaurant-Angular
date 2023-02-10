@@ -1,28 +1,38 @@
-<div class="container-fluid">
-  <div class="row mt-5">
-    <div class="col"></div>
-    <div class="col-4">
-      <div class="card shadow">
-        <div class="card-body">
-          <form>
-            <h3>Login</h3>
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" [(ngModel)]="email">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="password">
-            </div>
-            <button type="button" class="btn btn-success" (click)="login()">Login</button>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="/register">Need Account ?</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+
+<div class="container border d-flex flex-column">
+
+  <h3 class="badge text-bg-danger">BurgerShop</h3>
+
+  <form [formGroup]="myForm" (ngSubmit)="doLogin()">
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Email</span>
+      <input class="form-control"
+             placeholder="Email"
+             aria-label="Username"
+             aria-describedby="basic-addon1"
+             formControlName="email"
+             [ngClass]="myForm.controls['email'].errors ? 'is-invalid' : ''"
+             [(ngModel)]="email">
     </div>
-  </div>
+
+    <div class="input-group mb-3" >
+      <span class="input-group-text">Password</span>
+      <input class="form-control"
+             placeholder="Password"
+             formControlName="password"
+             type="password"
+             [(ngModel)]="password">
+    </div>
+
+    <button type="submit" class="btn btn-primary"
+            [disabled]="myForm.status === 'INVALID'">Login</button>
+  </form>
+
+  <button type="button"
+          class="btn btn-secondary"
+          (click)="goToRegister()"
+          style="margin-top: 30px; width: 30%; margin-bottom: 10px;"
+  >Register</button>
+
 </div>
