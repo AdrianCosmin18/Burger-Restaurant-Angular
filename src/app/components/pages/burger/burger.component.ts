@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Burger} from "../../../interfaces/burger";
+import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
-import {burgers} from "../../../../assets/data/burgers";
+import firebase from "firebase/compat";
+import {AngularFireDatabase} from "@angular/fire/compat/database";
 
 @Component({
   selector: 'app-burger',
@@ -9,19 +10,18 @@ import {burgers} from "../../../../assets/data/burgers";
   styleUrls: ['./burger.component.css']
 })
 export class BurgerComponent implements OnInit {
-  public burgers: Burger[] = [];
+  public burgers: Product[] = [];
 
   constructor(private burgerService: BurgerService) { }
 
   ngOnInit(): void {
-    // this.burgerService.getBurgers().subscribe(response => {
-    //   this.burgers = response
-    // })
-    this.burgers = this.burgerService.getBurgers();
-    console.log(this.burgers);
+    this.burgerService.getBurgers().subscribe(response => {
+      this.burgers = response
+    })
   }
 
-  // getBurgersByType(type: string): Burger[]{
-  //   return this.burgers.filter(b => b.type === type);
-  // }
+
+  addToCart(burger: Product){
+    console.log(burger);
+  }
 }

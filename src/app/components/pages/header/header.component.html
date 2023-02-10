@@ -1,5 +1,5 @@
 
-<section class="nav nav-header">
+<section class="nav nav-header" *ngIf="hasNotRoute('/login') && hasNotRoute('/register')">
     <img class="logo" src="../../../../assets/logo.png" routerLink="/mainPage">
 
   <article class="mb-3 d-flex align-items-center order-group">
@@ -11,89 +11,24 @@
     <i class="pi pi-user" style="font-size: 2rem"></i>
     <p><strong>Cont</strong></p>
   </article>
+
+  <article class="mb-3" style="display: flex; justify-content: center; align-items: center; margin-right: 10%">
+    <i class="pi pi-sign-out" style="font-size: 2rem;" (click)="logout()"></i>
+  </article>
+
 </section>
 
-<section class="nav nav-menu">
-  <div class="btn-group">
+<section class="nav nav-menu" *ngIf="hasNotRoute('/login') && hasNotRoute('/register')">
+
     <button type="button" class="btn btn-danger" routerLink="/burgers">Burgeri</button>
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Pui</a></li>
-      <li><a class="dropdown-item" href="#">Vita</a></li>
-      <li><a class="dropdown-item" href="#">Porc</a></li>
-      <li><a class="dropdown-item" href="#">Peste</a></li>
-    </ul>
-  </div>
 
-  <!-- Example single danger button -->
-  <div class="btn-group">
     <button type="button" class="btn btn-danger" routerLink="/fries">Cartofi</button>
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Cartofi Dipping Strips</a></li>
-      <li><a class="dropdown-item" href="#">Cartofi prăjiți</a></li>
-    </ul>
-  </div>
 
-  <div class="btn-group">
     <button type="button" class="btn btn-danger" routerLink="/drinks">Bauturi</button>
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Cola</a></li>
-      <li><a class="dropdown-item" href="#">Fanta</a></li>
-      <li><a class="dropdown-item" href="#">Sprite</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Suc de mere</a></li>
-    </ul>
-  </div>
 
-  <div class="btn-group">
-    <button type="button" class="btn btn-danger">Action</button>
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Separated link</a></li>
-    </ul>
-  </div>
+    <button type="button" class="btn btn-danger" routerLink="/deserts">Deserturi</button>
 
-  <div class="btn-group">
-    <button type="button" class="btn btn-danger">Deserturi</button>
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Separated link</a></li>
-    </ul>
-  </div>
 
-  <div class="btn-group">
-    <button type="button" class="btn btn-danger">Meniuri</button>
-    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropdown</span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Separated link</a></li>
-    </ul>
-  </div>
 
 
 </section>

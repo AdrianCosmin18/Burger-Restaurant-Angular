@@ -1,9 +1,8 @@
-export interface Burger{
-  id?: number,
+export interface Product{
   name: string,
-  type: string,
+  typ: string,
   price: number,
-  describe: string,
+  descriere: string,
   ingredients: string,
   src: string
 }

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Fries} from "../../interfaces/fries";
+import {Product} from "../../interfaces/burger";
 
 @Component({
   selector: 'app-fries-item',
@@ -7,7 +8,7 @@ import {Fries} from "../../interfaces/fries";
   styleUrls: ['./fries-item.component.css']
 })
 export class FriesItemComponent implements OnInit {
-  @Input() fries!: Fries;
+  @Input() fries!: Product;
 
   constructor() { }
 

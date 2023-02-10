@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Burger} from "../../interfaces/burger";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Product} from "../../interfaces/burger";
 import {Fries} from "../../interfaces/fries";
+import {AngularFireDatabase} from "@angular/fire/compat/database";
+import {burgers} from "../../../assets/data/burgers";
 
 @Component({
   selector: 'app-burger-item',
@@ -8,11 +10,16 @@ import {Fries} from "../../interfaces/fries";
   styleUrls: ['./burger-item.component.css']
 })
 export class BurgerItemComponent implements OnInit {
-  @Input() burger!: Burger;
+  @Input() burger!: Product;
+  @Output() burgerEvent = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.burger.src);
   }
 
+  addToCart(){
+    this.burgerEvent.emit(this.burger);
+  }
 }

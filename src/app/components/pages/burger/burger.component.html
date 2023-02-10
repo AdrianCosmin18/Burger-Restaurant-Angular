@@ -1,7 +1,7 @@
 
 <section>
   <article class="container">
-    <app-burger-item *ngFor="let burger of burgers"
+    <app-burger-item (burgerEvent)="addToCart(burger)" *ngFor="let burger of burgers"
                      [burger]="burger"
     ></app-burger-item>
   </article>

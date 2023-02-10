@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Drink} from "../../../interfaces/drink";
 import {BurgerService} from "../../../services/burger.service";
+import {Product} from "../../../interfaces/burger";
 
 @Component({
   selector: 'app-drinks-page',
@@ -8,12 +9,14 @@ import {BurgerService} from "../../../services/burger.service";
   styleUrls: ['./drinks-page.component.css']
 })
 export class DrinksPageComponent implements OnInit {
-  public drinks: Drink[] = [];
+  public drinks: Product[] = [];
 
   constructor(private burgerService: BurgerService) { }
 
   ngOnInit(): void {
-    this.drinks = this.burgerService.getDrinks();
+    this.burgerService.getDrinks().subscribe(response => {
+      this.drinks = response;
+    });
   }
 
 }
