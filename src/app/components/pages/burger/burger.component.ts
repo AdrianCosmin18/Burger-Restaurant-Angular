@@ -2,17 +2,19 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
 import {CustomerService} from "../../../services/customer.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-burger',
   templateUrl: './burger.component.html',
-  styleUrls: ['./burger.component.css']
+  styleUrls: ['./burger.component.css'],
+  providers: [MessageService]
 })
 export class BurgerComponent implements OnInit {
   public burgers: Product[] = [];
   private customerId!: number;
 
-  constructor(private burgerService: BurgerService, private customerService: CustomerService) { }
+  constructor(private burgerService: BurgerService, private customerService: CustomerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.customerId = + sessionStorage.getItem("id")!;
@@ -25,7 +27,7 @@ export class BurgerComponent implements OnInit {
   addToCart(burger: Product){
     console.log(burger);
     this.customerService.addToCart(this.customerId, burger.id).subscribe(response => {
-      alert("Produs adaugat in cos cu succes");
+      this.messageService.add({severity: "success", summary: `${burger.name} adugat in cos`, detail: `Mai multe detalii la comanda mea`});
      }, error => {
        alert(error.message);
      })

@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {CustomerService} from "../../../services/customer.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  providers: [MessageService]
 })
 export class CartComponent implements OnInit {
   public products: Product[] = [];
   private customerID!: number;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.customerID = + sessionStorage.getItem("id")!;
@@ -30,9 +32,10 @@ export class CartComponent implements OnInit {
 
   removeFromCart(product: Product){
     console.log(product);
-    this.customerService.deleteFromCart(this.customerID, product.id).subscribe(response => {
-      alert("Produs sters din cos cu succes");
-      location.reload();
+    this.customerService.deleteFromCart(this.customerID, product.id).subscribe(async response => {
+      this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
+        this.products = list;
+      });
     }, error => {
       alert(error.message);
     })

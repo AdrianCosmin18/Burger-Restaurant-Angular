@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './components/pages/main-page/main-page.component';
 import { HeaderComponent } from './components/pages/header/header.component';
-import {PrimeIcons} from "primeng/api";
+import {MessageService, PrimeIcons} from "primeng/api";
 import {ButtonModule} from "primeng/button";
 import { BurgerComponent } from './components/pages/burger/burger.component';
 import { BurgerItemComponent } from './components/burger-item/burger-item.component';
@@ -24,6 +24,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DesertPageComponent } from './components/pages/desert-page/desert-page.component';
 import { DesertItemComponent } from './components/desert-item/desert-item.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import {ToastModule} from "primeng/toast";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/login", pathMatch: "full"},
@@ -57,15 +59,17 @@ const appRoutes: Routes = [
     DesertItemComponent,
     CartItemComponent,
   ],
-  imports: [
-    BrowserModule,
-    ButtonModule,
-    HttpClientModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        ButtonModule,
+        HttpClientModule,
+        FormsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        RouterModule.forRoot(appRoutes),
+        ReactiveFormsModule,
+        ToastModule,
+        BrowserAnimationsModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
