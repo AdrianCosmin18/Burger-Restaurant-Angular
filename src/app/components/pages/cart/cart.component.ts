@@ -41,4 +41,15 @@ export class CartComponent implements OnInit {
     })
   }
 
+  placeOrder(){
+    this.customerService.placeOrder(this.customerID).subscribe(response => {
+      this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
+        this.products = list;
+      });
+      this.messageService.add({severity: "info", summary: `Comanda a fost plasata cu succes`});
+    }, error => {
+      alert(error.message);
+    })
+  }
+
 }

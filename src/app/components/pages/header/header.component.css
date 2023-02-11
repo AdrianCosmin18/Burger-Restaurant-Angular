@@ -16,6 +16,7 @@ p , article, section{
 
 .mb-3{
   gap: 5px;
+  cursor: pointer;
 }
 
 .order-group{

@@ -8,3 +8,7 @@
   justify-content: space-around;
   margin-bottom: 2%;
 }
+
+i{
+  cursor: pointer;
+}

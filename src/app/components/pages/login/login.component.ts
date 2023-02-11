@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     this.service.login(this.email, this.password).subscribe(pers => {
       this.customer = pers;
       sessionStorage.setItem("id", '' + this.customer.id);
-      console.log(sessionStorage.getItem("id"));
       this.router.navigate(["/mainPage"]);
     }, error => {
 

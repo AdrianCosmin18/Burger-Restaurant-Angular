@@ -26,17 +26,18 @@ import { DesertItemComponent } from './components/desert-item/desert-item.compon
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import {ToastModule} from "primeng/toast";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthGuard} from "./gurads/auth.guard";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/login", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
-  {path: "mainPage", component: MainPageComponent},
+  {path: "mainPage", component: MainPageComponent, canActivate: [AuthGuard]},
   {path: "register", component: RegisterComponent},
-  {path: "burgers", component: BurgerComponent},
-  {path: "fries", component: FriesPageComponent},
-  {path: "drinks", component: DrinksPageComponent},
-  {path: "deserts", component: DesertPageComponent},
-  {path: "cart", component: CartComponent},
+  {path: "burgers", component: BurgerComponent, canActivate: [AuthGuard]},
+  {path: "fries", component: FriesPageComponent, canActivate: [AuthGuard]},
+  {path: "drinks", component: DrinksPageComponent, canActivate: [AuthGuard]},
+  {path: "deserts", component: DesertPageComponent, canActivate: [AuthGuard]},
+  {path: "cart", component: CartComponent, canActivate: [AuthGuard]},
   {path: "**", component: MainPageComponent}
 ]
 
