@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {Customer} from "../interfaces/customer";
 import {Product} from "../interfaces/burger";
 
@@ -11,6 +11,7 @@ export class CustomerService {
   private logInUrl = "http://localhost:8080/burger-shop/customer-controller/login";
   private productsOfCustomerUrl = "http://localhost:8080/burger-shop/customer-controller/get-products-of-customer/";
   private addToCartUrl = "http://localhost:8080/burger-shop/customer-controller/add-to-order/";
+  private deleteFromCartUrl = "http://localhost:8080/burger-shop/customer-controller/delete-from-cart/"
 
   constructor(private http: HttpClient) { }
 
@@ -24,9 +25,26 @@ export class CustomerService {
     return this.http.get<Product[]>(url);
   }
 
-  addToCart(id: number, productId: number){
-    let url = this.addToCartUrl += id + "/" + productId;
+  addToCart(id: number, productId: number): Observable<void>{
+    let url = this.addToCartUrl + id + "/" + productId;
     console.log(url);
-    this.http.post(url, {});
+    return this.http.post<void>(url, {}).pipe(catchError(this.handleError));
   }
+
+  deleteFromCart(id: number, productId: number): Observable<void>{
+    let url = `${this.deleteFromCartUrl}${id}/${productId}`;
+    console.log(url);
+    return this.http.delete<void>(url).pipe(catchError(this.handleError));
+  }
+
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    return throwError('Something bad happened; please try again later.');
+  };
 }

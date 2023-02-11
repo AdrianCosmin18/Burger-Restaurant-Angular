@@ -2,6 +2,7 @@
   <article class="container">
     <app-drinks-item *ngFor="let drink of drinks"
                      [drink] = "drink"
+                     (drinkEvent)="addToCart(drink)"
     ></app-drinks-item>
   </article>
 </section>

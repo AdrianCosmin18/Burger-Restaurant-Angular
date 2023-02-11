@@ -13,7 +13,6 @@ export class BurgerItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.burger.src);
   }
 
   addToCart(){

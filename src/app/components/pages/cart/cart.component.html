@@ -2,6 +2,7 @@
   <div class="container border">
     <app-cart-item *ngFor="let product of products"
                    [product] = "product"
+                   (productEvent)="removeFromCart(product)"
     style="display: flex; justify-content: center">
     </app-cart-item>
 

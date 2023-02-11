@@ -28,4 +28,14 @@ export class CartComponent implements OnInit {
     return sum;
   }
 
+  removeFromCart(product: Product){
+    console.log(product);
+    this.customerService.deleteFromCart(this.customerID, product.id).subscribe(response => {
+      alert("Produs sters din cos cu succes");
+      location.reload();
+    }, error => {
+      alert(error.message);
+    })
+  }
+
 }

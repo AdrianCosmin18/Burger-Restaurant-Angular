@@ -24,10 +24,10 @@ export class BurgerComponent implements OnInit {
 
   addToCart(burger: Product){
     console.log(burger);
-    this.customerService.addToCart(this.customerId, burger.id);//.subscribe(response => {
-      //alert("Produs adaugat in cos cu succes");
-    // }, error => {
-    //   alert(error.message);
-    // })
+    this.customerService.addToCart(this.customerId, burger.id).subscribe(response => {
+      alert("Produs adaugat in cos cu succes");
+     }, error => {
+       alert(error.message);
+     })
   }
 }
