@@ -3,21 +3,39 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Customer} from "../interfaces/customer";
 import {Product} from "../interfaces/burger";
+import {environment} from "../../environments/environment";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  private logInUrl = "http://localhost:8080/burger-shop/customer-controller/login";
-  private productsOfCustomerUrl = "http://localhost:8080/burger-shop/customer-controller/get-products-of-customer/";
-  private addToCartUrl = "http://localhost:8080/burger-shop/customer-controller/add-to-order/";
-  private deleteFromCartUrl = "http://localhost:8080/burger-shop/customer-controller/delete-from-cart/";
-  private placeOrderUrl = "http://localhost:8080/burger-shop/customer-controller/place-order/";
+  private logInUrl = environment.apiUrl + "burger-shop/customer-controller/login";
+  private registerUrl = environment.apiUrl + "burger-shop/customer-controller";
+  private productsOfCustomerUrl = environment.apiUrl +"burger-shop/customer-controller/get-products-of-customer/";
+  private addToCartUrl = environment.apiUrl + "burger-shop/customer-controller/add-to-order/";
+  private deleteFromCartUrl = environment.apiUrl + "burger-shop/customer-controller/delete-from-cart/";
+  private placeOrderUrl = environment.apiUrl + "burger-shop/customer-controller/place-order/";
+  private getCustomerByIdUrl = environment.apiUrl + "burger-shop/customer-controller/"
 
   constructor(private http: HttpClient) { }
 
   login(email: string, pass: string): Observable<Customer>{
     let url = this.logInUrl + "?email=" + email + "&password=" + pass;
+    return this.http.get<Customer>(url);
+  }
+
+  register(email: string, name: string, pass: string): Observable<void>{
+    let user = {
+      fullName: name,
+      email: email,
+      password: pass
+    };
+    return this.http.post<void>(this.registerUrl, user);
+  }
+
+  getCustomerById(id: number): Observable<Customer>{
+    let url = `${this.getCustomerByIdUrl}${id}`;
     return this.http.get<Customer>(url);
   }
 

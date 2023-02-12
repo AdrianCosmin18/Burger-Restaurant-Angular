@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../../shared/auth.service";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "../../../services/customer.service";
 import {Customer} from "../../../interfaces/customer";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
   public myForm!: FormGroup;
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   public email: string = "";
   public password: string = "";
 
-  constructor(private service: CustomerService, private router: Router, private formbuilder: FormBuilder) { }
+  constructor(private service: CustomerService, private router: Router, private formbuilder: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.myForm = this.formbuilder.group({
@@ -36,19 +37,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("id", '' + this.customer.id);
       this.router.navigate(["/mainPage"]);
     }, error => {
-
-    })
-
+      this.messageService.add({severity: "error", summary: `Email sau parola incorecta`});
+    });
   }
-  // login(){
-  //   if(this.email == "" || this.password == ""){
-  //     alert("Please enter all values");
-  //     return;
-  //   }
-  //
-  //   this.auth.login(this.email, this.password);
-  //
-  //   this.email = "";
-  //   this.password = "";
-  // }
 }

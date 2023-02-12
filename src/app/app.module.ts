@@ -27,6 +27,7 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import {ToastModule} from "primeng/toast";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthGuard} from "./gurads/auth.guard";
+import {FieldsetModule} from "primeng/fieldset";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/login", pathMatch: "full"},
@@ -65,11 +66,11 @@ const appRoutes: Routes = [
         ButtonModule,
         HttpClientModule,
         FormsModule,
-        AngularFireModule.initializeApp(environment.firebase),
         RouterModule.forRoot(appRoutes),
         ReactiveFormsModule,
         ToastModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FieldsetModule
     ],
   providers: [],
   bootstrap: [AppComponent],

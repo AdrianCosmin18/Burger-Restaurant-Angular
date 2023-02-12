@@ -1,28 +1,48 @@
-<div class="container-flui">
-  <div class="row mt-5">
-    <div class="col"></div>
-    <div class="col-4">
-      <div class="card shadow">
-        <div class="card-body">
-          <form>
-            <h3>Register</h3>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" [(ngModel)]="email">
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="password">
-            </div>
-            <button type="button" class="btn btn-success" (click)="register()">Register</button>
-            <div class="row">
-              <div class="col-md-6">
-                <a href="/login">Have Account ?</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+
+<div class="container border d-flex flex-column">
+  <h3 class="badge text-bg-danger">BurgerShop</h3>
+  <h4 style="color: white; margin-bottom: 30px">Create account</h4>
+
+  <form [formGroup]="myForm" (ngSubmit)="doRegister()">
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Full name</span>
+      <input class="form-control"
+             placeholder="full name"
+             aria-describedby="basic-addon1"
+             formControlName="fullName"
+             [ngClass]="myForm.controls['fullName'].errors ? 'is-invalid' : ''"
+             [(ngModel)]="fullName">
     </div>
-  </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Email</span>
+      <input class="form-control"
+             placeholder="Email"
+             aria-describedby="basic-addon1"
+             formControlName="email"
+             [ngClass]="myForm.controls['email'].errors ? 'is-invalid' : ''"
+             [(ngModel)]="email">
+    </div>
+
+    <div class="input-group mb-3" >
+      <span class="input-group-text">Password</span>
+      <input class="form-control"
+             placeholder="Password"
+             formControlName="password"
+             type="password"
+             [(ngModel)]="password">
+    </div>
+
+    <button type="submit" class="btn btn-primary"
+            [disabled]="myForm.status === 'INVALID'">Register</button>
+  </form>
+
+  <button type="button"
+          class="btn btn-secondary"
+          (click)="goToLogin()"
+          style="margin-top: 30px; width: 30%; margin-bottom: 10px;">Go to login
+  </button>
 </div>
+
+<p-toast position="top-center"></p-toast>

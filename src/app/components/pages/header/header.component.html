@@ -8,7 +8,7 @@
   </article>
 
   <article class="mb-3 user-group">
-    <i class="pi pi-user" style="font-size: 2rem"></i>
+    <i data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="pi pi-user" style="font-size: 2rem"></i>
     <p><strong>Cont</strong></p>
   </article>
 
@@ -28,3 +28,31 @@
 
     <button type="button" class="btn btn-danger" routerLink="/deserts">Deserturi</button>
 </section>
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3" style="display: flex; justify-content: center; align-items: center;">
+          <span class="input-group-text" id="basic-addon1" style="background-color: #ffc244; color: white;">Email</span>
+          <span class="badge text-bg-danger" style="height: 38px; font-size: 20px;">{{email}}</span>
+        </div>
+
+        <div class="input-group mb-3" style="display: flex; justify-content: center; align-items: center;">
+          <span class="input-group-text" id="basic-addon2" style="background-color: #ffc244; color: white;">Name</span>
+          <span class="badge text-bg-danger" style="height: 38px; font-size: 20px;">{{name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

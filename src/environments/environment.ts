@@ -4,14 +4,7 @@
 
 export const environment = {
   production: false,
-  firebase: {
-    apiKey: "AIzaSyCPGth6WTngI1xy3Y81Pr8N-6Wck6vgUFI",
-    authDomain: "burgershop-70e0a.firebaseapp.com",
-    projectId: "burgershop-70e0a",
-    storageBucket: "burgershop-70e0a.appspot.com",
-    messagingSenderId: "1021801022220",
-    appId: "1:1021801022220:web:c028072955c5f2b8093f29"
-  }
+  apiUrl: 'http://localhost:8080/',
 };
 
 /*

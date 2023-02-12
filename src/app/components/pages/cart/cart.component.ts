@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
     for(let p of this.products){
       sum += p.price;
     }
-    return sum;
+    return Number(sum.toFixed(2));
   }
 
   removeFromCart(product: Product){
