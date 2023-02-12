@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
       this.name = this.customer.fullName;
       this.email = this.customer.email
       console.log(id);
-    }, error => alert(error.message));
+    });
   }
 
   hasNotRoute(route: string){
