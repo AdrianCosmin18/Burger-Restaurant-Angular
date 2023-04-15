@@ -1,5 +1,5 @@
-
-<section class="nav nav-header" *ngIf="hasNotRoute('/login') && hasNotRoute('/register')">
+<!--<section class="nav nav-header" *ngIf="hasNotRoute('/login') && hasNotRoute('/register')">-->
+<section class="nav nav-header">
     <img class="logo" src="../../../../assets/logo.png" routerLink="/mainPage">
 
   <article class="mb-3 d-flex align-items-center order-group" routerLink="/cart">
@@ -13,12 +13,14 @@
   </article>
 
   <article class="mb-3" style="display: flex; justify-content: center; align-items: center; margin-right: 10%">
-    <i class="pi pi-sign-out" style="font-size: 2rem;" (click)="logout()"></i>
+<!--    <i class="pi pi-sign-out" style="font-size: 2rem;" (click)="logout()"></i>-->
+    <i class="pi pi-sign-out" style="font-size: 2rem;"></i>
   </article>
 
 </section>
 
-<section class="nav nav-menu" *ngIf="hasNotRoute('/login') && hasNotRoute('/register')">
+<!--<section class="nav nav-menu" *ngIf="hasNotRoute('/login') && hasNotRoute('/register')">-->
+<section class="nav nav-menu">
 
     <button type="button" class="btn btn-danger" routerLink="/burgers">Burgeri</button>
 

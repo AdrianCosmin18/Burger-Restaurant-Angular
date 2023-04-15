@@ -17,7 +17,15 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    let id = + sessionStorage.getItem("id")!;
+    // let id = + sessionStorage.getItem("id")!;
+    // this.customerService.getCustomerById(id).subscribe(person => {
+    //   this.customer = person;
+    //   this.name = this.customer.fullName;
+    //   this.email = this.customer.email
+    //   console.log(id);
+    // });
+
+    let id = 1;
     this.customerService.getCustomerById(id).subscribe(person => {
       this.customer = person;
       this.name = this.customer.fullName;
