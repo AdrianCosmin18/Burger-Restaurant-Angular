@@ -20,6 +20,8 @@ export class CartComponent implements OnInit {
     this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
       this.products = list;
     });
+
+
   }
 
   totalAmount(): number{
@@ -31,14 +33,14 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(product: Product){
-    console.log(product);
-    this.customerService.deleteFromCart(this.customerID, product.id).subscribe(async response => {
-      this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
-        this.products = list;
-      });
-    }, error => {
-      alert(error.message);
-    })
+    // console.log(product);
+    // this.customerService.deleteFromCart(this.customerID, product.id).subscribe(async response => {
+    //   this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
+    //     this.products = list;
+    //   });
+    // }, error => {
+    //   alert(error.message);
+    // })
   }
 
   placeOrder(){

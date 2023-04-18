@@ -17,19 +17,19 @@ export class DrinksPageComponent implements OnInit {
   constructor(private burgerService: BurgerService, private customerService: CustomerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.customerId = + sessionStorage.getItem("id")!;
-    console.log(this.customerId + " din drink component");
-    this.burgerService.getDrinks().subscribe(response => {
-      this.drinks = response;
-    });
+    // this.customerId = + sessionStorage.getItem("id")!;
+    // console.log(this.customerId + " din drink component");
+    // this.burgerService.getDrinks().subscribe(response => {
+    //   this.drinks = response;
+    // });
   }
 
   addToCart(drink: Product){
-    console.log(drink);
-    this.customerService.addToCart(this.customerId, drink.id).subscribe(response => {
-      this.messageService.add({severity: "success", summary: `${drink.name} adugat in cos`, detail: `Mai multe detalii la comanda mea`});
-    }, error => {
-      alert(error.message);
-    })
+    // console.log(drink);
+    // this.customerService.addToCart(this.customerId, drink.id).subscribe(response => {
+    //   this.messageService.add({severity: "success", summary: `${drink.name} adugat in cos`, detail: `Mai multe detalii la comanda mea`});
+    // }, error => {
+    //   alert(error.message);
+    // })
   }
 }

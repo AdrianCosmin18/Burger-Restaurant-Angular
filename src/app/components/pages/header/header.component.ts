@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AccordionModule} from 'primeng/accordion';
 import {Router} from "@angular/router";
 import {CustomerService} from "../../../services/customer.service";
 import {Customer} from "../../../interfaces/customer";
+import {DialogService} from "primeng/dynamicdialog";
+import {CartComponent} from "../cart/cart.component";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +16,10 @@ export class HeaderComponent implements OnInit {
   public email: string = "";
   public name: string = "";
 
-  constructor(private router: Router, private customerService: CustomerService) { }
+  constructor(
+    private router: Router,
+    private customerService: CustomerService,
+    public dialogService: DialogService,) { }
 
   ngOnInit(): void {
     // let id = + sessionStorage.getItem("id")!;
@@ -41,5 +46,13 @@ export class HeaderComponent implements OnInit {
   logout(){
     sessionStorage.removeItem("id");
     this.router.navigate(["/login"]);
+  }
+
+  openCart(): void{
+
+    const ref = this.dialogService.open(CartComponent, {
+      header: 'Cosul meu',
+      width: '60%',
+    })
   }
 }

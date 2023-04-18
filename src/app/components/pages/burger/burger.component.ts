@@ -17,19 +17,40 @@ export class BurgerComponent implements OnInit {
   constructor(private burgerService: BurgerService, private customerService: CustomerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.customerId = + sessionStorage.getItem("id")!;
-    console.log(this.customerId + " din burger component");
-    this.burgerService.getBurgers().subscribe(response => {
-      this.burgers = response
-    })
+    // this.customerId = + sessionStorage.getItem("id")!;
+    // console.log(this.customerId + " din burger component");
+    // this.burgerService.getBurgers().subscribe(response => {
+    //   this.burgers = response;
+    // });
+
+    // this.burgerService.getBurgers().subscribe({
+    //   next: (response) => {
+    //     this.burgers = response.map(product => {
+    //       product.pictureUrl = this.createImageUrl(product.picture);
+    //       return product;
+    //     });
+    //   }
+    // });
+
+    this.burgerService.getBurgers().subscribe({
+      next: (response) => {
+        this.burgers = response;
+      }
+    });
+
   }
 
+  private createImageUrl(picture: Blob): string {
+    return URL.createObjectURL(picture);
+  }
+
+
   addToCart(burger: Product){
-    console.log(burger);
-    this.customerService.addToCart(this.customerId, burger.id).subscribe(response => {
-      this.messageService.add({severity: "success", summary: `${burger.name} adugat in cos`, detail: `Mai multe detalii la comanda mea`});
-     }, error => {
-       alert(error.message);
-     })
+    // console.log(burger);
+    // this.customerService.addToCart(this.customerId, burger.id).subscribe(response => {
+    //   this.messageService.add({severity: "success", summary: `${burger.name} adugat in cos`, detail: `Mai multe detalii la comanda mea`});
+    //  }, error => {
+    //    alert(error.message);
+    //  })
   }
 }
