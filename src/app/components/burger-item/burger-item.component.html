@@ -1,20 +1,35 @@
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{burger.src}}" class="img-fluid rounded-start">
+      <img src="../../../../assets/logo.png" class="img-fluid rounded-start">
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{burger.name}}</h5>
-        <p class="card-text">{{burger.descriere}}</p>
+        <p class="card-text">{{burger.description}}</p>
       </div>
       <div class="card-div">
         <span class="badge text-bg-warning">{{burger.price | currency: "RON"}}</span>
         <i class="pi pi-plus-circle" (click)="addToCart()" style="font-size: 1.5rem"></i>
       </div>
-
     </div>
   </div>
 </div>
+
+<p-card header={{burger.name}} subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
+  <ng-template pTemplate="header">
+    <img alt="Card" src="../../../../assets/logo.png" style="width: 100px">
+  </ng-template>
+  <p>{{burger.description}}</p>
+  <ng-template pTemplate="footer">
+<!--    <p-button label="Save" icon="pi pi-check"></p-button>-->
+    <button pButton pRipple type="button" icon="pi pi-heart" (click)="addToFavorites()" [class.favorited]=""></button>
+    <button pButton pRipple type="button"
+            icon="pi pi-heart" class="p-button-text"
+            (click)="addToFavorites()" [ngClass]="favoriteColor"></button>
+    <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+    <p-badge [value]="burger.price | currency: 'RON'" severity="warning" styleClass="mr-2"></p-badge>
+  </ng-template>
+</p-card>
 
 <p-toast position="top-left"></p-toast>

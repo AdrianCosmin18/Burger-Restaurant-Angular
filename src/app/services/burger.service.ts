@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Product} from "../interfaces/burger";
 import {environment} from "../../environments/environment";
 
@@ -8,10 +8,10 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class BurgerService {
-  private burgersUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=burger";
-  private friesUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=fries";
-  private drinksUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=drink";
-  private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=desert"
+  private burgersUrl: string = environment.apiUrl + "/restaurant/get-restaurant-products/BurgerShop?type=burger";
+  // private friesUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=fries";
+  // private drinksUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=drink";
+  // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=c"
 
 
   constructor(private http: HttpClient) { }
@@ -21,16 +21,24 @@ export class BurgerService {
     return this.http.get<Product[]>(this.burgersUrl);
   }
 
-  getFries(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.friesUrl);
-  }
+  // getFries(): Observable<Product[]>{
+  //   return this.http.get<Product[]>(this.friesUrl);
+  // }
+  //
+  // getDrinks(){
+  //   return this.http.get<Product[]>(this.drinksUrl);
+  // }
+  //
+  // getDesert(){
+  //   return this.http.get<Product[]>(this.desertUrl);
+  // }
 
-  getDrinks(){
-    return this.http.get<Product[]>(this.drinksUrl);
-  }
-
-  getDesert(){
-    return this.http.get<Product[]>(this.desertUrl);
+  private getPictureUrl(picture: any): string {
+    const base64String = btoa(
+      new Uint8Array(picture)
+        .reduce((data, byte) => data + String.fromCharCode(byte), '')
+    );
+    return `data:image/png;base64, ${base64String}`;
   }
 
 }

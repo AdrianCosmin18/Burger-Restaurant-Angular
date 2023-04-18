@@ -27,6 +27,9 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import {ToastModule} from "primeng/toast";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FieldsetModule} from "primeng/fieldset";
+import {DialogService} from "primeng/dynamicdialog";
+import {CardModule} from "primeng/card";
+import {BadgeModule} from "primeng/badge";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -60,18 +63,20 @@ const appRoutes: Routes = [
     DesertItemComponent,
     CartItemComponent,
   ],
-    imports: [
-        BrowserModule,
-        ButtonModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule.forRoot(appRoutes),
-        ReactiveFormsModule,
-        ToastModule,
-        BrowserAnimationsModule,
-        FieldsetModule
-    ],
-  providers: [],
+  imports: [
+    BrowserModule,
+    ButtonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    FieldsetModule,
+    CardModule,
+    BadgeModule
+  ],
+  providers: [DialogService],
   bootstrap: [AppComponent],
   exports: [
     BurgerItemComponent,
