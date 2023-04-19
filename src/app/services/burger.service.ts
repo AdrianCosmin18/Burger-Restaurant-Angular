@@ -8,8 +8,8 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class BurgerService {
-  private burgersUrl: string = environment.apiUrl + "/restaurant/get-restaurant-products/BurgerShop?type=burger";
-  // private friesUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=fries";
+  private burgersUrl: string = environment.apiUrl + "restaurant/get-restaurant-products/BurgerShop?type=burger";
+  private friesUrl: string = environment.apiUrl + "restaurant/get-restaurant-products/gBurgerShop?type=fries";
   // private drinksUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=drink";
   // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=c"
 
@@ -21,9 +21,9 @@ export class BurgerService {
     return this.http.get<Product[]>(this.burgersUrl);
   }
 
-  // getFries(): Observable<Product[]>{
-  //   return this.http.get<Product[]>(this.friesUrl);
-  // }
+  getFries(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.friesUrl);
+  }
   //
   // getDrinks(){
   //   return this.http.get<Product[]>(this.drinksUrl);

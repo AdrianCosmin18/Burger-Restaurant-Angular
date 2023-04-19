@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Customer} from "../../../interfaces/customer";
+import {User} from "../../../interfaces/user";
 import {CustomerService} from "../../../services/customer.service";
 import {Router} from "@angular/router";
 import {MessageService} from "primeng/api";
@@ -27,16 +27,16 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  doRegister(){
-    this.service.register(this.email, this.fullName, this.password).subscribe(async () => {
-      this.messageService.add({severity: "success", summary: "Inregistrarea realizata cu success"});
-      await setTimeout(() => {
-        this.goToLogin();
-      }, 2000);
-    }, error => {
-      this.messageService.add({severity: "error", summary: `Exista deja acest email`});
-    })
-  }
+  // doRegister(){
+  //   this.service.register(this.email, this.fullName, this.password).subscribe(async () => {
+  //     this.messageService.add({severity: "success", summary: "Inregistrarea realizata cu success"});
+  //     await setTimeout(() => {
+  //       this.goToLogin();
+  //     }, 2000);
+  //   }, error => {
+  //     this.messageService.add({severity: "error", summary: `Exista deja acest email`});
+  //   })
+  // }
 
   goToLogin(){
     this.router.navigate(["/login"]);

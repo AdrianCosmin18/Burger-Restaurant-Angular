@@ -1,9 +1,9 @@
 
 <section>
   <article class="container">
-    <app-burger-item (burgerEvent)="addToCart(burger)" *ngFor="let burger of burgers"
+    <div class="burger-item" (burgerEvent)="addToCart(burger)" *ngFor="let burger of burgers"
                      [burger]="burger"
-    ></app-burger-item>
+    ></div>
   </article>
 </section>
 

@@ -16,10 +16,10 @@ export class CartComponent implements OnInit {
   constructor(private customerService: CustomerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.customerID = + sessionStorage.getItem("id")!;
-    this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
-      this.products = list;
-    });
+    // this.customerID = + sessionStorage.getItem("id")!;
+    // this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
+    //   this.products = list;
+    // });
 
 
   }
@@ -43,15 +43,15 @@ export class CartComponent implements OnInit {
     // })
   }
 
-  placeOrder(){
-    this.customerService.placeOrder(this.customerID).subscribe(response => {
-      this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
-        this.products = list;
-      });
-      this.messageService.add({severity: "info", summary: `Comanda a fost plasata cu succes`});
-    }, error => {
-      alert(error.message);
-    })
-  }
+  // placeOrder(){
+  //   this.customerService.placeOrder(this.customerID).subscribe(response => {
+  //     this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
+  //       this.products = list;
+  //     });
+  //     this.messageService.add({severity: "info", summary: `Comanda a fost plasata cu succes`});
+  //   }, error => {
+  //     alert(error.message);
+  //   })
+  // }
 
 }

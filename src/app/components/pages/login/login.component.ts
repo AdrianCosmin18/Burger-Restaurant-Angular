@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "../../../services/customer.service";
-import {Customer} from "../../../interfaces/customer";
 import {MessageService} from "primeng/api";
+import {User} from "../../../interfaces/user";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ import {MessageService} from "primeng/api";
 })
 export class LoginComponent implements OnInit {
   public myForm!: FormGroup;
-  private customer!: Customer;
+  private user!: User;
   public errorMessage!: string;
   public email: string = "";
   public password: string = "";
@@ -31,13 +31,13 @@ export class LoginComponent implements OnInit {
     this.router.navigate(["/register"]);
   }
 
-  doLogin():void{
-    this.service.login(this.email, this.password).subscribe(pers => {
-      this.customer = pers;
-      sessionStorage.setItem("id", '' + this.customer.id);
-      this.router.navigate(["/mainPage"]);
-    }, error => {
-      this.messageService.add({severity: "error", summary: `Email sau parola incorecta`});
-    });
-  }
+  // doLogin():void{
+  //   this.service.login(this.email, this.password).subscribe(pers => {
+  //     this.user = pers;
+  //     sessionStorage.setItem("email", '' + this.user.email);
+  //     this.router.navigate(["/mainPage"]);
+  //   }, error => {
+  //     this.messageService.add({severity: "error", summary: `Email sau parola incorecta`});
+  //   });
+  // }
 }

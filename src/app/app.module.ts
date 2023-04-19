@@ -30,6 +30,7 @@ import {FieldsetModule} from "primeng/fieldset";
 import {DialogService} from "primeng/dynamicdialog";
 import {CardModule} from "primeng/card";
 import {BadgeModule} from "primeng/badge";
+import {TooltipModule} from "primeng/tooltip";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -63,19 +64,20 @@ const appRoutes: Routes = [
     DesertItemComponent,
     CartItemComponent,
   ],
-  imports: [
-    BrowserModule,
-    ButtonModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule,
-    ToastModule,
-    BrowserAnimationsModule,
-    FieldsetModule,
-    CardModule,
-    BadgeModule
-  ],
+    imports: [
+        BrowserModule,
+        ButtonModule,
+        HttpClientModule,
+        FormsModule,
+        RouterModule.forRoot(appRoutes),
+        ReactiveFormsModule,
+        ToastModule,
+        BrowserAnimationsModule,
+        FieldsetModule,
+        CardModule,
+        BadgeModule,
+        TooltipModule
+    ],
   providers: [DialogService],
   bootstrap: [AppComponent],
   exports: [

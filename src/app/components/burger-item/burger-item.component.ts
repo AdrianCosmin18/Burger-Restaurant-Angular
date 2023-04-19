@@ -3,7 +3,7 @@ import { Product } from "../../interfaces/burger";
 import {MessageService} from "primeng/api";
 
 @Component({
-  selector: 'app-burger-item',
+  selector: '.burger-item',
   templateUrl: './burger-item.component.html',
   styleUrls: ['./burger-item.component.css'],
 })
@@ -12,8 +12,10 @@ export class BurgerItemComponent implements OnInit {
   @Output() burgerEvent = new EventEmitter();
 
   public loggedIn: boolean = true;
-  public isFavorited = false;
-  public favoriteColor = '';
+  public isFavorite = false;
+  public favoriteColor = 'p-button-secondary p-button-outlined';
+  public productInCart: number = 0;
+  public favoriteTooltipMessage = 'Adauga la favorite';
 
   constructor() { }
 
@@ -21,16 +23,23 @@ export class BurgerItemComponent implements OnInit {
   }
 
   addToCart(){
+    this.productInCart++;
     this.burgerEvent.emit(this.burger);
   }
 
+  eraseFromCart(){
+    this.productInCart--;
+  }
+
   addToFavorites() {
-    this.isFavorited = !this.isFavorited;
-    this.favoriteColor = this.isFavorited ? 'p-button-danger' : '';
-    if (this.isFavorited) {
+    this.isFavorite = !this.isFavorite;
+    this.favoriteColor = this.isFavorite ? 'p-button-danger' : 'p-button-secondary p-button-outlined';
+    if (this.isFavorite) {
       // Adaugă produsul la lista de favorite
+      this.favoriteTooltipMessage = 'Sterge de la favorite';
     } else {
       // Elimină produsul din lista de favorite
+      this.favoriteTooltipMessage = 'Adauga la favorite';
     }
   }
 }

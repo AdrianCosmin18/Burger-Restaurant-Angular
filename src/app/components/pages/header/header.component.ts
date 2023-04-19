@@ -2,7 +2,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AccordionModule} from 'primeng/accordion';
 import {Router} from "@angular/router";
 import {CustomerService} from "../../../services/customer.service";
-import {Customer} from "../../../interfaces/customer";
+import {User} from "../../../interfaces/user";
 import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
 
@@ -12,7 +12,7 @@ import {CartComponent} from "../cart/cart.component";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public customer!: Customer;
+  public customer!: User;
   public email: string = "";
   public name: string = "";
 
@@ -30,13 +30,13 @@ export class HeaderComponent implements OnInit {
     //   console.log(id);
     // });
 
-    let id = 1;
-    this.customerService.getCustomerById(id).subscribe(person => {
-      this.customer = person;
-      this.name = this.customer.fullName;
-      this.email = this.customer.email
-      console.log(id);
-    });
+    // let email = 'cosmin@yahoo.com';
+    // this.customerService.getCustomerById(id).subscribe(person => {
+    //   // this.customer = person;
+    //   // this.name = this.customer.fullName;
+    //   // this.email = this.customer.email
+    //   // console.log(id);
+    // });
   }
 
   hasNotRoute(route: string){
