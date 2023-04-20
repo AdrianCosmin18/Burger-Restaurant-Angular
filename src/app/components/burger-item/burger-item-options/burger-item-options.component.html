@@ -1,0 +1,29 @@
+<img alt="Card" src="../../../../assets/logo.png" style="width: 200px; display: flex;justify-self: center; align-self: center">
+<h5>{{burger.ingredients}}</h5>
+<p-accordion [multiple]="true">
+  <p-accordionTab>
+
+    <ng-template pTemplate="header">
+      Extra <span id="adauga">Alege maxim {{burgerIngredients.length}} articole</span>
+    </ng-template>
+
+    <section class="app-ingredient"
+             *ngFor="let ingredient of burgerIngredients"
+             [ingredient]="ingredient"
+             [message]="extraIngredientMessage"
+             (action)="addOrRemoveIngredient($event)"></section>
+
+  </p-accordionTab>
+  <p-accordionTab>
+    <ng-template pTemplate="header">
+      Elimina <span id="elimina">Alege maxim {{burgerIngrCanEliminate.length}} articole</span>
+    </ng-template>
+
+    <section class="app-ingredient"
+             *ngFor="let ingredient of burgerIngrCanEliminate"
+             [ingredient]="ingredient"
+             [message]="removeIngredientMessage"
+             (action)="addOrRemoveIngredient($event)"></section>
+
+  </p-accordionTab>
+</p-accordion>

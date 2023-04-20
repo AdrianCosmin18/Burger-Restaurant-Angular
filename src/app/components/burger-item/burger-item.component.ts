@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Product } from "../../interfaces/burger";
-import {MessageService} from "primeng/api";
+import {Confirmation, ConfirmationService, MessageService} from "primeng/api";
+import {DialogService} from "primeng/dynamicdialog";
+import {BurgerItemOptionsComponent} from "./burger-item-options/burger-item-options.component";
 
 @Component({
   selector: '.burger-item',
@@ -17,12 +19,21 @@ export class BurgerItemComponent implements OnInit {
   public productInCart: number = 0;
   public favoriteTooltipMessage = 'Adauga la favorite';
 
-  constructor() { }
+  constructor(private dialogService: DialogService) { }
 
   ngOnInit(): void {
   }
 
   addToCart(){
+
+    const ref = this.dialogService.open(BurgerItemOptionsComponent, {
+      header: this.burger.name,
+      width: '40%',
+      data: {
+        burger: this.burger,
+      }
+    })
+
     this.productInCart++;
     this.burgerEvent.emit(this.burger);
   }

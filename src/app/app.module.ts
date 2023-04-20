@@ -31,6 +31,9 @@ import {DialogService} from "primeng/dynamicdialog";
 import {CardModule} from "primeng/card";
 import {BadgeModule} from "primeng/badge";
 import {TooltipModule} from "primeng/tooltip";
+import { BurgerItemOptionsComponent } from './components/burger-item/burger-item-options/burger-item-options.component';
+import {AccordionModule} from "primeng/accordion";
+import { IngredientComponent } from './components/burger-item/burger-item-options/ingredient/ingredient.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -63,6 +66,8 @@ const appRoutes: Routes = [
     DesertPageComponent,
     DesertItemComponent,
     CartItemComponent,
+    BurgerItemOptionsComponent,
+    IngredientComponent,
   ],
     imports: [
         BrowserModule,
@@ -76,7 +81,8 @@ const appRoutes: Routes = [
         FieldsetModule,
         CardModule,
         BadgeModule,
-        TooltipModule
+        TooltipModule,
+        AccordionModule
     ],
   providers: [DialogService],
   bootstrap: [AppComponent],

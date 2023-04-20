@@ -3,15 +3,17 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {Product} from "../interfaces/burger";
 import {environment} from "../../environments/environment";
+import {FoodType} from "../constants/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BurgerService {
-  private burgersUrl: string = environment.apiUrl + "restaurant/get-restaurant-products/BurgerShop?type=burger";
-  private friesUrl: string = environment.apiUrl + "restaurant/get-restaurant-products/gBurgerShop?type=fries";
+  private burgersUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.BURGER}`;
+  private friesUrl: string = environment.apiUrl + "restaurant/get-restaurant-products/BurgerShop?type=fries";
+  private extrasUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS}`;
   // private drinksUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=drink";
-  // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=c"
+  // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=extras"
 
 
   constructor(private http: HttpClient) { }
@@ -23,6 +25,10 @@ export class BurgerService {
 
   getFries(): Observable<Product[]>{
     return this.http.get<Product[]>(this.friesUrl);
+  }
+
+  getExtras(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.extrasUrl);
   }
   //
   // getDrinks(){
