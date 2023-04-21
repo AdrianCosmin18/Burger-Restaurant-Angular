@@ -102,8 +102,8 @@ export class BurgerItemOptionsComponent implements OnInit {
           }
 
           case ActionIngredientsEnum.REMOVE:{
-            //nu se face bine eliminarea nicaieri
-            this.extraList.slice(this.extraList.indexOf(action.ingredient), 1);
+            this.extraList.splice(this.extraList.indexOf(action.ingredient), 1);
+            console.log(this.extraList);
             break;
           }
         }
@@ -122,7 +122,7 @@ export class BurgerItemOptionsComponent implements OnInit {
           }
 
           case ActionIngredientsEnum.REMOVE:{
-            this.lessList.slice(this.extraList.indexOf(action.ingredient), 1);
+            this.lessList.splice(this.extraList.indexOf(action.ingredient), 1);
             break;
           }
         }
