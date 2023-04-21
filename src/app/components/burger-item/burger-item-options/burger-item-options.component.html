@@ -26,4 +26,16 @@
              (action)="addOrRemoveIngredient($event)"></section>
 
   </p-accordionTab>
+
 </p-accordion>
+<section class="count">
+  <i class="pi pi-minus-circle"
+     style="font-size: 2rem; cursor: {{piMinusCursor}}"
+     [ngStyle]="{color: piMinusColor}"
+     (click)="decreaseBurgerCounter()"></i>
+  <button pButton pRipple class="p-button-text  p-button-secondary" label="{{burgerCounter}}" [disabled]="true"></button>
+  <i class="pi pi-plus-circle" style="font-size: 2rem; color: #b5393a; cursor: pointer"
+     (click)="increaseBurgerCounter()"></i>
+</section>
+
+<button pButton pRipple type="button" label="Adauga {{burgerCounter}} pentru {{burgerPrice}} lei" class="p-button-rounded p-button-secondary"></button>

@@ -26,6 +26,12 @@ export class BurgerItemOptionsComponent implements OnInit {
   public burgerIngredients: Product[] = [];//lista de ingr a burgerului fara carine si chifla la care nu se umbla deobicei
   public burgerIngrCanEliminate: Product[] = [];//lista de ingr care pot fi eliminate care difera de cea de mai sus prin carnea care poate fi eliminata
 
+  public burgerCounter = 1;
+  public piMinusColor = 'grey';
+  public piMinusCursor = 'not-allowed';
+
+  public burgerPrice = this.burger.price;
+
   public extraIngredientMessage: ExtraRemoveIngredientMessage;
   public removeIngredientMessage: ExtraRemoveIngredientMessage;
 
@@ -98,11 +104,13 @@ export class BurgerItemOptionsComponent implements OnInit {
 
           case ActionIngredientsEnum.ADD:{
             this.extraList.push(action.ingredient);
+            this.burgerPrice += action.ingredient.price;
             break;
           }
 
           case ActionIngredientsEnum.REMOVE:{
             this.extraList.splice(this.extraList.indexOf(action.ingredient), 1);
+            this.burgerPrice -= action.ingredient.price;
             console.log(this.extraList);
             break;
           }
@@ -131,6 +139,25 @@ export class BurgerItemOptionsComponent implements OnInit {
         break;
       }
     }
+  }
+
+
+  increaseBurgerCounter(){
+    this.burgerCounter++;
+    if(this.burgerCounter > 1){
+      this.piMinusCursor = 'pointer';
+      this.piMinusColor = '#b5393a';
+    }
+  }
+
+  decreaseBurgerCounter() {
+    if(this.burgerCounter === 1){
+      return;
+    } else if (this.burgerCounter === 2) {
+      this.piMinusColor = 'grey';
+      this.piMinusCursor = 'not-allowed';
+    }
+    this.burgerCounter--;
   }
 
 
