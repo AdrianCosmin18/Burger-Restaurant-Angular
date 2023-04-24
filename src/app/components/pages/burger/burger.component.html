@@ -1,8 +1,10 @@
 
 <section>
   <article class="container">
-    <div class="burger-item" (burgerEvent)="addToCart(burger)" *ngFor="let burger of burgers"
-                     [burger]="burger"
+    <div class="burger-item"
+         (burgerEvent)="addToCart(burger)"
+         *ngFor="let burger of burgers"
+         [burger]="burger"
     ></div>
   </article>
 </section>

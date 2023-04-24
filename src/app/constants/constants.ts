@@ -1,9 +1,13 @@
 export enum FoodType{
   BURGER = "burger",
-  FRIES = "fires",
+  FRIES = "fries",
   DRINK = "drink",
   DESERT = "desert",
-  EXTRAS = "extras"
+  EXTRAS_BURGER = "extras-burger",
+  EXTRAS_FRIES = "extras-fries",
+  EXTRAS_DESERT = "extras-desert"
+
+
 }
 
 // daca e cu + sau vazut

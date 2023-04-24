@@ -22,7 +22,7 @@ export class BurgerItemOptionsComponent implements OnInit {
   };
   public extraList: Product[] = [];
   public lessList: Product[] = [];
-  public ingredientsDB: Product[] = []; //lsiat tuturor ingredientelor din bd
+  public ingredientsDB: Product[] = []; //lista tuturor ingredientelor din bd
   public burgerIngredients: Product[] = [];//lista de ingr a burgerului fara carine si chifla la care nu se umbla deobicei
   public burgerIngrCanEliminate: Product[] = [];//lista de ingr care pot fi eliminate care difera de cea de mai sus prin carnea care poate fi eliminata
 
@@ -49,11 +49,12 @@ export class BurgerItemOptionsComponent implements OnInit {
   }
 
   getAllExtraIngredients(): void{
-    this.burgerService.getExtras().subscribe({
+    this.burgerService.getExtrasBurgers().subscribe({
       next: data => {
         this.ingredientsDB = data;
         this.getBurger();
         this.createIngredientsLists();
+        this.burgerPrice = this.burger.price;
       }
     });
   }
@@ -105,12 +106,14 @@ export class BurgerItemOptionsComponent implements OnInit {
           case ActionIngredientsEnum.ADD:{
             this.extraList.push(action.ingredient);
             this.burgerPrice += action.ingredient.price;
+            this.burgerPrice = Number(this.burgerPrice.toFixed(2));
             break;
           }
 
           case ActionIngredientsEnum.REMOVE:{
             this.extraList.splice(this.extraList.indexOf(action.ingredient), 1);
             this.burgerPrice -= action.ingredient.price;
+            this.burgerPrice = Number(this.burgerPrice.toFixed(2));
             console.log(this.extraList);
             break;
           }
@@ -160,6 +163,7 @@ export class BurgerItemOptionsComponent implements OnInit {
     this.burgerCounter--;
   }
 
-
-
+  roundNumber(number: any){
+    return Number(number);
+  }
 }

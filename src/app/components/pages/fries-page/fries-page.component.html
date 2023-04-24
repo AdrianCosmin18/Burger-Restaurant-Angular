@@ -1,8 +1,9 @@
 <section>
   <article class="container">
-    <app-fries-item *ngFor="let fries of friesList"
-                     [fries]="fries"
-                    (friesEvent)="addToCart(fries)"
-    ></app-fries-item>
+    <div class="fries-item"
+         *ngFor="let fries of friesList"
+         (friesEvent)="addToCart(fries)"
+         [fries]="fries"
+    ></div>
   </article>
 </section>

@@ -10,8 +10,9 @@ import {FoodType} from "../constants/constants";
 })
 export class BurgerService {
   private burgersUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.BURGER}`;
-  private friesUrl: string = environment.apiUrl + "restaurant/get-restaurant-products/BurgerShop?type=fries";
-  private extrasUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS}`;
+  private friesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.FRIES}`;
+  private extrasBurgerUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_BURGER}`;
+  private extrasFriesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_FRIES}`
   // private drinksUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=drink";
   // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=extras"
 
@@ -24,11 +25,16 @@ export class BurgerService {
   }
 
   getFries(): Observable<Product[]>{
+    console.log(this.friesUrl);
     return this.http.get<Product[]>(this.friesUrl);
   }
 
-  getExtras(): Observable<Product[]>{
-    return this.http.get<Product[]>(this.extrasUrl);
+  getExtrasBurgers(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.extrasBurgerUrl);
+  }
+
+  getExtrasFries(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.extrasFriesUrl);
   }
   //
   // getDrinks(){

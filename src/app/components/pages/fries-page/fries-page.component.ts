@@ -22,6 +22,11 @@ export class FriesPageComponent implements OnInit {
     //   this.friesList = response;
     //   console.log(this.friesList);
     // });
+    this.burgerService.getFries().subscribe({
+      next: (response) => {
+        this.friesList = response;
+      }
+    })
   }
 
   addToCart(fries: Product){

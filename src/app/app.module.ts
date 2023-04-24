@@ -34,6 +34,8 @@ import {TooltipModule} from "primeng/tooltip";
 import { BurgerItemOptionsComponent } from './components/burger-item/burger-item-options/burger-item-options.component';
 import {AccordionModule} from "primeng/accordion";
 import { IngredientComponent } from './components/burger-item/burger-item-options/ingredient/ingredient.component';
+import { FriesItemOptionsComponent } from './components/fries-item/fries-item-options/fries-item-options.component';
+import {SelectButtonModule} from "primeng/selectbutton";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -44,7 +46,7 @@ const appRoutes: Routes = [
   {path: "fries", component: FriesPageComponent},
   {path: "drinks", component: DrinksPageComponent},
   {path: "deserts", component: DesertPageComponent},
-  {path: "cart", component: CartComponent,},
+  //{path: "cart", component: CartComponent,},
   {path: "**", component: MainPageComponent}
 ]
 
@@ -68,6 +70,7 @@ const appRoutes: Routes = [
     CartItemComponent,
     BurgerItemOptionsComponent,
     IngredientComponent,
+    FriesItemOptionsComponent,
   ],
     imports: [
         BrowserModule,
@@ -82,7 +85,8 @@ const appRoutes: Routes = [
         CardModule,
         BadgeModule,
         TooltipModule,
-        AccordionModule
+        AccordionModule,
+        SelectButtonModule
     ],
   providers: [DialogService],
   bootstrap: [AppComponent],
