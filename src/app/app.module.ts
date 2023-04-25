@@ -36,6 +36,10 @@ import {AccordionModule} from "primeng/accordion";
 import { IngredientComponent } from './components/burger-item/burger-item-options/ingredient/ingredient.component';
 import { FriesItemOptionsComponent } from './components/fries-item/fries-item-options/fries-item-options.component';
 import {SelectButtonModule} from "primeng/selectbutton";
+import {StoreModule} from "@ngrx/store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {StoreRouterConnectingModule} from "@ngrx/router-store";
+import {EffectsModule} from "@ngrx/effects";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -86,7 +90,11 @@ const appRoutes: Routes = [
         BadgeModule,
         TooltipModule,
         AccordionModule,
-        SelectButtonModule
+        SelectButtonModule,
+      // StoreModule.forRoot(fromApp.appReducer),
+      // StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+      // StoreRouterConnectingModule.forRoot(),
+      // EffectsModule.forRoot(([CarsEffects]))
     ],
   providers: [DialogService],
   bootstrap: [AppComponent],
