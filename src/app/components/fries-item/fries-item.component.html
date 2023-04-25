@@ -18,9 +18,9 @@
 <!--<p-toast position="top-left"></p-toast>-->
 
 
-<p-card header={{fries.name}} subheader="" [style]="{width: '360px'} && {height: '430px'}" styleClass="p-card-shadow">
+<p-card header={{fries.name}} subheader="" [style]="{width: '300px'} && {height: '400px'}" styleClass="p-card-shadow">
   <ng-template pTemplate="header">
-    <img alt="Card" src="../../../../assets/logo.png" style="width: 100px">
+    <img alt="Card" src="../../../assets/friesImg/Fries_Mari.jpeg" style="width: 100px">
   </ng-template>
   <p>{{fries.description}}</p>
   <ng-template pTemplate="footer">
@@ -36,9 +36,9 @@
               badgeClass="p-badge-danger" styleClass="p-button-outlined p-button-secondary"
               [style]="{'margin-left': '10px'}"></p-button>
 
-    <i *ngIf="productInCart > 0" (click)="eraseFromCart()"
-       class="pi pi-trash" style="font-size: 1.5rem"
-       pTooltip="Sterge produs din cos" tooltipPosition="top"></i>
+<!--    <i *ngIf="productInCart > 0" (click)="eraseFromCart()"-->
+<!--       class="pi pi-trash" style="font-size: 1.5rem"-->
+<!--       pTooltip="Sterge produs din cos" tooltipPosition="top"></i>-->
   </ng-template>
 </p-card>
 

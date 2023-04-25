@@ -13,6 +13,7 @@ export class BurgerService {
   private friesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.FRIES}`;
   private extrasBurgerUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_BURGER}`;
   private extrasFriesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_FRIES}`
+  private saucesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.SAUCES}`;
   // private drinksUrl: string = environment.apiUrl +  "burger-shop/products-controller/get-product-by-productType?productType=drink";
   // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=extras"
 
@@ -35,6 +36,10 @@ export class BurgerService {
 
   getExtrasFries(): Observable<Product[]>{
     return this.http.get<Product[]>(this.extrasFriesUrl);
+  }
+
+  getSauces(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.saucesUrl);
   }
   //
   // getDrinks(){

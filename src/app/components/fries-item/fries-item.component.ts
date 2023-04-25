@@ -33,7 +33,7 @@ export class FriesItemComponent implements OnInit {
       }
     });
 
-    this.productInCart++;//t
+    // this.productInCart++;//t
     this.friesEvent.emit(this.fries);
   }
 
@@ -49,7 +49,7 @@ export class FriesItemComponent implements OnInit {
     }
   }
 
-  eraseFromCart(){
-    this.productInCart--;
-  }
+  // eraseFromCart(){
+  //   this.productInCart--;
+  // }
 }

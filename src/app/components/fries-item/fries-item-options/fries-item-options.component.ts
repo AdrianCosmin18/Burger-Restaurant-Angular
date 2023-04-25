@@ -46,12 +46,26 @@ export class FriesItemOptionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllExtraIngredients();
   }
 
   getFries(): void{
     this.fries = this.config.data.fries;
     console.log(this.fries);
   }
+
+  // getSauces(): void{
+  //   this.burgerService.getSauces().subscribe({
+  //     next: data => {
+  //       this.saucesList = data
+  //     }
+  //   });
+  // }
+  //
+  // get4Sauces(){
+  //   const len = this.saucesList.length;
+  //
+  // }
 
   getAllExtraIngredients(): void{
     this.burgerService.getExtrasFries().subscribe({

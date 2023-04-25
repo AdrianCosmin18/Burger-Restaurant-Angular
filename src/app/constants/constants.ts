@@ -5,7 +5,9 @@ export enum FoodType{
   DESERT = "desert",
   EXTRAS_BURGER = "extras-burger",
   EXTRAS_FRIES = "extras-fries",
-  EXTRAS_DESERT = "extras-desert"
+  EXTRAS_DESERT = "extras-desert",
+  SAUCES = "sauces"
+
 
 
 }
