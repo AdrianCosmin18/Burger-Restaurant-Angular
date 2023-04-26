@@ -40,6 +40,7 @@ import {StoreModule} from "@ngrx/store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {EffectsModule} from "@ngrx/effects";
+import * as fromApp from '../app/redux/app.reducer';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -91,9 +92,9 @@ const appRoutes: Routes = [
         TooltipModule,
         AccordionModule,
         SelectButtonModule,
-      // StoreModule.forRoot(fromApp.appReducer),
-      // StoreDevtoolsModule.instrument({ logOnly: environment.production }),
-      // StoreRouterConnectingModule.forRoot(),
+      StoreModule.forRoot(fromApp.appReducer),
+      StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+      StoreRouterConnectingModule.forRoot(),
       // EffectsModule.forRoot(([CarsEffects]))
     ],
   providers: [DialogService],

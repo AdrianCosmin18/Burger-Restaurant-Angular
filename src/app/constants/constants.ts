@@ -23,3 +23,7 @@ export enum ExtraRemoveIngredientMessage{
   EXTRA = "Extra",
   REMOVE = "Remove"
 }
+
+export enum Constants{
+  ITEM_LIST = 'itemList',
+}
