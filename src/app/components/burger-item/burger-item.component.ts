@@ -8,6 +8,7 @@ import {BurgerItemOptionsComponent} from "./burger-item-options/burger-item-opti
   selector: '.burger-item',
   templateUrl: './burger-item.component.html',
   styleUrls: ['./burger-item.component.css'],
+  providers: [MessageService]
 })
 export class BurgerItemComponent implements OnInit {
   @Input() burger!: Product;
@@ -19,7 +20,9 @@ export class BurgerItemComponent implements OnInit {
   public productInCart: number = 0;
   public favoriteTooltipMessage = 'Adauga la favorite';
 
-  constructor(private dialogService: DialogService) { }
+  constructor(
+    private dialogService: DialogService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +34,12 @@ export class BurgerItemComponent implements OnInit {
       width: '40%',
       data: {
         burger: this.burger,
+      }
+    });
+
+    ref.onClose.subscribe((productName: string) => {
+      if(productName != null){
+        this.messageService.add({severity: 'success', summary: `${productName} adagat in cos`});
       }
     })
 

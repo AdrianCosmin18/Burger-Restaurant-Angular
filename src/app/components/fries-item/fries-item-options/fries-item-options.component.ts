@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
-import {DialogService, DynamicDialogConfig} from "primeng/dynamicdialog";
-import {ActionIngredientsEnum, ExtraRemoveIngredientMessage} from "../../../constants/constants";
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {ActionIngredientsEnum, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
 import {ActionIngredient} from "../../../interfaces/action-ingredient";
+
+import * as fromApp from '../../../redux/app.reducer';
+import * as itemAction from '../../../redux/product.action';
+import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {OrderItem} from "../../../models/order-item";
 
 @Component({
   selector: 'app-fries-item-options',
@@ -39,7 +45,9 @@ export class FriesItemOptionsComponent implements OnInit {
   constructor(
     private burgerService: BurgerService,
     private dialogService: DialogService,
-    public config: DynamicDialogConfig
+    public config: DynamicDialogConfig,
+    private ref: DynamicDialogRef,
+    private store:Store<fromApp.AppState>
   ) {
     this.extraIngredientMessage = ExtraRemoveIngredientMessage.EXTRA;
     this.removeIngredientMessage = ExtraRemoveIngredientMessage.REMOVE;
@@ -53,19 +61,6 @@ export class FriesItemOptionsComponent implements OnInit {
     this.fries = this.config.data.fries;
     console.log(this.fries);
   }
-
-  // getSauces(): void{
-  //   this.burgerService.getSauces().subscribe({
-  //     next: data => {
-  //       this.saucesList = data
-  //     }
-  //   });
-  // }
-  //
-  // get4Sauces(){
-  //   const len = this.saucesList.length;
-  //
-  // }
 
   getAllExtraIngredients(): void{
     this.burgerService.getExtrasFries().subscribe({
@@ -179,5 +174,35 @@ export class FriesItemOptionsComponent implements OnInit {
 
   roundNumber(number: any){
     return Number(number);
+  }
+
+  addToCart(){
+
+    console.log(localStorage.getItem("itemList"));
+    let extraIngr = '';
+    this.extraList.forEach(ingr => {
+      extraIngr += ingr.name + ',';
+    });
+    extraIngr = extraIngr.slice(0, -1);
+    console.log('extraingr: '+ extraIngr);
+
+    let lessIngr = '';
+    this.lessList.forEach(ingr => {
+      lessIngr += ingr.name + ',';
+    });
+    lessIngr = lessIngr.slice(0, -1);
+    console.log('lessIngr: ' + lessIngr);
+
+    const orderItem: OrderItem = new OrderItem(this.friesPrice, this.friesCounter, this.fries.name, extraIngr, lessIngr);
+    this.store.dispatch(new itemAction.AddItems(orderItem));
+
+    let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
+    itemsList.push(orderItem);
+    localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
+    this.ref.close(this.fries.name)
+  }
+
+  close(productName: string): void{
+    this.ref.close(productName);
   }
 }

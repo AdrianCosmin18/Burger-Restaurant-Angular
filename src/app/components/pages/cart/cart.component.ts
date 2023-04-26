@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {CustomerService} from "../../../services/customer.service";
 import {MessageService} from "primeng/api";
+import {OrderItem} from "../../../models/order-item";
+import {Constants} from "../../../constants/constants";
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +12,7 @@ import {MessageService} from "primeng/api";
   providers: [MessageService]
 })
 export class CartComponent implements OnInit {
-  public products: Product[] = [];
+  public items: OrderItem[] = [];
   private customerID!: number;
 
   constructor(private customerService: CustomerService, private messageService: MessageService) { }
@@ -21,18 +23,21 @@ export class CartComponent implements OnInit {
     //   this.products = list;
     // });
 
+    this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
+    console.log(this.items);
+
 
   }
 
   totalAmount(): number{
     let sum = 0;
-    for(let p of this.products){
+    for(let p of this.items){
       sum += p.price;
     }
     return Number(sum.toFixed(2));
   }
 
-  removeFromCart(product: Product){
+  removeFromCart(item: OrderItem){
     // console.log(product);
     // this.customerService.deleteFromCart(this.customerID, product.id).subscribe(async response => {
     //   this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {

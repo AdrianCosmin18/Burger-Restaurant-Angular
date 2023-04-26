@@ -41,5 +41,8 @@
 </section>
 
 <div style="display: flex; justify-content: center; margin-top: 10px;">
-  <button pButton pRipple type="button" label="Adauga {{friesCounter}} pentru {{roundNumber((friesPrice * friesCounter).toFixed(2))}} lei" class="p-button-rounded p-button-secondary"></button>
+  <button pButton pRipple type="button"
+          label="Adauga {{friesCounter}} pentru {{roundNumber((friesPrice * friesCounter).toFixed(2))}} lei"
+          class="p-button-rounded p-button-secondary"
+          (click)="addToCart()"></button>
 </div>

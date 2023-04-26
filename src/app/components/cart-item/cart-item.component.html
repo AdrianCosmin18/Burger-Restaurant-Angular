@@ -1,13 +1,13 @@
 <div class="card mb-3" style="width: 25rem">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{product.picture}}" class="img-fluid rounded-start" style="width: 80px; height: 80px;">
+      <img src="../../../assets/burgerImg/bigTasty.png" class="img-fluid rounded-start" style="width: 80px; height: 80px;">
     </div>
     <div class="col-md-8 d-flex justify-content-center align-items-center">
-      <h4>{{product.name}}</h4>
+      <h4>{{item.name}}</h4>
     </div>
     <div class="col-md-4 d-flex justify-content-center align-items-center">
-      <span class="badge text-bg-warning">{{product.price | currency: "RON"}}</span>
+      <span class="badge text-bg-warning">{{item.price | currency: "RON"}}</span>
     </div>
     <div class="col-md-8 d-flex justify-content-end">
       <button type="button" class="btn btn-danger" (click)="remove()">Remove</button>

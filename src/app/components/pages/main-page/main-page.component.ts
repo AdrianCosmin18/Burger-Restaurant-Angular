@@ -19,6 +19,9 @@ export class MainPageComponent implements OnInit {
     const itemList: any[] = [''];
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemList));
 
+    const quantity = 0;
+    localStorage.setItem(Constants.QUANTITY, String(quantity));
+
     let email = "cosmin@yahoo.com";
     this.service.getCustomerByEmail(email).subscribe({
       next: (user) => {

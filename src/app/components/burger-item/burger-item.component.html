@@ -33,11 +33,10 @@
               badge="{{productInCart > 0 ? productInCart : null}}"
               badgeClass="p-badge-danger" styleClass="p-button-outlined p-button-secondary"
               [style]="{'margin-left': '10px'}"></p-button>
-
 <!--    <i *ngIf="productInCart > 0" (click)="eraseFromCart()"-->
 <!--      class="pi pi-trash" style="font-size: 1.5rem"-->
 <!--      pTooltip="Sterge produs din cos" tooltipPosition="top"></i>-->
   </ng-template>
 </p-card>
 
-<p-toast position="top-left"></p-toast>
+<p-toast position="top-right"></p-toast>

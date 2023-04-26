@@ -1,12 +1,12 @@
 <section>
 
-  <h3 *ngIf="this.products.length === 0; else elseBlock" style="color: gray; display: flex; justify-content: center; margin-top: 255px" >Cosul este gol</h3>
+  <h3 *ngIf="this.items.length === 0; else elseBlock" style="color: gray; display: flex; justify-content: center; margin-top: 255px" >Cosul este gol</h3>
 
   <ng-template #elseBlock>
     <div class="container border">
-      <app-cart-item *ngFor="let product of products"
-                     [product] = "product"
-                     (productEvent)="removeFromCart(product)"
+      <app-cart-item *ngFor="let item of items"
+                     [item] = "item"
+                     (productEvent)="removeFromCart(item)"
                      style="display: flex; justify-content: center">
       </app-cart-item>
 

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../interfaces/burger";
+import {OrderItem} from "../../models/order-item";
 
 @Component({
   selector: 'app-cart-item',
@@ -7,7 +8,7 @@ import {Product} from "../../interfaces/burger";
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent implements OnInit {
-  @Input() product!: Product;
+  @Input() item!: OrderItem;
   @Output() productEvent = new EventEmitter();
 
   constructor() { }
@@ -16,7 +17,7 @@ export class CartItemComponent implements OnInit {
   }
 
   remove(){
-    console.log(this.product);
-    this.productEvent.emit(this.product);
+    console.log(this.item);
+    this.productEvent.emit(this.item);
   }
 }

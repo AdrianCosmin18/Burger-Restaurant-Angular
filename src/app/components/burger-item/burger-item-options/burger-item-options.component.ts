@@ -1,14 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
-import {DialogService, DynamicDialogConfig} from "primeng/dynamicdialog";
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {ActionIngredient} from "../../../interfaces/action-ingredient";
-import {ActionIngredientsEnum, ExtraRemoveIngredientMessage} from "../../../constants/constants";
+import {ActionIngredientsEnum, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
+import {OrderItem} from "../../../models/order-item";
+
+import * as fromApp from '../../../redux/app.reducer';
+import * as itemAction from '../../../redux/product.action';
+import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-burger-item-options',
   templateUrl: './burger-item-options.component.html',
-  styleUrls: ['./burger-item-options.component.css']
+  styleUrls: ['./burger-item-options.component.css'],
+  providers: [MessageService]
 })
 export class BurgerItemOptionsComponent implements OnInit {
   public burger: Product = {
@@ -38,7 +46,11 @@ export class BurgerItemOptionsComponent implements OnInit {
   constructor(
     private burgerService: BurgerService,
     private dialogService: DialogService,
-    public config: DynamicDialogConfig) {
+    private config: DynamicDialogConfig,
+    public ref: DynamicDialogRef,
+    private store:Store<fromApp.AppState>,
+    private router: Router,
+    private messageService: MessageService,) {
 
     this.extraIngredientMessage = ExtraRemoveIngredientMessage.EXTRA;
     this.removeIngredientMessage = ExtraRemoveIngredientMessage.REMOVE;
@@ -165,5 +177,35 @@ export class BurgerItemOptionsComponent implements OnInit {
 
   roundNumber(number: any){
     return Number(number);
+  }
+
+  addToCart(){
+
+    console.log(localStorage.getItem("itemList"));
+    let extraIngr = '';
+    this.extraList.forEach(ingr => {
+      extraIngr += ingr.name + ',';
+    });
+    extraIngr = extraIngr.slice(0, -1);
+    console.log('extraingr: '+ extraIngr);
+
+    let lessIngr = '';
+    this.lessList.forEach(ingr => {
+      lessIngr += ingr.name + ',';
+    });
+    lessIngr = lessIngr.slice(0, -1);
+    console.log('lessIngr: ' + lessIngr);
+
+    const orderItem: OrderItem = new OrderItem(this.burgerPrice, this.burgerCounter, this.burger.name, extraIngr, lessIngr);
+    this.store.dispatch(new itemAction.AddItems(orderItem));
+
+    let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
+    itemsList.push(orderItem);
+    localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
+    this.close(this.burger.name);
+  }
+
+  close(productName: string): void{
+    this.ref.close(productName);
   }
 }

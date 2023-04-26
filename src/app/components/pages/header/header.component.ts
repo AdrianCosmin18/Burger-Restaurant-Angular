@@ -5,6 +5,7 @@ import {CustomerService} from "../../../services/customer.service";
 import {User} from "../../../interfaces/user";
 import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
+import {Constants} from "../../../constants/constants";
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   public customer!: User;
   public email: string = "";
   public name: string = "";
+  public count: number = 0;
 
   constructor(
     private router: Router,
@@ -37,6 +39,7 @@ export class HeaderComponent implements OnInit {
     //   // this.email = this.customer.email
     //   // console.log(id);
     // });
+    this.countProductsInCart();
   }
 
   hasNotRoute(route: string){
@@ -54,5 +57,9 @@ export class HeaderComponent implements OnInit {
       header: 'Cosul meu',
       width: '60%',
     })
+  }
+
+  countProductsInCart(){
+    this.count = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]").length;
   }
 }

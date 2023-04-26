@@ -2,11 +2,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../interfaces/burger";
 import {DialogService} from "primeng/dynamicdialog";
 import {FriesItemOptionsComponent} from "./fries-item-options/fries-item-options.component";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: '.fries-item',
   templateUrl: './fries-item.component.html',
-  styleUrls: ['./fries-item.component.css']
+  styleUrls: ['./fries-item.component.css'],
+  providers: [MessageService]
 })
 export class FriesItemComponent implements OnInit {
   @Input() fries!: Product;
@@ -18,7 +20,9 @@ export class FriesItemComponent implements OnInit {
   public productInCart: number = 0;
   public favoriteTooltipMessage = 'Adauga la favorite';
 
-  constructor(private dialogService: DialogService) { }
+  constructor(
+    private dialogService: DialogService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +36,12 @@ export class FriesItemComponent implements OnInit {
         fries: this.fries,
       }
     });
+
+    ref.onClose.subscribe((productName: string) => {
+      if(productName != null) {
+        this.messageService.add({severity: 'success', summary: `${productName} adagat in cos`});
+      }
+    })
 
     // this.productInCart++;//t
     this.friesEvent.emit(this.fries);

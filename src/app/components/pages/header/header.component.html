@@ -3,8 +3,12 @@
 
     <img class="logo" src="../../../../assets/logo.png" routerLink="/mainPage">
 
-  <article class="mb-3 d-flex align-items-center order-group" routerLink="/cart">
-    <i class="pi pi-cart-plus" style="font-size: 2rem"></i>
+  <article class="mb-3 d-flex align-items-center order-group">
+<!--    <i class="pi pi-bell mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="2"></i>-->
+    <i class="pi pi-cart-plus"
+       pBadge value="{{count}}"
+       style="font-size: 2rem"
+       severity="danger"></i>
     <p class="order-group-text" (click)="openCart()">Comanda mea</p>
   </article>
 
