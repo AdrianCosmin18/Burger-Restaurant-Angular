@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {CustomerService} from "../../../services/customer.service";
 import {User} from "../../../interfaces/user";
-import {user} from "@angular/fire/auth";
+import {Constants} from "../../../constants/constants";
+
 
 @Component({
   selector: 'app-main-page',
@@ -14,6 +15,9 @@ export class MainPageComponent implements OnInit {
   constructor(private service: CustomerService) { }
 
   ngOnInit(): void {
+
+    const itemList: any[] = [''];
+    localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemList));
 
     let email = "cosmin@yahoo.com";
     this.service.getCustomerByEmail(email).subscribe({
