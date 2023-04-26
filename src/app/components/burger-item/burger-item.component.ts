@@ -34,13 +34,13 @@ export class BurgerItemComponent implements OnInit {
       }
     })
 
-    this.productInCart++;
+    // this.productInCart++;
     this.burgerEvent.emit(this.burger);
   }
 
-  eraseFromCart(){
-    this.productInCart--;
-  }
+  // eraseFromCart(){
+  //   this.productInCart--;
+  // }
 
   addToFavorites() {
     this.isFavorite = !this.isFavorite;
