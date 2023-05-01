@@ -4,6 +4,7 @@ import {CustomerService} from "../../../services/customer.service";
 import {MessageService} from "primeng/api";
 import {OrderItem} from "../../../models/order-item";
 import {Constants} from "../../../constants/constants";
+import {BurgerService} from "../../../services/burger.service";
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,10 @@ export class CartComponent implements OnInit {
   public items: OrderItem[] = [];
   private customerID!: number;
 
-  constructor(private customerService: CustomerService, private messageService: MessageService) { }
+  constructor(
+    private customerService: CustomerService,
+    private messageService: MessageService,
+  ) { }
 
   ngOnInit(): void {
     // this.customerID = + sessionStorage.getItem("id")!;
@@ -25,8 +29,6 @@ export class CartComponent implements OnInit {
 
     this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     console.log(this.items);
-
-
   }
 
   totalAmount(): number{
@@ -58,5 +60,7 @@ export class CartComponent implements OnInit {
   //     alert(error.message);
   //   })
   // }
+
+
 
 }

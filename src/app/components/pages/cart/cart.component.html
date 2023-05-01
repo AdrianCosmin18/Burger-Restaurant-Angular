@@ -1,6 +1,8 @@
 <section>
 
-  <h3 *ngIf="this.items.length === 0; else elseBlock" style="color: gray; display: flex; justify-content: center; margin-top: 255px" >Cosul este gol</h3>
+  <h3 *ngIf="this.items.length === 0; else elseBlock"
+      style="color: gray; display: flex; justify-content: center; margin-top: 255px"
+  >Cosul este gol</h3>
 
   <ng-template #elseBlock>
     <div class="container border">

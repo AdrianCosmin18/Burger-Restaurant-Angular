@@ -41,6 +41,11 @@ export class BurgerService {
   getSauces(): Observable<Product[]>{
     return this.http.get<Product[]>(this.saucesUrl);
   }
+
+  getProductByName(name: string): Observable<Product>{
+    const url = environment.apiUrl + `restaurant/get-product-by-restaurant-and-product-Name/BurgerShop?productName=${name}`;
+    return this.http.get<Product>(url);
+  }
   //
   // getDrinks(){
   //   return this.http.get<Product[]>(this.drinksUrl);

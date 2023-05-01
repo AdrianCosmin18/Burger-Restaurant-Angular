@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const itemList: any[] = [''];
+    const itemList: any[] = [];
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemList));
 
     const quantity = 0;
