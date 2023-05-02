@@ -1,18 +1,41 @@
-<div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{drink.picture}}" class="img-fluid rounded-start">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{drink.name}}</h5>
-        <p class="card-text">{{drink.ingredients}}</p>
-      </div>
-      <div class="card-div">
-        <span class="badge text-bg-warning">{{drink.price | currency: "RON"}}</span>
-        <i class="pi pi-plus-circle" style="font-size: 1.5rem" (click)="addCart()"></i>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="card mb-3">-->
+<!--  <div class="row g-0">-->
+<!--    <div class="col-md-4">-->
+<!--      <img src="{{drink.picture}}" class="img-fluid rounded-start">-->
+<!--    </div>-->
+<!--    <div class="col-md-8">-->
+<!--      <div class="card-body">-->
+<!--        <h5 class="card-title">{{drink.name}}</h5>-->
+<!--        <p class="card-text">{{drink.ingredients}}</p>-->
+<!--      </div>-->
+<!--      <div class="card-div">-->
+<!--        <span class="badge text-bg-warning">{{drink.price | currency: "RON"}}</span>-->
+<!--        <i class="pi pi-plus-circle" style="font-size: 1.5rem" (click)="addCart()"></i>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<p-card header={{drink.value[0].name}} subheader="" [style]="{width: '360px'} && {height: '430px'}" styleClass="p-card-shadow">
+  <ng-template pTemplate="header">
+    <img alt="Card" src="../../../../assets/drinksImg/Cola.jpeg" style="width: 100px">
+  </ng-template>
+  <p>{{drink.value[0].name}}</p>
+  <ng-template pTemplate="footer">
+
+    <button pButton pRipple type="button"
+            icon="pi pi-heart" class="p-button-rounded"
+            (click)="addToFavorites()" [ngClass]="favoriteColor"
+            pTooltip="{{favoriteTooltipMessage}}" tooltipPosition="top"></button>
+
+    <p-button label="{{drink.value[0].price}} lei" icon="pi pi-cart-plus"
+              (click)="addCart()"
+              badgeClass="p-badge-danger" styleClass="p-button-outlined p-button-secondary"
+              [style]="{'margin-left': '10px'}"></p-button>
+    <!--    <i *ngIf="productInCart > 0" (click)="eraseFromCart()"-->
+    <!--      class="pi pi-trash" style="font-size: 1.5rem"-->
+    <!--      pTooltip="Sterge produs din cos" tooltipPosition="top"></i>-->
+  </ng-template>
+</p-card>
 <p-toast position="top-left"></p-toast>
