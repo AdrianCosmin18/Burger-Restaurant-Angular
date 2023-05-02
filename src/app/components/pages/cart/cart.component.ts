@@ -5,6 +5,7 @@ import {MessageService} from "primeng/api";
 import {OrderItem} from "../../../models/order-item";
 import {Constants} from "../../../constants/constants";
 import {BurgerService} from "../../../services/burger.service";
+import {DynamicDialogRef} from "primeng/dynamicdialog";
 
 @Component({
   selector: 'app-cart',
@@ -19,6 +20,7 @@ export class CartComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private messageService: MessageService,
+    public ref: DynamicDialogRef
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,10 @@ export class CartComponent implements OnInit {
     //   this.products = list;
     // });
 
+    this.initCartList();
+  }
+
+  initCartList(){
     this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     console.log(this.items);
   }
@@ -34,12 +40,17 @@ export class CartComponent implements OnInit {
   totalAmount(): number{
     let sum = 0;
     for(let p of this.items){
-      sum += p.price;
+      sum += Number((p.price * p.quantity).toFixed(2));
     }
     return Number(sum.toFixed(2));
   }
 
-  removeFromCart(item: OrderItem){
+  removeFromCart(productName: string): void{
+    // this.ref.close(productName);
+    // this.messageService.add({severity: 'success', summary: `${productName} sters din cos`});
+    this.initCartList();
+
+
     // console.log(product);
     // this.customerService.deleteFromCart(this.customerID, product.id).subscribe(async response => {
     //   this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {

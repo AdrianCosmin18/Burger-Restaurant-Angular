@@ -33,15 +33,21 @@ export class FriesItemComponent implements OnInit {
       header: this.fries.name,
       width: '40%',
       data:{
-        fries: this.fries,
+        fries: this.fries
       }
     });
 
-    ref.onClose.subscribe((productName: string) => {
-      if(productName != null) {
-        this.messageService.add({severity: 'success', summary: `${productName} adagat in cos`});
+    ref.onClose.subscribe((productInfo: any) => {
+      if(productInfo.productName !== null) {
+        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
       }
-    })
+    });
+
+    // ref.onClose.subscribe((productInfo: any) => {
+    //   if(productInfo.productName != null){
+    //     this.messageService.add({severity: 'success', summary: ` ${productInfo.productQuantity} x ${productInfo.productName} adagat in cos`});
+    //   }
+    // });
 
     // this.productInCart++;//t
     this.friesEvent.emit(this.fries);

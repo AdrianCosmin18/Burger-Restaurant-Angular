@@ -6,11 +6,13 @@ import {User} from "../../../interfaces/user";
 import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
 import {Constants} from "../../../constants/constants";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  providers: [MessageService]
 })
 export class HeaderComponent implements OnInit {
   public customer!: User;
@@ -21,7 +23,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private customerService: CustomerService,
-    public dialogService: DialogService,) { }
+    public dialogService: DialogService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     // let id = + sessionStorage.getItem("id")!;
@@ -56,7 +59,13 @@ export class HeaderComponent implements OnInit {
     const ref = this.dialogService.open(CartComponent, {
       header: 'Cosul meu',
       width: '60%',
-    })
+    });
+
+    // ref.onClose.subscribe((productName: string) => {
+    //   if(productName !== null){
+    //     this.messageService.add({severity: 'success', summary: `${productName} sters din cos`});
+    //   }
+    // });
   }
 
   countProductsInCart(){

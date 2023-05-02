@@ -37,11 +37,11 @@ export class BurgerItemComponent implements OnInit {
       }
     });
 
-    ref.onClose.subscribe((productName: string) => {
-      if(productName != null){
-        this.messageService.add({severity: 'success', summary: `${productName} adagat in cos`});
+    ref.onClose.subscribe((productInfo: any) => {
+      if(productInfo.productName != null){
+        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
       }
-    })
+    });
 
     // this.productInCart++;
     this.burgerEvent.emit(this.burger);

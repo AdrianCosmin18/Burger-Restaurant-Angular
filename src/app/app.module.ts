@@ -42,6 +42,7 @@ import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {EffectsModule} from "@ngrx/effects";
 import * as fromApp from '../app/redux/app.reducer';
 import {RippleModule} from "primeng/ripple";
+import { DrinksItemOptionsComponent } from './components/drinks-item/drinks-item-options/drinks-item-options.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
     BurgerItemOptionsComponent,
     IngredientComponent,
     FriesItemOptionsComponent,
+    DrinksItemOptionsComponent,
   ],
     imports: [
         BrowserModule,

@@ -1,8 +1,9 @@
 <section>
   <article class="container">
-    <app-drinks-item *ngFor="let drink of drinks"
-                     [drink] = "drink"
-                     (drinkEvent)="addToCart(drink)"
-    ></app-drinks-item>
+    <div class="drink-item"
+         *ngFor="let drink of drinkMap.entries()"
+         [drink] = "{key: drink[0], value: drink[1]}"
+         (drinkEvent)="addToCart()"
+    ></div>
   </article>
 </section>

@@ -199,10 +199,10 @@ export class FriesItemOptionsComponent implements OnInit {
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     itemsList.push(orderItem);
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
-    this.ref.close(this.fries.name)
+    this.close(this.fries.name, this.friesCounter);
   }
 
-  close(productName: string): void{
-    this.ref.close(productName);
+  close(productName: string, productQuantity: number): void{
+    this.ref.close({productName, productQuantity});
   }
 }

@@ -202,10 +202,10 @@ export class BurgerItemOptionsComponent implements OnInit {
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     itemsList.push(orderItem);
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
-    this.close(this.burger.name);
+    this.close(this.burger.name, this.burgerCounter);
   }
 
-  close(productName: string): void{
-    this.ref.close(productName);
+  close(productName: string, productQuantity: number): void{
+    this.ref.close({productName, productQuantity});
   }
 }
