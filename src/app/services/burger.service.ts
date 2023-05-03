@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 import {Product} from "../interfaces/burger";
 import {environment} from "../../environments/environment";
 import {FoodType} from "../constants/constants";
@@ -15,10 +15,16 @@ export class BurgerService {
   private extrasFriesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_FRIES}`
   private saucesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.SAUCES}`;
   private drinksUrl: string = environment.apiUrl +  `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.DRINK}`;
+  private extrasDrinkUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_DRINK}`
   // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=extras"
 
+  public subjectExtraIngredientsDrinks = new BehaviorSubject<Product[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.getExtrasDrinks().subscribe(data => {
+      this.subjectExtraIngredientsDrinks.next(data);
+    })
+  }
 
   getBurgers(): Observable<Product[]>{
     console.log(this.burgersUrl);
@@ -40,6 +46,10 @@ export class BurgerService {
 
   getDrinks(): Observable<Product[]>{
     return this.http.get<Product[]>(this.drinksUrl);
+  }
+
+  getExtrasDrinks(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.extrasDrinkUrl);
   }
 
   getSauces(): Observable<Product[]>{

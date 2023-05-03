@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {ActionIngredientsEnum, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
+import {ActionIngredient} from "../../../interfaces/action-ingredient";
+import {OrderItem} from "../../../models/order-item";
+import * as itemAction from "../../../redux/product.action";
 
 @Component({
   selector: 'app-drinks-item-options',
@@ -10,6 +14,14 @@ import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dyna
 })
 export class DrinksItemOptionsComponent implements OnInit {
   public drinkList: Product[] = [];
+  public optionSelected: any;
+  public optionDrink: number[] = [];
+  public chosenSize: boolean = false;
+
+  public extraList: Product[] = [];
+  public ingredientsDB: Product[] = []; //lista tuturor ingredientelor din bd
+
+  public extraIngredientMessage: ExtraRemoveIngredientMessage;
 
   public drinkCounter = 1;
   public piMinusColor = 'grey';
@@ -21,16 +33,112 @@ export class DrinksItemOptionsComponent implements OnInit {
     private dialogService: DialogService,
     private config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
-  ) { }
+  ) {
+    this.extraIngredientMessage = ExtraRemoveIngredientMessage.EXTRA;
+  }
 
   ngOnInit(): void {
-
     this.getDrinks();
+    this.initSizesDrinks();
+    this.drinkPrice = this.drinkList[0].price;
+  }
+
+  getDrinkTypePrice(): void{
+    this.chosenSize = true;
+    this.drinkPrice = this.drinkList[this.optionSelected].price;
   }
 
   getDrinks(): void{
     this.drinkList = this.config.data.drink;
+    this.burgerService.subjectExtraIngredientsDrinks.subscribe({
+      next: value => {
+        this.ingredientsDB = value;
+        console.log(this.ingredientsDB);
+      }
+    })
+    // this.ingredientsDB = this.config.data.extraIngredients;
     console.log(this.drinkList);
+    console.log(this.ingredientsDB);
   }
 
+  initSizesDrinks(){
+    for (let i = 0; i < this.drinkList.length; i++){
+      this.optionDrink.push(i);
+    }
+  }
+
+  increaseDrinkCounter(){
+    this.drinkCounter++;
+    if(this.drinkCounter > 1){
+      this.piMinusCursor = 'pointer';
+      this.piMinusColor = '#b5393a';
+    }
+  }
+
+  decreaseDrinkCounter() {
+    if(this.drinkCounter === 1){
+      return;
+    } else if (this.drinkCounter === 2) {
+      this.piMinusColor = 'grey';
+      this.piMinusCursor = 'not-allowed';
+    }
+    this.drinkCounter--;
+  }
+
+  addExtraIngredient(event: any): void{
+
+    const action = event as ActionIngredient;
+
+    switch (action.message){
+
+      case ExtraRemoveIngredientMessage.EXTRA:{
+
+        switch (action.action){
+
+          case ActionIngredientsEnum.ADD:{
+            this.extraList.push(action.ingredient);
+            this.drinkPrice += action.ingredient.price;
+            this.drinkPrice = Number(this.drinkPrice.toFixed(2));
+            break;
+          }
+
+          case ActionIngredientsEnum.REMOVE:{
+            this.extraList.splice(this.extraList.indexOf(action.ingredient), 1);
+            this.drinkPrice -= action.ingredient.price;
+            this.drinkPrice = Number(this.drinkPrice.toFixed(2));
+            break;
+          }
+        }
+      }
+    }
+    console.log(this.extraList);
+  }
+
+  roundNumber(number: any){
+    return Number(number);
+  }
+
+  addToCart(): void{
+
+    console.log(localStorage.getItem(Constants.ITEM_LIST));
+    let extraIngr = '';
+    this.extraList.forEach(ingr => {
+      extraIngr += ingr.name + ',';
+    });
+    extraIngr = extraIngr.slice(0, -1);
+    console.log('extraingr: '+ extraIngr);
+
+    const orderItem: OrderItem = new OrderItem(this.drinkPrice, this.drinkCounter, this.drinkList[this.optionSelected].name, extraIngr, '');
+    // this.store.dispatch(new itemAction.AddItems(orderItem));
+
+    let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
+    itemsList.push(orderItem);
+    localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
+    this.close(this.drinkList[this.optionSelected].name, this.drinkCounter);
+
+  }
+
+  close(productName: string, productQuantity: number): void{
+    this.ref.close({productName, productQuantity});
+  }
 }

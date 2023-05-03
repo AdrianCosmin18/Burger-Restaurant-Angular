@@ -43,13 +43,12 @@ export class FriesItemComponent implements OnInit {
       }
     });
 
-    // ref.onClose.subscribe((productInfo: any) => {
-    //   if(productInfo.productName != null){
-    //     this.messageService.add({severity: 'success', summary: ` ${productInfo.productQuantity} x ${productInfo.productName} adagat in cos`});
-    //   }
-    // });
+    ref.onClose.subscribe((productInfo: any) => {
+      if(productInfo !== undefined && productInfo.productName !== null){
+        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
+      }
+    });
 
-    // this.productInCart++;//t
     this.friesEvent.emit(this.fries);
   }
 

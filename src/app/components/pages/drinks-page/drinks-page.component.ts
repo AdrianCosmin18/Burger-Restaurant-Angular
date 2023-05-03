@@ -15,6 +15,7 @@ export class DrinksPageComponent implements OnInit {
   public drinkMap: Map<string, Product[]> = new Map<string, Product[]>();
   public drinkArray = [];
   public individualDrinkName: Set<string> = new Set<string>();
+  public extraIngredientsDrink: Product[] = [];
   private customerId!: number;
 
   constructor(
@@ -40,6 +41,7 @@ export class DrinksPageComponent implements OnInit {
         }
       }
     });
+    this.getExtraIngredientsDrinks();
   }
 
   formDrinkMap(){
@@ -63,5 +65,13 @@ export class DrinksPageComponent implements OnInit {
     // }, error => {
     //   alert(error.message);
     // })
+  }
+
+  getExtraIngredientsDrinks(): void{
+    this.burgerService.getExtrasDrinks().subscribe({
+      next: data => {
+        this.extraIngredientsDrink = data;
+      }
+    });
   }
 }

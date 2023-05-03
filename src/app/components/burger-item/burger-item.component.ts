@@ -38,7 +38,7 @@ export class BurgerItemComponent implements OnInit {
     });
 
     ref.onClose.subscribe((productInfo: any) => {
-      if(productInfo.productName != null){
+      if(productInfo !== undefined && productInfo.productName !== null){
         this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
       }
     });

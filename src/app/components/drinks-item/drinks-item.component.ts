@@ -13,6 +13,7 @@ import {DrinksItemOptionsComponent} from "./drinks-item-options/drinks-item-opti
 })
 export class DrinksItemComponent implements OnInit {
   @Input() drink!: {key: string, value: Product[]};
+  // @Input() extraIngredients: Product[] = [];
   @Output() drinkEvent = new EventEmitter();
   public descriptionDrink = '';
 
@@ -36,11 +37,12 @@ export class DrinksItemComponent implements OnInit {
       width: '40%',
       data: {
         drink: this.drink.value,
+        // extraIngredients: this.extraIngredients
       }
     });
 
     ref.onClose.subscribe((productInfo: any) => {
-      if(productInfo.productName != null){
+      if(productInfo !== undefined && productInfo.productName !== null){
         this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
       }
     });
