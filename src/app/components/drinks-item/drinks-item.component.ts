@@ -14,6 +14,7 @@ import {DrinksItemOptionsComponent} from "./drinks-item-options/drinks-item-opti
 export class DrinksItemComponent implements OnInit {
   @Input() drink!: {key: string, value: Product[]};
   @Output() drinkEvent = new EventEmitter();
+  public descriptionDrink = '';
 
   public loggedIn: boolean = true;
   public isFavorite = false;
@@ -26,6 +27,7 @@ export class DrinksItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.putDrinkDescription();
   }
 
   addCart(){
@@ -56,5 +58,11 @@ export class DrinksItemComponent implements OnInit {
       // Elimină produsul din lista de favorite
       this.favoriteTooltipMessage = 'Adauga la favorite';
     }
+  }
+
+  putDrinkDescription(){
+    const description = this.drink.value[0].description;//descrierea unui produs
+    const firstComma = description.indexOf(",");
+    this.descriptionDrink = description.substring(firstComma + 1);
   }
 }

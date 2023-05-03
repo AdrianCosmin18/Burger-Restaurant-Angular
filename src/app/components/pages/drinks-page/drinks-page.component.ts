@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {BurgerService} from "../../../services/burger.service";
 import {Product} from "../../../interfaces/burger";
 import {CustomerService} from "../../../services/customer.service";
@@ -13,10 +13,14 @@ import {MessageService} from "primeng/api";
 export class DrinksPageComponent implements OnInit {
   public allDrinks: Product[] = [];
   public drinkMap: Map<string, Product[]> = new Map<string, Product[]>();
+  public drinkArray = [];
   public individualDrinkName: Set<string> = new Set<string>();
   private customerId!: number;
 
-  constructor(private burgerService: BurgerService, private customerService: CustomerService, private messageService: MessageService) { }
+  constructor(
+    private burgerService: BurgerService,
+    private customerService: CustomerService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     // this.customerId = + sessionStorage.getItem("id")!;
@@ -29,6 +33,11 @@ export class DrinksPageComponent implements OnInit {
       next: (response) => {
         this.allDrinks = response;
         this.formDrinkMap();
+
+        for (let [key, value] of this.drinkMap.entries()) {
+          // @ts-ignore
+          this.drinkArray.push({ key: key, value: value });
+        }
       }
     });
   }
@@ -45,11 +54,6 @@ export class DrinksPageComponent implements OnInit {
     // this.drinks.forEach((value, key) => {
     //   console.log(`${key}: ${value}\n`);
     // })
-  }
-
-  formDrinkCard(drink: Product){
-    let drinkName = drink.name.split(",")[0];
-
   }
 
   addToCart(){

@@ -1,8 +1,8 @@
 <section>
   <article class="container">
     <div class="drink-item"
-         *ngFor="let drink of drinkMap.entries()"
-         [drink] = "{key: drink[0], value: drink[1]}"
+         *ngFor="let drink of drinkArray"
+         [drink] = "drink"
          (drinkEvent)="addToCart()"
     ></div>
   </article>
