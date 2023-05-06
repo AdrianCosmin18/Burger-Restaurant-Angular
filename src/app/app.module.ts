@@ -43,6 +43,8 @@ import {EffectsModule} from "@ngrx/effects";
 import * as fromApp from '../app/redux/app.reducer';
 import {RippleModule} from "primeng/ripple";
 import { DrinksItemOptionsComponent } from './components/drinks-item/drinks-item-options/drinks-item-options.component';
+import { SaucePageComponent } from './components/pages/sauce-page/sauce-page.component';
+import { SauceItemComponent } from './components/sauce-item/sauce-item.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
   {path: "fries", component: FriesPageComponent},
   {path: "drinks", component: DrinksPageComponent},
   {path: "deserts", component: DesertPageComponent},
+  {path: "sauces", component: SaucePageComponent},
   //{path: "cart", component: CartComponent,},
   {path: "**", component: MainPageComponent}
 ]
@@ -79,6 +82,8 @@ const appRoutes: Routes = [
     IngredientComponent,
     FriesItemOptionsComponent,
     DrinksItemOptionsComponent,
+    SaucePageComponent,
+    SauceItemComponent,
   ],
     imports: [
         BrowserModule,

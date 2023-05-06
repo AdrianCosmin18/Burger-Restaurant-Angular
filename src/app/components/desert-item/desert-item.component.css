@@ -11,3 +11,26 @@
 i{
   cursor: pointer;
 }
+
+.interact{
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+}
+/*.heart{*/
+/*  grid-area: h;*/
+/*}*/
+/*.price{*/
+/*  grid-area: p;*/
+/*}*/
+/*.delete{*/
+/*  grid-area: d;*/
+/*}*/
+.count{
+  width: 118px;
+}
+
+.money{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

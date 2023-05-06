@@ -2,7 +2,7 @@
   <article class="container">
     <div class="drink-item"
          *ngFor="let drink of drinkArray"
-         [drink] = "drink"
+         [drink]= "drink"
          (drinkEvent)="addToCart()"
     ></div>
   </article>
