@@ -46,6 +46,7 @@ import { DrinksItemOptionsComponent } from './components/drinks-item/drinks-item
 import { SaucePageComponent } from './components/pages/sauce-page/sauce-page.component';
 import { SauceItemComponent } from './components/sauce-item/sauce-item.component';
 import {DropdownModule} from "primeng/dropdown";
+import {MenuModule} from "primeng/menu";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -106,6 +107,7 @@ const appRoutes: Routes = [
         StoreRouterConnectingModule.forRoot(),
         RippleModule,
         DropdownModule,
+        MenuModule
         // EffectsModule.forRoot(([CarsEffects]))
     ],
   providers: [DialogService],

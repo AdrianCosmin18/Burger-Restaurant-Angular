@@ -6,7 +6,7 @@ import {User} from "../../../interfaces/user";
 import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
 import {Constants} from "../../../constants/constants";
-import {MessageService} from "primeng/api";
+import {MenuItem, MessageService} from "primeng/api";
 import {City} from "../../../interfaces/city";
 import {CityService} from "../../../services/city.service";
 
@@ -21,8 +21,12 @@ export class HeaderComponent implements OnInit {
   public cities: City[] = [];
   public citySelected: string = '';
   public email: string = "";
-  public name: string = "";
+  public name: string = "Adrian Cosmin";
   public count: number = 0;
+
+  public tooltipCount = '';
+  public accountButtonLabel= 'Cont';
+  public accountMenuItems!: MenuItem[];
 
   constructor(
     private router: Router,
@@ -49,7 +53,36 @@ export class HeaderComponent implements OnInit {
     //   // console.log(id);
     // });
     this.getCities();
+    this.initMenuItems();
     this.countProductsInCart();
+  }
+
+  initMenuItems(): void{
+    this.accountMenuItems = [
+      {
+        label: 'Datele personale',
+        icon: 'pi pi-user-edit'
+      },
+      {
+        label: 'Adresele mele',
+        icon: 'pi pi-building'
+      },
+      {
+        label: 'Istoric comenzi',
+        icon: 'pi pi-replay'
+      },
+      {
+        label: 'Cardurile mele',
+        icon: 'pi pi-credit-card'
+      },
+      {
+        separator: true
+      },
+      {
+        label: 'Iesire din cont',
+        icon: 'pi pi-sign-out'
+      }
+    ];
   }
 
   hasNotRoute(route: string){
