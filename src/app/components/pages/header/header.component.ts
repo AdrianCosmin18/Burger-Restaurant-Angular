@@ -7,6 +7,8 @@ import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
 import {Constants} from "../../../constants/constants";
 import {MessageService} from "primeng/api";
+import {City} from "../../../interfaces/city";
+import {CityService} from "../../../services/city.service";
 
 @Component({
   selector: 'app-header',
@@ -16,6 +18,8 @@ import {MessageService} from "primeng/api";
 })
 export class HeaderComponent implements OnInit {
   public customer!: User;
+  public cities: City[] = [];
+  public citySelected: string = '';
   public email: string = "";
   public name: string = "";
   public count: number = 0;
@@ -24,7 +28,9 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private customerService: CustomerService,
     public dialogService: DialogService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private cityService: CityService
+  ) { }
 
   ngOnInit(): void {
     // let id = + sessionStorage.getItem("id")!;
@@ -42,6 +48,7 @@ export class HeaderComponent implements OnInit {
     //   // this.email = this.customer.email
     //   // console.log(id);
     // });
+    this.getCities();
     this.countProductsInCart();
   }
 
@@ -70,5 +77,17 @@ export class HeaderComponent implements OnInit {
 
   countProductsInCart(){
     this.count = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]").length;
+  }
+
+  getCities():void{
+    this.cityService.getCities().subscribe({
+      next:value => {
+        this.cities = value;
+        console.log(this.cities);
+      },
+      error:err => {
+        alert("Something went wrong");
+      }
+    })
   }
 }

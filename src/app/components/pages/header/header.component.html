@@ -1,7 +1,10 @@
 <!--<section class="nav nav-header" *ngIf="hasNotRoute('/login') && hasNotRoute('/register')">-->
 <section class="nav nav-header">
 
-    <img class="logo" src="../../../../assets/logo.png" routerLink="/mainPage">
+  <img class="logo" src="../../../../assets/logo.png" routerLink="/mainPage">
+
+  <p-dropdown [options]="cities" [(ngModel)]="citySelected" placeholder="Alege orasul" [virtualScroll]="true"
+              [virtualScrollOptions]="{ showLoader: true, delay: 250 }" [virtualScrollItemSize]="38" optionLabel="name"></p-dropdown>
 
   <article class="mb-3 d-flex align-items-center order-group">
 <!--    <i class="pi pi-bell mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="2"></i>-->

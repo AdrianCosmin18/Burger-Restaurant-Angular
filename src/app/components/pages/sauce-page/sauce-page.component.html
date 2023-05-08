@@ -1,0 +1,11 @@
+<section>
+  <article class="container">
+    <div class="sauce-item"
+         *ngFor="let sauce of sauces"
+         [sauce]="sauce"
+         (addedToCart)="displayMessage($event)"
+    ></div>
+  </article>
+</section>
+
+<p-toast position="top-left"></p-toast>
