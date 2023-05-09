@@ -14,19 +14,6 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  // login(email: string, pass: string): Observable<User>{
-  //   let url = this.logInUrl + "?email=" + email + "&password=" + pass;
-  //   return this.http.get<User>(url);
-  // }
-
-  // register(email: string, name: string, pass: string): Observable<void>{
-  //   let user = {
-  //     fullName: name,
-  //     email: email,
-  //     password: pass
-  //   };
-  //   return this.http.post<void>(this.registerUrl, user);
-  // }
 
   getCustomerByEmail(email: string): Observable<User>{
     let url = `${this.path}/get-user/${email}`;

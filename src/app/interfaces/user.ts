@@ -1,9 +1,9 @@
 export interface User{
-  email: string;
   firstName: string;
   lastName: string;
+  email: string;
   phone: string;
-  role: string;
+  password: string;
 
   // constructor(lastName: string = "", firstName: string = "", email: string = "", phone: string = "", role: string = "") {
   //   this.lastName = lastName;
@@ -12,5 +12,4 @@ export interface User{
   //   this.phone = phone;
   //   this.role = role;
   // }
-
 }

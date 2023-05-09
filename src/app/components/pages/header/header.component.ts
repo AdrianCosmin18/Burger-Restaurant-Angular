@@ -9,6 +9,7 @@ import {Constants} from "../../../constants/constants";
 import {MenuItem, MessageService} from "primeng/api";
 import {City} from "../../../interfaces/city";
 import {CityService} from "../../../services/city.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -20,12 +21,12 @@ export class HeaderComponent implements OnInit {
   public customer!: User;
   public cities: City[] = [];
   public citySelected: string = '';
-  public email: string = "";
-  public name: string = "Adrian Cosmin";
+  public email: string | null | undefined = "";
+  public name: string = "";
   public count: number = 0;
 
   public tooltipCount = '';
-  public accountButtonLabel= 'Cont';
+  public accountButtonLabel: string | null | undefined = 'Cont';
   public accountMenuItems!: MenuItem[];
 
   constructor(
@@ -33,25 +34,18 @@ export class HeaderComponent implements OnInit {
     private customerService: CustomerService,
     public dialogService: DialogService,
     private messageService: MessageService,
-    private cityService: CityService
+    private cityService: CityService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    // let id = + sessionStorage.getItem("id")!;
-    // this.customerService.getCustomerById(id).subscribe(person => {
-    //   this.customer = person;
-    //   this.name = this.customer.fullName;
-    //   this.email = this.customer.email
-    //   console.log(id);
-    // });
 
-    // let email = 'cosmin@yahoo.com';
-    // this.customerService.getCustomerById(id).subscribe(person => {
-    //   // this.customer = person;
-    //   // this.name = this.customer.fullName;
-    //   // this.email = this.customer.email
-    //   // console.log(id);
-    // });
+
+    this.email = this.authService.getEmail();
+    if(this.email !== null || this.email !== ''){
+      this.accountButtonLabel = this.authService.getFirstName();
+    }
+
     this.getCities();
     this.initMenuItems();
     this.countProductsInCart();

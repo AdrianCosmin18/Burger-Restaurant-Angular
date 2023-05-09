@@ -22,16 +22,15 @@ export class MainPageComponent implements OnInit {
     const quantity = 0;
     localStorage.setItem(Constants.QUANTITY, String(quantity));
 
-    let email = "cosmin@yahoo.com";
-    this.service.getCustomerByEmail(email).subscribe({
-      next: (user) => {
-        this.user = user as User;
-        localStorage.setItem('email', email);
-        console.log(this.user);
-        console.log(localStorage.getItem('email'));
-      }
-    });
-
+    // let email = "cosmin@yahoo.com";
+    // this.service.getCustomerByEmail(email).subscribe({
+    //   next: (user) => {
+    //     this.user = user as User;
+    //     localStorage.setItem('email', email);
+    //     console.log(this.user);
+    //     console.log(localStorage.getItem('email'));
+    //   }
+    //});
 
   }
 
