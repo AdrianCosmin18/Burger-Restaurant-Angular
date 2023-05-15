@@ -17,7 +17,7 @@
     </div>
 
     <div class="input-group mb-3" >
-      <span class="input-group-text">Password</span>
+      <span class="input-group-text">Parola</span>
       <input class="form-control"
              placeholder="Password"
              formControlName="password"
@@ -26,13 +26,14 @@
     </div>
 
     <button type="submit" class="btn btn-primary"
-            [disabled]="myForm.status === 'INVALID'">Login</button>
+            [disabled]="myForm.status === 'INVALID'"
+    (click)="login()">Intra in cont</button>
   </form>
 
   <button type="button"
           class="btn btn-secondary"
           (click)="goToRegister()"
-          style="margin-top: 30px; width: 30%; margin-bottom: 10px;">Register
+          style="margin-top: 30px; width: 30%; margin-bottom: 10px;">Creaza cont nou
   </button>
 
 </div>

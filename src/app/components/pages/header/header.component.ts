@@ -26,8 +26,9 @@ export class HeaderComponent implements OnInit {
   public count: number = 0;
 
   public tooltipCount = '';
-  public accountButtonLabel: string | null | undefined = 'Cont';
+  public accountButtonLabel: string | null | undefined = 'Contul meu';
   public accountMenuItems!: MenuItem[];
+  public showMenu: boolean = false;
 
   constructor(
     private router: Router,
@@ -52,31 +53,36 @@ export class HeaderComponent implements OnInit {
   }
 
   initMenuItems(): void{
-    this.accountMenuItems = [
-      {
-        label: 'Datele personale',
-        icon: 'pi pi-user-edit'
-      },
-      {
-        label: 'Adresele mele',
-        icon: 'pi pi-building'
-      },
-      {
-        label: 'Istoric comenzi',
-        icon: 'pi pi-replay'
-      },
-      {
-        label: 'Cardurile mele',
-        icon: 'pi pi-credit-card'
-      },
-      {
-        separator: true
-      },
-      {
-        label: 'Iesire din cont',
-        icon: 'pi pi-sign-out'
-      }
-    ];
+
+    if(this.email){
+      this.showMenu = true;
+      this.accountMenuItems = [
+        {
+          label: 'Datele personale',
+          icon: 'pi pi-user-edit'
+        },
+        {
+          label: 'Adresele mele',
+          icon: 'pi pi-building'
+        },
+        {
+          label: 'Istoric comenzi',
+          icon: 'pi pi-replay'
+        },
+        {
+          label: 'Cardurile mele',
+          icon: 'pi pi-credit-card'
+        },
+        {
+          separator: true
+        },
+        {
+          label: 'Iesire din cont',
+          icon: 'pi pi-sign-out'
+        }
+      ];
+    }
+
   }
 
   hasNotRoute(route: string){

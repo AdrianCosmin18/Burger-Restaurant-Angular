@@ -21,11 +21,33 @@
             label="Comanda mea" (click)="openCart()" ></button>
   </article>
 
-  <article class="user-group">
-    <button type="button" pButton icon="pi pi-user" label="{{name}}"
+  <article *ngIf="email; else elseBlock" class="user-group">
+    <button type="button" pButton icon="pi pi-user" label="{{accountButtonLabel}}"
             (click)="menu.toggle($event)" style=""></button>
-    <p-menu #menu [popup]="true" [model]="accountMenuItems"></p-menu>
+    <p-menu #menu [popup]="true" [model]="accountMenuItems" [style.display]="showMenu ? 'block' : 'none'"></p-menu>
   </article>
+
+  <ng-template #elseBlock>
+    <article class="user-group">
+      <button type="button" pButton icon="pi pi-user" label="{{accountButtonLabel}}"
+              (click)="op.toggle($event)"></button>
+      <p-overlayPanel #op>
+        <ng-template pTemplate>
+          <p><strong>Intra in contul Burger Shop</strong></p>
+          <p-divider></p-divider>
+          <section style="display: flex; gap: 25px;">
+            <button pButton pRipple type="button" label="Intra in cont" class="p-button-danger p-button-sm"
+                    routerLink="/login"
+            ></button>
+            <button pButton pRipple type="button" label="Cont nou"
+                    class="p-button-secondary p-button-text p-button-sm"
+                    routerLink="/register"
+            ></button>
+          </section>
+        </ng-template>
+      </p-overlayPanel>
+    </article>
+  </ng-template>
 
 
 </section>

@@ -26,3 +26,7 @@ export enum Constants{
   ITEM_LIST = 'itemList',
   QUANTITY = 'quantity'
 }
+
+export enum Roles{
+  ROLE_USER = "ROLE_USER"
+}

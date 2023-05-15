@@ -10,7 +10,7 @@
   </ng-template>
 </p-selectButton>
 
-<p-accordion class="accord" *ngIf="this.drinkList[0 ].ingredients !== ''" [multiple]="true">
+<p-accordion class="accord" *ngIf="this.drinkList[0].ingredients !== ''" [multiple]="true">
   <p-accordionTab [disabled]="!chosenSize">
 
     <ng-template pTemplate="header">
@@ -31,7 +31,8 @@
      style="font-size: 2rem; cursor: {{piMinusCursor}}"
      [ngStyle]="{color: piMinusColor}"
      (click)="decreaseDrinkCounter()"></i>
-  <button pButton pRipple class="p-button-text  p-button-secondary" label="{{drinkCounter}}" [disabled]="true"></button>
+  <button pButton pRipple class="p-button-text  p-button-secondary"
+          label="{{drinkCounter}}" [disabled]="true"></button>
   <i class="pi pi-plus-circle" style="font-size: 2rem; color: #b5393a; cursor: pointer"
      (click)="increaseDrinkCounter()"></i>
 </section>

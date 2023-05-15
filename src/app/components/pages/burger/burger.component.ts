@@ -40,11 +40,6 @@ export class BurgerComponent implements OnInit {
 
   }
 
-  private createImageUrl(picture: Blob): string {
-    return URL.createObjectURL(picture);
-  }
-
-
   addToCart(burger: Product){
     // console.log(burger);
     // this.customerService.addToCart(this.customerId, burger.id).subscribe(response => {

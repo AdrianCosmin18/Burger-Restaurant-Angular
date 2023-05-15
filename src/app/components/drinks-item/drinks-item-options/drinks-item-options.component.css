@@ -29,3 +29,7 @@
 ::ng-deep .accord{
   margin-top: 30px;
 }
+
+.button-group{
+  /*display: block;*/
+}

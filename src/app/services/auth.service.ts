@@ -13,6 +13,7 @@ export class AuthService {
   private token: string | null | undefined;
   private email: string | null | undefined;
   private firstName: string | null | undefined;
+  private role: string | null | undefined;
 
   private auth!: AuthenticationResponse;
 
@@ -42,8 +43,24 @@ export class AuthService {
     this.email = localStorage.getItem("email");
   }
 
+  saveEmail(email: string){
+    localStorage.setItem("email", email);
+  }
+
   getEmail(){
     return this.email;
+  }
+
+  saveRole(role: string): void{
+    localStorage.setItem("role", role);
+  }
+
+  loadRole(): void{
+    this.role = localStorage.getItem("role");
+  }
+
+  saveToken(token: string){
+    localStorage.setItem("token", token);
   }
 
   loadToken(): void{
@@ -52,6 +69,10 @@ export class AuthService {
 
   getToken(){
     return this.token;
+  }
+
+  setFirstName(firstName: string){
+    localStorage.setItem("firstName", firstName);
   }
 
   loadFirstName(){
@@ -66,6 +87,7 @@ export class AuthService {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("email");
     localStorage.removeItem("firstName");
+    localStorage.removeItem("role");
   }
 
 

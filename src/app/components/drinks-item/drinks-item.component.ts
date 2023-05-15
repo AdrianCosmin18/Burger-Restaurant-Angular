@@ -36,6 +36,7 @@ export class DrinksItemComponent implements OnInit {
       header: this.drink.key,
       width: '40%',
       data: {
+        //trimitem mai departe doar lista de de sucuri care contin acelasi nume unic
         drink: this.drink.value,
         // extraIngredients: this.extraIngredients
       }
@@ -62,6 +63,8 @@ export class DrinksItemComponent implements OnInit {
     }
   }
 
+  //din data membra 'description' a lui Product, luam textul ce se afla dupa prima vrigula
+  // => descrierea sa efectiva (ce e inainte e marimea bauturii)
   putDrinkDescription(){
     const description = this.drink.value[0].description;//descrierea unui produs
     const firstComma = description.indexOf(",");

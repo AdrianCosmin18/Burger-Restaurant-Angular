@@ -6,13 +6,29 @@
   <form [formGroup]="myForm">
 
     <div class="input-group mb-3">
-      <span class="input-group-text">Full name</span>
+      <span class="input-group-text">Prenume</span>
       <input class="form-control"
-             placeholder="full name"
+             placeholder="Prenume"
              aria-describedby="basic-addon1"
-             formControlName="fullName"
-             [ngClass]="myForm.controls['fullName'].errors ? 'is-invalid' : ''"
-             [(ngModel)]="fullName">
+             formControlName="firstName"
+             [ngClass]="myForm.controls['firstName'].errors ? 'is-invalid' : ''">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Nume</span>
+      <input class="form-control"
+             placeholder="Nume"
+             aria-describedby="basic-addon1"
+             formControlName="lastName"
+             [ngClass]="myForm.controls['lastName'].errors ? 'is-invalid' : ''">
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Numar de telefon</span>
+      <input class="form-control"
+             aria-describedby="basic-addon1"
+             formControlName="phone"
+             [ngClass]="myForm.controls['phone'].errors ? 'is-invalid' : ''">
     </div>
 
     <div class="input-group mb-3">
@@ -21,21 +37,21 @@
              placeholder="Email"
              aria-describedby="basic-addon1"
              formControlName="email"
-             [ngClass]="myForm.controls['email'].errors ? 'is-invalid' : ''"
-             [(ngModel)]="email">
+             [ngClass]="myForm.controls['email'].errors ? 'is-invalid' : ''">
     </div>
 
     <div class="input-group mb-3" >
       <span class="input-group-text">Password</span>
       <input class="form-control"
-             placeholder="Password"
+             placeholder="Parola"
              formControlName="password"
-             type="password"
-             [(ngModel)]="password">
+             type="password">
     </div>
 
     <button type="submit" class="btn btn-primary"
-            [disabled]="myForm.status === 'INVALID'">Register</button>
+            [disabled]="myForm.status === 'INVALID'"
+            (click)="doRegister()"
+    >Register</button>
   </form>
 
   <button type="button"

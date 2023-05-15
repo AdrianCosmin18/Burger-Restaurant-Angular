@@ -14,7 +14,11 @@ export class FriesPageComponent implements OnInit {
   public friesList: Product[] = [];
   private customerId!: number;
 
-  constructor(private burgerService: BurgerService, private customerService: CustomerService, private messageService: MessageService) { }
+  constructor(
+    private burgerService: BurgerService,
+    private customerService: CustomerService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
     // this.customerId = + sessionStorage.getItem("id")!;

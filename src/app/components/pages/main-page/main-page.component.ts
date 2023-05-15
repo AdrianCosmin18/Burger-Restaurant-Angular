@@ -11,27 +11,25 @@ import {Constants} from "../../../constants/constants";
 })
 export class MainPageComponent implements OnInit {
   public user!: User;
+  public email!: string | null;
 
   constructor(private service: CustomerService) { }
 
   ngOnInit(): void {
+
+    this.loadEmail();
 
     const itemList: any[] = [];
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemList));
 
     const quantity = 0;
     localStorage.setItem(Constants.QUANTITY, String(quantity));
+  }
 
-    // let email = "cosmin@yahoo.com";
-    // this.service.getCustomerByEmail(email).subscribe({
-    //   next: (user) => {
-    //     this.user = user as User;
-    //     localStorage.setItem('email', email);
-    //     console.log(this.user);
-    //     console.log(localStorage.getItem('email'));
-    //   }
-    //});
-
+  loadEmail(){
+    if(!this.email){
+      this.email = localStorage.getItem("email");
+    }
   }
 
 }

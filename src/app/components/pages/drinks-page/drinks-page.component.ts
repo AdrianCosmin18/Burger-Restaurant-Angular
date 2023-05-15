@@ -44,8 +44,14 @@ export class DrinksPageComponent implements OnInit {
     this.getExtraIngredientsDrinks();
   }
 
+  //gandim stocarea bauturilor sub forma de : 'nume,proprietate' <=> 'cola,400ml' sau 'fuzetea,lamaie'
   formDrinkMap(){
+    //obtinem numele bauturii unice care este inainte de prima vrigula din nume => adica din 'cola,400ml' => 'cola'
     this.individualDrinkName = new Set(this.allDrinks.map(drink => drink.name.split(",")[0]));
+
+    //daca fiecare nume unic de bautura se gaseste in in numele, facem un map cu lista de bauturi care contine numele unic in nume
+    //ex: cola: [{'Cola,mica', '350ml'}, {'Cola,mare', '600ml'}]
+
     this.individualDrinkName.forEach(value => {
       let d = this.allDrinks.filter(drink => drink.name.split(",")[0] === value);
       console.log(d);

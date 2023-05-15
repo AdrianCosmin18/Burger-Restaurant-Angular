@@ -47,10 +47,13 @@ import { SaucePageComponent } from './components/pages/sauce-page/sauce-page.com
 import { SauceItemComponent } from './components/sauce-item/sauce-item.component';
 import {DropdownModule} from "primeng/dropdown";
 import {MenuModule} from "primeng/menu";
+import {OverlayPanelModule} from "primeng/overlaypanel";
+import {DividerModule} from "primeng/divider";
+import { SizeDrinkButtonComponent } from './components/drinks-item/drinks-item-options/size-drink-button/size-drink-button.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
-  // {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: "mainPage", component: MainPageComponent},
   {path: "register", component: RegisterComponent},
   {path: "burgers", component: BurgerComponent},
@@ -86,6 +89,7 @@ const appRoutes: Routes = [
     DrinksItemOptionsComponent,
     SaucePageComponent,
     SauceItemComponent,
+    SizeDrinkButtonComponent,
   ],
     imports: [
         BrowserModule,
@@ -107,7 +111,9 @@ const appRoutes: Routes = [
         StoreRouterConnectingModule.forRoot(),
         RippleModule,
         DropdownModule,
-        MenuModule
+        MenuModule,
+        OverlayPanelModule,
+        DividerModule,
         // EffectsModule.forRoot(([CarsEffects]))
     ],
   providers: [DialogService],

@@ -44,8 +44,15 @@ export class DrinksItemOptionsComponent implements OnInit {
   }
 
   getDrinkTypePrice(): void{
-    this.chosenSize = true;
-    this.drinkPrice = this.drinkList[this.optionSelected].price;
+    if(this.chosenSize){
+      this.drinkPrice = this.drinkList[this.optionSelected].price;
+      this.extraList.forEach(ingr => {
+        this.drinkPrice += ingr.price;
+      })
+    }else{
+      this.chosenSize = true;
+      this.drinkPrice = this.drinkList[this.optionSelected].price;
+    }
   }
 
   getDrinks(): void{
@@ -61,6 +68,7 @@ export class DrinksItemOptionsComponent implements OnInit {
     console.log(this.ingredientsDB);
   }
 
+  //nr masurilor de bauturi pe care le are o bautura: cola fiind mica,medie,mare => 0,1,2
   initSizesDrinks(){
     for (let i = 0; i < this.drinkList.length; i++){
       this.optionDrink.push(i);
@@ -128,7 +136,13 @@ export class DrinksItemOptionsComponent implements OnInit {
     extraIngr = extraIngr.slice(0, -1);
     console.log('extraingr: '+ extraIngr);
 
-    const orderItem: OrderItem = new OrderItem(this.drinkPrice, this.drinkCounter, this.drinkList[this.optionSelected].name, extraIngr, '');
+    const orderItem: OrderItem = new OrderItem(
+      this.drinkPrice,
+      this.drinkCounter,
+      this.drinkList[this.optionSelected].name,
+      extraIngr,
+      ''
+    );
     // this.store.dispatch(new itemAction.AddItems(orderItem));
 
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
