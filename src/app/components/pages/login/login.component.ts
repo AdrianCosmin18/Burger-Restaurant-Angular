@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
         this.authService.saveRole(role);
         this.authService.saveEmail(value.body!.email);
         this.authService.saveToken(value.body!.token);
+        this.authService.saveFirstName(value.body!.firstName);
         this.router.navigate(['/home']);
       },
       error: err => {

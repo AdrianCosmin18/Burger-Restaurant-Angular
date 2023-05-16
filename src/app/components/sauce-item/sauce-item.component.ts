@@ -53,6 +53,7 @@ export class SauceItemComponent implements OnInit {
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     itemsList.push(orderItem);
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
+    this.messageService.add({severity: 'success', summary: `${this.sauce.name} adaugat in cos`});
   }
 
   // removeFromCart(){

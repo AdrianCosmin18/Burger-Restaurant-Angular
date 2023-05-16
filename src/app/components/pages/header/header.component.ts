@@ -6,16 +6,17 @@ import {User} from "../../../interfaces/user";
 import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
 import {Constants} from "../../../constants/constants";
-import {MenuItem, MessageService} from "primeng/api";
+import {ConfirmationService, MenuItem, MessageService} from "primeng/api";
 import {City} from "../../../interfaces/city";
 import {CityService} from "../../../services/city.service";
 import {AuthService} from "../../../services/auth.service";
+import {PersonalDataComponent} from "../personal-data/personal-data.component";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class HeaderComponent implements OnInit {
   public customer!: User;
@@ -35,21 +36,24 @@ export class HeaderComponent implements OnInit {
     private customerService: CustomerService,
     public dialogService: DialogService,
     private messageService: MessageService,
+    private confirmService: ConfirmationService,
     private cityService: CityService,
     private authService: AuthService
   ) { }
 
   ngOnInit(): void {
 
-
-    this.email = this.authService.getEmail();
-    if(this.email !== null || this.email !== ''){
-      this.accountButtonLabel = this.authService.getFirstName();
-    }
-
+    this.getInfoUser();
     this.getCities();
     this.initMenuItems();
     this.countProductsInCart();
+  }
+
+  getInfoUser(){
+    this.email = this.authService.getEmail();
+    if(this.email !== null && this.email !== '' && this.email !== undefined){
+      this.accountButtonLabel = this.authService.getFirstName();
+    }
   }
 
   initMenuItems(): void{
@@ -59,7 +63,8 @@ export class HeaderComponent implements OnInit {
       this.accountMenuItems = [
         {
           label: 'Datele personale',
-          icon: 'pi pi-user-edit'
+          icon: 'pi pi-user-edit',
+          command: () => this.openPersonalData()
         },
         {
           label: 'Adresele mele',
@@ -78,7 +83,8 @@ export class HeaderComponent implements OnInit {
         },
         {
           label: 'Iesire din cont',
-          icon: 'pi pi-sign-out'
+          icon: 'pi pi-sign-out',
+          command: () => this.logout()
         }
       ];
     }
@@ -90,8 +96,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    sessionStorage.removeItem("id");
-    this.router.navigate(["/login"]);
+    this.authService.logOut();
+    this.messageService.add({severity:'info', summary: 'Te-ai delogat'});
+    this.ngOnInit();
   }
 
   openCart(): void{
@@ -121,6 +128,14 @@ export class HeaderComponent implements OnInit {
       error:err => {
         alert("Something went wrong");
       }
+    })
+  }
+
+  openPersonalData(): void{
+
+    const ref = this.dialogService.open(PersonalDataComponent, {
+      header: 'Date personale',
+      width: '40%'
     })
   }
 }

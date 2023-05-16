@@ -50,6 +50,7 @@ import {MenuModule} from "primeng/menu";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {DividerModule} from "primeng/divider";
 import { SizeDrinkButtonComponent } from './components/drinks-item/drinks-item-options/size-drink-button/size-drink-button.component';
+import { PersonalDataComponent } from './components/pages/personal-data/personal-data.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -90,6 +91,7 @@ const appRoutes: Routes = [
     SaucePageComponent,
     SauceItemComponent,
     SizeDrinkButtonComponent,
+    PersonalDataComponent,
   ],
     imports: [
         BrowserModule,

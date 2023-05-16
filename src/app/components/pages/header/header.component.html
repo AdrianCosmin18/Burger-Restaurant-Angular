@@ -24,7 +24,8 @@
   <article *ngIf="email; else elseBlock" class="user-group">
     <button type="button" pButton icon="pi pi-user" label="{{accountButtonLabel}}"
             (click)="menu.toggle($event)" style=""></button>
-    <p-menu #menu [popup]="true" [model]="accountMenuItems" [style.display]="showMenu ? 'block' : 'none'"></p-menu>
+    <p-menu #menu [popup]="true" [model]="accountMenuItems"
+            [style.display]="showMenu ? 'block' : 'none'"></p-menu>
   </article>
 
   <ng-template #elseBlock>
@@ -96,3 +97,4 @@
     </div>
   </div>
 </div>
+<p-toast position="bottom-center"></p-toast>

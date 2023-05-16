@@ -34,13 +34,9 @@ export class AuthService {
 
 
   saveAuth(auth: AuthenticationResponse){
-    localStorage.setItem("token", auth.token);
+    localStorage.setItem("jwtToken", auth.token);
     localStorage.setItem("email", auth.email);
     localStorage.setItem("firstName", auth.firstName);
-  }
-
-  loadEmail(): void{
-    this.email = localStorage.getItem("email");
   }
 
   saveEmail(email: string){
@@ -48,6 +44,7 @@ export class AuthService {
   }
 
   getEmail(){
+    this.email = localStorage.getItem("email");
     return this.email;
   }
 
@@ -55,12 +52,13 @@ export class AuthService {
     localStorage.setItem("role", role);
   }
 
-  loadRole(): void{
+  getRole() {
     this.role = localStorage.getItem("role");
+    return this.role;
   }
 
   saveToken(token: string){
-    localStorage.setItem("token", token);
+    localStorage.setItem("jwtToken", token);
   }
 
   loadToken(): void{
@@ -68,18 +66,16 @@ export class AuthService {
   }
 
   getToken(){
+    this.token = localStorage.getItem("jwtToken");
     return this.token;
   }
 
-  setFirstName(firstName: string){
+  saveFirstName(firstName: string){
     localStorage.setItem("firstName", firstName);
   }
 
-  loadFirstName(){
-    this.firstName = localStorage.getItem("firstName");
-  }
-
   getFirstName(){
+    this.firstName = localStorage.getItem("firstName");
     return this.firstName;
   }
 
