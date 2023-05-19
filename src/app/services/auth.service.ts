@@ -32,13 +32,6 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-
-  saveAuth(auth: AuthenticationResponse){
-    localStorage.setItem("jwtToken", auth.token);
-    localStorage.setItem("email", auth.email);
-    localStorage.setItem("firstName", auth.firstName);
-  }
-
   saveEmail(email: string){
     localStorage.setItem("email", email);
   }

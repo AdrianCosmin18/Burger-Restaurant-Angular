@@ -50,7 +50,8 @@ import {MenuModule} from "primeng/menu";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {DividerModule} from "primeng/divider";
 import { SizeDrinkButtonComponent } from './components/drinks-item/drinks-item-options/size-drink-button/size-drink-button.component';
-import { PersonalDataComponent } from './components/pages/personal-data/personal-data.component';
+import { PersonalDataComponent } from './components/pages/header/personal-data/personal-data.component';
+import {InputTextModule} from "primeng/inputtext";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -93,31 +94,32 @@ const appRoutes: Routes = [
     SizeDrinkButtonComponent,
     PersonalDataComponent,
   ],
-    imports: [
-        BrowserModule,
-        ButtonModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule.forRoot(appRoutes),
-        ReactiveFormsModule,
-        ToastModule,
-        BrowserAnimationsModule,
-        FieldsetModule,
-        CardModule,
-        BadgeModule,
-        TooltipModule,
-        AccordionModule,
-        SelectButtonModule,
-        StoreModule.forRoot(fromApp.appReducer),
-        StoreDevtoolsModule.instrument({logOnly: environment.production}),
-        StoreRouterConnectingModule.forRoot(),
-        RippleModule,
-        DropdownModule,
-        MenuModule,
-        OverlayPanelModule,
-        DividerModule,
-        // EffectsModule.forRoot(([CarsEffects]))
-    ],
+  imports: [
+    BrowserModule,
+    ButtonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    FieldsetModule,
+    CardModule,
+    BadgeModule,
+    TooltipModule,
+    AccordionModule,
+    SelectButtonModule,
+    StoreModule.forRoot(fromApp.appReducer),
+    StoreDevtoolsModule.instrument({logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot(),
+    RippleModule,
+    DropdownModule,
+    MenuModule,
+    OverlayPanelModule,
+    DividerModule,
+    InputTextModule,
+    // EffectsModule.forRoot(([CarsEffects]))
+  ],
   providers: [DialogService],
   bootstrap: [AppComponent],
   exports: [

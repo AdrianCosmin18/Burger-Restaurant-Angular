@@ -10,7 +10,7 @@ import {ConfirmationService, MenuItem, MessageService} from "primeng/api";
 import {City} from "../../../interfaces/city";
 import {CityService} from "../../../services/city.service";
 import {AuthService} from "../../../services/auth.service";
-import {PersonalDataComponent} from "../personal-data/personal-data.component";
+import {PersonalDataComponent} from "./personal-data/personal-data.component";
 
 @Component({
   selector: 'app-header',
@@ -135,7 +135,7 @@ export class HeaderComponent implements OnInit {
 
     const ref = this.dialogService.open(PersonalDataComponent, {
       header: 'Date personale',
-      width: '40%'
+      width: '50%'
     })
   }
 }
