@@ -24,7 +24,8 @@ export enum ExtraRemoveIngredientMessage{
 
 export enum Constants{
   ITEM_LIST = 'itemList',
-  QUANTITY = 'quantity'
+  QUANTITY = 'quantity',
+  USER_CREDENTIALS = "userCredentials"
 }
 
 export enum Roles{

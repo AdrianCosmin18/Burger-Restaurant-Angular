@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, throwError} from "rxjs";
+import {BehaviorSubject, catchError, Observable, throwError} from "rxjs";
 import {User} from "../interfaces/user";
 import {Product} from "../interfaces/burger";
 import {environment} from "../../environments/environment";
+import {Address} from "../interfaces/address";
+import {City} from "../interfaces/city";
 
 
 @Injectable({
@@ -27,6 +29,19 @@ export class CustomerService {
     return this.http.put<void>(url, user)
       .pipe(catchError(this.handleError));
   }
+
+  getUserAddresses(email: string): Observable<Array<Address>>{
+    let url = `${this.path}/get-user-addresses/${email}`;
+    return this.http.get<Array<Address>>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  setAddressAsMainAddress(email: string, addressId: number): Observable<void>{
+    let url = `${this.path}/set-as-main-address/${email}/${addressId}`;
+    return this.http.put<void>(url, null)
+      .pipe(catchError(this.handleError));
+  }
+
 
   // getProductsOfCustomer(id: number): Observable<Product[]>{
   //   let url = this.productsOfCustomerUrl + id;

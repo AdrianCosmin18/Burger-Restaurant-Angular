@@ -8,7 +8,7 @@ import {MessageService, PrimeIcons} from "primeng/api";
 import {ButtonModule} from "primeng/button";
 import { BurgerComponent } from './components/pages/burger/burger.component';
 import { BurgerItemComponent } from './components/burger-item/burger-item.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import { FooterComponent } from './components/pages/footer/footer.component';
 import { FriesPageComponent } from './components/pages/fries-page/fries-page.component';
@@ -52,6 +52,13 @@ import {DividerModule} from "primeng/divider";
 import { SizeDrinkButtonComponent } from './components/drinks-item/drinks-item-options/size-drink-button/size-drink-button.component';
 import { PersonalDataComponent } from './components/pages/header/personal-data/personal-data.component';
 import {InputTextModule} from "primeng/inputtext";
+import {AuthEffects} from "./redux/auth.effects";
+import { AddressComponent } from './components/pages/header/address/address.component';
+import {AuthInterceptor} from "./interceptor/auth.interceptor";
+import {OrderListModule} from "primeng/orderlist";
+import {PanelModule} from "primeng/panel";
+import { AddressItemComponent } from './components/pages/header/address/address-item/address-item.component';
+import { AddressUpdateFormComponent } from './components/pages/header/address/address-update-form/address-update-form.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
@@ -93,34 +100,43 @@ const appRoutes: Routes = [
     SauceItemComponent,
     SizeDrinkButtonComponent,
     PersonalDataComponent,
+    AddressComponent,
+    AddressItemComponent,
+    AddressUpdateFormComponent,
   ],
-  imports: [
-    BrowserModule,
-    ButtonModule,
-    HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule,
-    ToastModule,
-    BrowserAnimationsModule,
-    FieldsetModule,
-    CardModule,
-    BadgeModule,
-    TooltipModule,
-    AccordionModule,
-    SelectButtonModule,
-    StoreModule.forRoot(fromApp.appReducer),
-    StoreDevtoolsModule.instrument({logOnly: environment.production}),
-    StoreRouterConnectingModule.forRoot(),
-    RippleModule,
-    DropdownModule,
-    MenuModule,
-    OverlayPanelModule,
-    DividerModule,
-    InputTextModule,
-    // EffectsModule.forRoot(([CarsEffects]))
+    imports: [
+        BrowserModule,
+        ButtonModule,
+        HttpClientModule,
+        FormsModule,
+        RouterModule.forRoot(appRoutes),
+        ReactiveFormsModule,
+        ToastModule,
+        BrowserAnimationsModule,
+        FieldsetModule,
+        CardModule,
+        BadgeModule,
+        TooltipModule,
+        FieldsetModule,
+        AccordionModule,
+        SelectButtonModule,
+        StoreModule.forRoot(fromApp.appReducer),
+        StoreDevtoolsModule.instrument({logOnly: environment.production}),
+        StoreRouterConnectingModule.forRoot(),
+        RippleModule,
+        DropdownModule,
+        MenuModule,
+        OverlayPanelModule,
+        DividerModule,
+        InputTextModule,
+        EffectsModule.forRoot(([AuthEffects])),
+        PanelModule,
+        OrderListModule,
+    ],
+  providers: [
+    DialogService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
-  providers: [DialogService],
   bootstrap: [AppComponent],
   exports: [
     BurgerItemComponent,

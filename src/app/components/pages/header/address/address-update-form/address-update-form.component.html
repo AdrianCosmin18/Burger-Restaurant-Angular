@@ -1,0 +1,14 @@
+<form [formGroup]="form">
+
+  <section class="container">
+
+    <article class="row">
+      <p-dropdown [options]="cities" [(ngModel)]="citySelected"
+                  class="dropdown-city" placeholder="Oras"
+                  optionLabel="name" styleClass="custom-dropdown"
+                  formControlName="cities"
+      ></p-dropdown>
+    </article>
+
+  </section>
+</form>

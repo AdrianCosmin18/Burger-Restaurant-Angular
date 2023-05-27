@@ -1,0 +1,43 @@
+
+<p-orderList [listStyle]="{'max-height':'30rem'}"
+             [value]="addresses" filterBy="street"
+             filterPlaceholder="Filtreaza dupa strada"
+             controlsPosition="none"
+>
+
+  <ng-template let-address pTemplate="item">
+
+    <div class="address-item" [address]="address"
+         (emitMainAddressId)="setAsMainAddress($event)">
+
+<!--      <div class="image-container">-->
+<!--        <button pButton pRipple type="button"-->
+<!--                icon="pi pi-check" class="p-button-rounded"-->
+<!--                (click)="makeDefaultAddress()" [ngClass]="favoriteColor"-->
+<!--                tooltipPosition="top"></button>-->
+<!--      </div>-->
+<!--      <div class="address-list-detail">-->
+<!--        <h5 class="mb-2">{{address.street}}</h5>-->
+<!--        <i class="pi pi-tag address-category-icon"></i>-->
+<!--        <span class="address-category">{{address.number}}</span>-->
+<!--      </div>-->
+<!--      <div class="address-list-action">-->
+<!--        <h6 class="mb-2">${{address.id}}</h6>-->
+<!--        <span>{{address.isDefault}}</span>-->
+<!--      </div>-->
+
+    </div>
+
+  </ng-template>
+</p-orderList>
+
+<p-divider></p-divider>
+
+<section class="d-flex justify-content-end">
+  <button pButton pRipple label="Adauga adresa noua"
+          icon="pi pi-plus"
+          class="p-button-danger button-new-address"></button>
+</section>
+
+
+<p-toast position="bottom-center"></p-toast>

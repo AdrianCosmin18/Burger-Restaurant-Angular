@@ -14,6 +14,7 @@ export class AuthService {
   private email: string | null | undefined;
   private firstName: string | null | undefined;
   private role: string | null | undefined;
+  private loggedIn: boolean | null | undefined;
 
   private auth!: AuthenticationResponse;
 
@@ -70,6 +71,20 @@ export class AuthService {
   getFirstName(){
     this.firstName = localStorage.getItem("firstName");
     return this.firstName;
+  }
+
+  saveLoggedIn(loggedIn: boolean){
+    localStorage.setItem("loggedIn", String(loggedIn));
+  }
+
+  getLoggedIn(){
+    if (localStorage.getItem("loggedIn") === "true"){
+      this.loggedIn = true;
+    }
+    else {
+      this.loggedIn = false;
+    }
+    return this.loggedIn
   }
 
   logOut(): void{

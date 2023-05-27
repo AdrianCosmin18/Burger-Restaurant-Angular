@@ -11,6 +11,10 @@ import {City} from "../../../interfaces/city";
 import {CityService} from "../../../services/city.service";
 import {AuthService} from "../../../services/auth.service";
 import {PersonalDataComponent} from "./personal-data/personal-data.component";
+import {Observable, Subscription} from "rxjs";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../../redux/app.reducer";
+import {AddressComponent} from "./address/address.component";
 
 @Component({
   selector: 'app-header',
@@ -31,6 +35,10 @@ export class HeaderComponent implements OnInit {
   public accountMenuItems!: MenuItem[];
   public showMenu: boolean = false;
 
+  private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean }>;
+  private authSubscription: Subscription = new Subscription();
+  public loggedIn: any;
+
   constructor(
     private router: Router,
     private customerService: CustomerService,
@@ -38,27 +46,33 @@ export class HeaderComponent implements OnInit {
     private messageService: MessageService,
     private confirmService: ConfirmationService,
     private cityService: CityService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit(): void {
 
     this.getInfoUser();
     this.getCities();
-    this.initMenuItems();
     this.countProductsInCart();
   }
 
   getInfoUser(){
-    this.email = this.authService.getEmail();
-    if(this.email !== null && this.email !== '' && this.email !== undefined){
-      this.accountButtonLabel = this.authService.getFirstName();
-    }
+    this.auth$ = this.store.select("auth");
+    this.authSubscription = this.auth$.subscribe(value => {
+      this.loggedIn = value.loggedIn;
+      this.email = value.email;
+
+      if(this.email){
+        this.accountButtonLabel = value.firstName;
+      }
+      this.initMenuItems()
+    });
   }
 
   initMenuItems(): void{
 
-    if(this.email){
+    if(this.loggedIn){
       this.showMenu = true;
       this.accountMenuItems = [
         {
@@ -68,7 +82,8 @@ export class HeaderComponent implements OnInit {
         },
         {
           label: 'Adresele mele',
-          icon: 'pi pi-building'
+          icon: 'pi pi-building',
+          command: () => this.openAddresses()
         },
         {
           label: 'Istoric comenzi',
@@ -136,6 +151,14 @@ export class HeaderComponent implements OnInit {
     const ref = this.dialogService.open(PersonalDataComponent, {
       header: 'Date personale',
       width: '50%'
+    })
+  }
+
+  openAddresses() {
+
+    const ref = this.dialogService.open(AddressComponent, {
+      header: 'Adresele mele',
+      width: '60%'
     })
   }
 }

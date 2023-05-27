@@ -6,6 +6,9 @@ import {user} from "@angular/fire/auth";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../../constants/constants";
 import {MessageService} from "primeng/api";
+import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../../../redux/app.reducer";
 
 @Component({
   selector: 'app-personal-data',
@@ -16,6 +19,7 @@ import {MessageService} from "primeng/api";
 export class PersonalDataComponent implements OnInit {
   public user!: User;
   public form!: FormGroup;
+  private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean }>;
 
   constructor(
     private dialogService: DialogService,
@@ -23,10 +27,17 @@ export class PersonalDataComponent implements OnInit {
     public ref: DynamicDialogRef,
     private userService: CustomerService,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit(): void {
+
+    //facem sa mearga cu redux
+    // this.auth$ = this.store.select("auth");
+    // this.auth$.subscribe(value => {
+    //
+    // })
 
     this.getCurrentUser();
   }
