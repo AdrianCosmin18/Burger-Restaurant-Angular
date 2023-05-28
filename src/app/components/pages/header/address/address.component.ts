@@ -73,6 +73,10 @@ export class AddressComponent implements OnInit {
     })
   }
 
+  updatedAddress(){
+    this.getAddresses();
+  }
+
 
   // makeDefaultAddress(){
   //   this.isFavorite = !this.isFavorite;

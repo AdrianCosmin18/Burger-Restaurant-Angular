@@ -11,6 +11,7 @@ import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dyna
 export class AddressItemComponent implements OnInit {
   @Input() address!: Address;
   @Output() emitMainAddressId = new EventEmitter<number>();
+  @Output() emitUpdateAddress = new EventEmitter();
 
   public favoriteColor = 'p-button-secondary p-button-outlined';
   public tooltipMessage = '';
@@ -53,6 +54,13 @@ export class AddressItemComponent implements OnInit {
       data: {
         address: this.address
       }
-    })
+    });
+
+    ref.onClose.subscribe({
+      next: () => {
+        this.emitUpdateAddress.emit();
+      }
+    });
+
   }
 }

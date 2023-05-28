@@ -132,6 +132,9 @@
   <button pButton pRipple label="Salveaza adresa"
           class="p-button-danger button-new-address"
           [disabled]="form.invalid || !form.dirty"
+          (click)="updateAddress()"
   ></button>
 
 </form>
+
+<p-toast position="bottom"></p-toast>

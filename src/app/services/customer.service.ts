@@ -42,6 +42,12 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  updateAddress(email: string, addressId: number, addressDTO: Address): Observable<void>{
+    let url = `${this.path}/update-address/${email}/${addressId}`;
+    return this.http.put<void>(url, addressDTO)
+      .pipe(catchError(this.handleError));
+  }
+
 
   // getProductsOfCustomer(id: number): Observable<Product[]>{
   //   let url = this.productsOfCustomerUrl + id;
