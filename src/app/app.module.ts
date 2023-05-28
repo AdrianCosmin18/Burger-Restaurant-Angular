@@ -59,7 +59,8 @@ import {OrderListModule} from "primeng/orderlist";
 import {PanelModule} from "primeng/panel";
 import { AddressItemComponent } from './components/pages/header/address/address-item/address-item.component';
 import { AddressUpdateFormComponent } from './components/pages/header/address/address-update-form/address-update-form.component';
-
+import {localStorageSync} from "ngrx-store-localstorage";
+import {CheckboxModule} from "primeng/checkbox";
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -104,35 +105,38 @@ const appRoutes: Routes = [
     AddressItemComponent,
     AddressUpdateFormComponent,
   ],
-    imports: [
-        BrowserModule,
-        ButtonModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule.forRoot(appRoutes),
-        ReactiveFormsModule,
-        ToastModule,
-        BrowserAnimationsModule,
-        FieldsetModule,
-        CardModule,
-        BadgeModule,
-        TooltipModule,
-        FieldsetModule,
-        AccordionModule,
-        SelectButtonModule,
-        StoreModule.forRoot(fromApp.appReducer),
-        StoreDevtoolsModule.instrument({logOnly: environment.production}),
-        StoreRouterConnectingModule.forRoot(),
-        RippleModule,
-        DropdownModule,
-        MenuModule,
-        OverlayPanelModule,
-        DividerModule,
-        InputTextModule,
-        EffectsModule.forRoot(([AuthEffects])),
-        PanelModule,
-        OrderListModule,
-    ],
+  imports: [
+    BrowserModule,
+    ButtonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    FieldsetModule,
+    CardModule,
+    BadgeModule,
+    StoreModule.forRoot(fromApp.appReducer, {
+      metaReducers: [localStorageSyncReducer]
+    }),
+    TooltipModule,
+    FieldsetModule,
+    AccordionModule,
+    SelectButtonModule,
+    StoreDevtoolsModule.instrument({logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot(),
+    RippleModule,
+    DropdownModule,
+    MenuModule,
+    OverlayPanelModule,
+    DividerModule,
+    InputTextModule,
+    EffectsModule.forRoot(([AuthEffects])),
+    PanelModule,
+    OrderListModule,
+    CheckboxModule,
+  ],
   providers: [
     DialogService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
@@ -145,3 +149,10 @@ const appRoutes: Routes = [
   ]
 })
 export class AppModule { }
+
+export function localStorageSyncReducer(reducer: any) {
+  return localStorageSync({
+    keys: ['auth', 'settings'], // Specify the state slices to synchronize with local storage
+    rehydrate: true,
+  })(reducer);
+}

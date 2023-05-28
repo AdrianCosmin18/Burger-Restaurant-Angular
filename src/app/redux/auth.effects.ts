@@ -7,7 +7,6 @@ import {User} from "../interfaces/user";
 import * as AuthAction from "./auth.actions";
 import {AuthorityModel} from "../models/authority-model";
 import {Roles} from "../constants/constants";
-import {RefreshService} from "../services/refresh.service";
 
 
 @Injectable()
@@ -18,6 +17,7 @@ export class AuthEffects{
     private authService: AuthService,
   ) {
   }
+
 
 
   authLogin$ = createEffect(() => {
@@ -39,11 +39,11 @@ export class AuthEffects{
               if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
                 role = Roles.ROLE_USER;
               }
-              this.authService.saveRole(role);
-              this.authService.saveEmail(response.body!.email);
-              this.authService.saveToken(response.body!.token);
-              this.authService.saveFirstName(response.body!.firstName);
-              this.authService.saveLoggedIn(true);
+              // this.authService.saveRole(role);
+              // this.authService.saveEmail(response.body!.email);
+              // this.authService.saveToken(response.body!.token);
+              // this.authService.saveFirstName(response.body!.firstName);
+              // this.authService.saveLoggedIn(true);
 
               return new AuthAction.AuthenticationSuccess({
                 email: response.body!.email,

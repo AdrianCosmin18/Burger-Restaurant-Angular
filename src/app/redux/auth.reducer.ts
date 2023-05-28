@@ -60,6 +60,17 @@ export function authReducer(
         loggedIn: false
       }
 
+    case Actions.LOAD_DATA:
+      return{
+        ...state,
+        email: action.payload.email,
+        firstName: action.payload.firstName,
+        token: action.payload.token,
+        role: action.payload.role,
+        authError: '',
+        loggedIn: true
+      }
+
     default:
       return state;
   }

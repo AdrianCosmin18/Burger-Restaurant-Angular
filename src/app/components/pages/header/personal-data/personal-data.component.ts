@@ -32,25 +32,22 @@ export class PersonalDataComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    //facem sa mearga cu redux
-    // this.auth$ = this.store.select("auth");
-    // this.auth$.subscribe(value => {
-    //
-    // })
-
+    this.initForm();
     this.getCurrentUser();
   }
 
   getCurrentUser(){
 
-    const email = localStorage.getItem("email");
-    this.initForm();
-    this.userService.getCustomerByEmail(email!).subscribe({
-      next: value => {
-        this.user = value;
-        this.putUserInForm();
-      }
+    this.auth$ = this.store.select("auth");
+    this.auth$.subscribe(value => {
+      const email = value.email;
+
+      this.userService.getCustomerByEmail(email).subscribe({
+        next: value => {
+          this.user = value;
+          this.putUserInForm();
+        }
+      })
     })
   }
 

@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CustomerService} from "../../../services/customer.service";
 import {User} from "../../../interfaces/user";
 import {Constants} from "../../../constants/constants";
+import {Observable} from "rxjs";
+import * as Actions from "../../../redux/auth.actions";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../../redux/app.reducer";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,23 +18,15 @@ export class MainPageComponent implements OnInit {
   public user!: User;
   public email!: string | null;
 
-  constructor(private service: CustomerService) { }
+  constructor() { }
 
   ngOnInit(): void {
-
-    this.loadEmail();
 
     const itemList: any[] = [];
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemList));
 
     const quantity = 0;
     localStorage.setItem(Constants.QUANTITY, String(quantity));
-  }
-
-  loadEmail(){
-    if(!this.email){
-      this.email = localStorage.getItem("email");
-    }
   }
 
 }

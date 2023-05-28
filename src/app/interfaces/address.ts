@@ -1,7 +1,7 @@
 export interface Address{
   id: number;
   street: string;
-  number: string;
+  number: number;
   block: string;
   staircase: string;
   floor: number;

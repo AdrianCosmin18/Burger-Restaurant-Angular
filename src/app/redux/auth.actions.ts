@@ -5,6 +5,7 @@ export const AUTHENTICATE_SUCCESS = '[Auth] Login SUCCESS';
 export const AUTHENTICATE_FAIL = '[Auth] Login Fail';
 export const LOGOUT = '[Auth] Logout';
 export const REGISTER = '[Auth] Register';
+export const LOAD_DATA = 'Load data';
 
 export class LoginStart implements Action{
   readonly type = LOGIN_START;
@@ -51,6 +52,21 @@ export class Register implements Action{
   }
 }
 
+export class LoadData implements Action{
+  readonly type = LOAD_DATA;
 
-export type AuthActions = LoginStart | AuthenticationSuccess | AuthenticateFail | Logout | Register;
+  constructor(
+    public payload:{
+      email: string;
+      firstName: string;
+      loggedIn: boolean;
+      role: string;
+      token: string;
+    }
+  ) {
+  }
+}
+
+
+export type AuthActions = LoginStart | AuthenticationSuccess | AuthenticateFail | Logout | Register | LoadData;
 

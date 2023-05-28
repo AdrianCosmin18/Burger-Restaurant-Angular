@@ -47,14 +47,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    // let user: User = {
-    //   email: this.myForm.get("email")?.value,
-    //   password: this.myForm.get("password")?.value,
-    //   phone: '',
-    //   firstName: '',
-    //   lastName: ''
-    // };
-    // console.log(user);
 
     // this.authService.login(user).subscribe({
     //   next: value => {
@@ -80,6 +72,8 @@ export class LoginComponent implements OnInit {
     const passwordForm = this.myForm.get("password")?.value;
 
     this.store.dispatch(new AuthAction.LoginStart({email: emailForm, password: passwordForm}));
+    localStorage.removeItem("auth");
+
     // this.myForm.reset();
   }
 

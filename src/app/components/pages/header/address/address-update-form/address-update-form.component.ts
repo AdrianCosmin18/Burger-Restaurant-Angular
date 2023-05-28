@@ -34,14 +34,14 @@ export class AddressUpdateFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       cities: ['', [Validators.required]],
       street: ['', [Validators.required, Validators.minLength(4)]],
-      number: ['', [Validators.required, Validators.minLength(4)]],
+      number: ['', [Validators.required]],
       block: ['', [Validators.required]],
       staircase: ['', [Validators.required]],
       floor: ['', [Validators.required]],
       apartment: ['', [Validators.required]],
       interphone: ['', [Validators.required]],
       details: [''],
-      isDefault: ['']
+      isDefault: [false]
     });
 
     this.cityService.subjectCities.subscribe({
@@ -54,8 +54,23 @@ export class AddressUpdateFormComponent implements OnInit {
 
   getCurrentAddress(){
     this.address = this.config.data.address;
+    this.putAddressInForm();
+  }
 
-    this.citySelected = this.address.cityName;
+  putAddressInForm(): void{
+    this.form.get("cities")?.setValue(this.address.cityName);
+    this.citySelected = this.address.cityName
+    this.form.patchValue({
+      street: this.address.street,
+      number: this.address.number,
+      block: this.address.block,
+      staircase: this.address.staircase,
+      floor: this.address.floor,
+      apartment: this.address.apartment,
+      interphone: this.address.interphone,
+      details: this.address.details,
+      isDefault: this.address.isDefault
+    });
   }
 
 }
