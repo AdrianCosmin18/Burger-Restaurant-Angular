@@ -58,3 +58,7 @@
 .button-new-address{
   margin-right: 0px;
 }
+
+:host /deep/ .p-orderlist .p-orderlist-controls {
+  display: none;
+}

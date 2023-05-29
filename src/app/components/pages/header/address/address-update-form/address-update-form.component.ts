@@ -47,11 +47,11 @@ export class AddressUpdateFormComponent implements OnInit {
       cities: ['', [Validators.required]],
       street: ['', [Validators.required, Validators.minLength(4)]],
       number: ['', [Validators.required]],
-      block: ['', [Validators.required]],
-      staircase: ['', [Validators.required]],
-      floor: ['', [Validators.required]],
-      apartment: ['', [Validators.required]],
-      interphone: ['', [Validators.required]],
+      block: [''],
+      staircase: [''],
+      floor: [''],
+      apartment: [''],
+      interphone: [''],
       details: [''],
       isDefault: [false]
     });

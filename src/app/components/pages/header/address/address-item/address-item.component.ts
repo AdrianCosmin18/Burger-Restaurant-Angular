@@ -54,6 +54,8 @@ export class AddressItemComponent implements OnInit {
       message: 'Sunteti sigur ca doriti sa stergeti aceasta adresa?',
       header: 'Sterge adresa',
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Da',
+      rejectLabel: 'Nu',
       accept: () => {
         this.customerService.deleteAddress(this.email, this.address.id).subscribe({
           next: () => {
