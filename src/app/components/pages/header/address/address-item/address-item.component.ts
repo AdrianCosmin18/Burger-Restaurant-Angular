@@ -2,16 +2,22 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Address} from "../../../../../interfaces/address";
 import {AddressUpdateFormComponent} from "../address-update-form/address-update-form.component";
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {FormType} from "../../../../../constants/constants";
+import {ConfirmationService} from "primeng/api";
+import {CustomerService} from "../../../../../services/customer.service";
 
 @Component({
   selector: '.address-item',
   templateUrl: './address-item.component.html',
-  styleUrls: ['./address-item.component.css']
+  styleUrls: ['./address-item.component.css'],
+  providers: [ConfirmationService]
 })
 export class AddressItemComponent implements OnInit {
   @Input() address!: Address;
-  @Output() emitMainAddressId = new EventEmitter<number>();
-  @Output() emitUpdateAddress = new EventEmitter();
+  @Input() email!: string;
+  @Output() emitMainAddressId = new EventEmitter<any>();
+  @Output() emitUpdateAddress = new EventEmitter<any>();
+  @Output() emitDeleteAddress = new EventEmitter<any>();
 
   public favoriteColor = 'p-button-secondary p-button-outlined';
   public tooltipMessage = '';
@@ -21,6 +27,8 @@ export class AddressItemComponent implements OnInit {
     private dialogService: DialogService,
     private config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
+    private confirmationService: ConfirmationService,
+    private customerService: CustomerService
   ) { }
 
   ngOnInit(): void {
@@ -41,10 +49,27 @@ export class AddressItemComponent implements OnInit {
     // this.favoriteColor = this.isMainAddress ? 'p-button-danger' : 'p-button-secondary p-button-outlined';
   }
 
-
   deleteAddress() {
+    this.confirmationService.confirm({
+      message: 'Sunteti sigur ca doriti sa stergeti aceasta adresa?',
+      header: 'Sterge adresa',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.customerService.deleteAddress(this.email, this.address.id).subscribe({
+          next: () => {
+            const summary = 'Adresa a fost stearsa cu succes';
+            const detail = this.address.street;
+            this.emitDeleteAddress.emit({summary, detail});
+          },
+          error: err => {
+            alert(err);
+          }
+        })
+      }
+    })
     console.log(this.address);
   }
+
 
   openUpdateAddressForm(): void{
 
@@ -52,14 +77,13 @@ export class AddressItemComponent implements OnInit {
       header: 'Modifica adresa',
       width: '60%',
       data: {
+        formType: FormType.UPDATE_FORM_ADDRESS,
         address: this.address
       }
     });
 
-    ref.onClose.subscribe({
-      next: () => {
-        this.emitUpdateAddress.emit();
-      }
+    ref.onClose.subscribe((message) => {
+        this.emitUpdateAddress.emit(message);
     });
 
   }

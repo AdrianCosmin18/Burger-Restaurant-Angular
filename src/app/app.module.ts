@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './components/pages/main-page/main-page.component';
 import { HeaderComponent } from './components/pages/header/header.component';
-import {MessageService, PrimeIcons} from "primeng/api";
+import {MessageService, PrimeIcons, ConfirmationService} from "primeng/api";
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ButtonModule} from "primeng/button";
 import { BurgerComponent } from './components/pages/burger/burger.component';
 import { BurgerItemComponent } from './components/burger-item/burger-item.component';
@@ -136,6 +137,7 @@ const appRoutes: Routes = [
     PanelModule,
     OrderListModule,
     CheckboxModule,
+    ConfirmDialogModule,
   ],
   providers: [
     DialogService,

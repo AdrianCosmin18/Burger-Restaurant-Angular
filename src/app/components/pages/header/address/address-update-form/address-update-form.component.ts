@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {City} from "../../../../../interfaces/city";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
@@ -9,6 +9,7 @@ import {Store} from "@ngrx/store";
 import * as fromApp from "../../../../../redux/app.reducer";
 import {Observable} from "rxjs";
 import {MessageService} from "primeng/api";
+import {ErrorMessages, FormType} from "../../../../../constants/constants";
 
 @Component({
   selector: 'app-address-update-form',
@@ -22,6 +23,7 @@ export class AddressUpdateFormComponent implements OnInit {
   public cities: City[] = [];
   public citySelected: string = '';
   private auth$!: Observable<{ email: string; }>;
+  public formType!: FormType;
 
 
 
@@ -37,7 +39,7 @@ export class AddressUpdateFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.initForm();
+    this.getDataFromParentComponent();
   }
 
   initForm(){
@@ -57,9 +59,18 @@ export class AddressUpdateFormComponent implements OnInit {
     this.cityService.subjectCities.subscribe({
       next: value => {
         this.cities = value;
-        this.getCurrentAddress();
       }
     })
+  }
+
+  getDataFromParentComponent(){
+    this.formType = this.config.data.formType;
+    if(this.formType === FormType.ADD_FORM_ADDRESS){
+      this.initForm();
+    } else if(this.formType === FormType.UPDATE_FORM_ADDRESS){
+      this.initForm();
+      this.getCurrentAddress();
+    }
   }
 
   getCurrentAddress(){
@@ -104,19 +115,56 @@ export class AddressUpdateFormComponent implements OnInit {
     this.auth$.subscribe(value => {
       const email = value.email;
 
-      this.userService.updateAddress(email, this.address.id, updatedAddress as Address).subscribe({
+        this.userService.updateAddress(email, this.address.id, updatedAddress as Address).subscribe({
+          next: () => {
+            const message = 'Adresa actualizata cu success';
+            this.cancelDialogService(message);
+          },
+
+          error: err => {
+            this.messageService.add({severity: 'error', summary: `${err}`})
+          }
+        })
+    })
+  }
+
+  addAddress(){
+
+    let newAddress = {
+      id: -1,
+      street: this.form.get("street")?.value,
+      number: this.form.get("number")?.value,
+      block: this.form.get("block")?.value,
+      staircase: this.form.get("staircase")?.value,
+      floor: this.form.get("floor")?.value,
+      apartment: this.form.get("apartment")?.value,
+      interphone: this.form.get("interphone")?.value,
+      details: this.form.get("details")?.value,
+      isDefault: this.form.get("isDefault")?.value,
+      cityName: this.form.get("cities")?.value
+    };
+
+    console.log(newAddress);
+
+    this.auth$ = this.store.select("auth");
+    this.auth$.subscribe(value => {
+      const email = value.email;
+
+      this.userService.addAddress(email, newAddress as Address).subscribe({
         next: () => {
-          this.cancelDialogService();
-          this.messageService.add({severity: 'success', summary: 'User modified with success'});
+          const message = 'Adresa noua adaugata';
+          this.cancelDialogService(message);
         },
 
         error: err => {
-          this.messageService.add({severity: 'error', summary: `${err.message}`})}
+          if(err === ErrorMessages.USER_ALREADY_OWN_ADDRESS_EXCEPTION){
+            this.messageService.add({severity: 'error', summary: `Ai deja aceasta adresa inregistrata`})}
+        }
       })
     })
   }
 
-  cancelDialogService(){
-    this.ref.close();
+  cancelDialogService(message: string){
+    this.ref.close(message);
   }
 }

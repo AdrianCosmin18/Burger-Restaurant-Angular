@@ -129,10 +129,18 @@
 
   <p-divider></p-divider>
 
-  <button pButton pRipple label="Salveaza adresa"
+  <button *ngIf="formType === 'Update address'"
+          pButton pRipple label="Salveaza adresa"
           class="p-button-danger button-new-address"
           [disabled]="form.invalid || !form.dirty"
           (click)="updateAddress()"
+  ></button>
+
+  <button *ngIf="formType === 'Add new address'"
+          pButton pRipple label="Adauga adresa"
+          class="p-button-danger button-new-address"
+          [disabled]="form.invalid || !form.dirty"
+          (click)="addAddress()"
   ></button>
 
 </form>

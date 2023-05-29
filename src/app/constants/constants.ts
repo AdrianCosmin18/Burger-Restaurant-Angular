@@ -31,3 +31,12 @@ export enum Constants{
 export enum Roles{
   ROLE_USER = "ROLE_USER"
 }
+
+export enum FormType{
+  ADD_FORM_ADDRESS = "Add new address",
+  UPDATE_FORM_ADDRESS = "Update address"
+}
+
+export enum ErrorMessages{
+  USER_ALREADY_OWN_ADDRESS_EXCEPTION = "User already has this address"
+}

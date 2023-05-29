@@ -42,9 +42,21 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  addAddress(email: string, addressDTO: Address): Observable<void>{
+    let url = `${this.path}/add-address?email=${email}`;
+    return this.http.post<void>(url, addressDTO)
+      .pipe(catchError(this.handleError));
+  }
+
   updateAddress(email: string, addressId: number, addressDTO: Address): Observable<void>{
     let url = `${this.path}/update-address/${email}/${addressId}`;
     return this.http.put<void>(url, addressDTO)
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteAddress(email: string, addressId: number): Observable<void>{
+    let url = `${this.path}/delete-address/${email}/${addressId}`;
+    return this.http.delete<void>(url)
       .pipe(catchError(this.handleError));
   }
 
@@ -75,9 +87,10 @@ export class CustomerService {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+      // console.error(
+      //   `Backend returned code ${error.status}, ` +
+      //   `body was: ${error.error}`);
+      return throwError(error.error.message);
     }
     return throwError('Something bad happened; please try again later.');
   };

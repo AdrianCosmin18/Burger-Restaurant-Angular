@@ -9,7 +9,9 @@
 
     <div class="address-item" [address]="address"
          (emitMainAddressId)="setAsMainAddress($event)"
-         (emitUpdateAddress)="updatedAddress()">
+         (emitUpdateAddress)="updatedAddress($event)"
+         (emitDeleteAddress)="deleteAddress($event)"
+    >
 
 <!--      <div class="image-container">-->
 <!--        <button pButton pRipple type="button"-->
@@ -37,7 +39,9 @@
 <section class="d-flex justify-content-end">
   <button pButton pRipple label="Adauga adresa noua"
           icon="pi pi-plus"
-          class="p-button-danger button-new-address"></button>
+          class="p-button-danger button-new-address"
+          (click)="addNewAddress()"
+  ></button>
 </section>
 
 

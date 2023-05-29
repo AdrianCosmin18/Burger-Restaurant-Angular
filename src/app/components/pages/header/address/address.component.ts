@@ -10,6 +10,7 @@ import * as fromApp from "../../../../redux/app.reducer";
 import {UserCredentials} from "../../../../interfaces/user-credentials";
 import {Address} from "../../../../interfaces/address";
 import {AddressUpdateFormComponent} from "./address-update-form/address-update-form.component";
+import {FormType} from "../../../../constants/constants";
 
 @Component({
   selector: 'app-address',
@@ -73,7 +74,10 @@ export class AddressComponent implements OnInit {
     })
   }
 
-  updatedAddress(){
+  updatedAddress(message: any){
+    if(message){
+      this.messageService.add({severity:'success', summary: `${message}`, detail: 'Message Content'});
+    }
     this.getAddresses();
   }
 
@@ -82,4 +86,26 @@ export class AddressComponent implements OnInit {
   //   this.isFavorite = !this.isFavorite;
   //   this.favoriteColor = this.isFavorite ? 'p-button-danger' : 'p-button-secondary p-button-outlined';
   // }
+
+  addNewAddress() {
+
+    const ref = this.dialogService.open(AddressUpdateFormComponent, {
+      header: 'Adauga adresa',
+      width: '60%',
+      data: {
+        formType: FormType.ADD_FORM_ADDRESS,
+      }
+    });
+
+    ref.onClose.subscribe((message) => {
+      if(message){
+        this.messageService.add({severity:'success', summary: `${message}`, detail: 'Message Content'});
+      }
+      this.getAddresses();
+    });
+  }
+
+  deleteAddress({summary, detail}: any) {
+    this.messageService.add({severity:'info', summary: summary, detail: detail});
+  }
 }
