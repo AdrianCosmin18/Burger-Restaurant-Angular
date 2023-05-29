@@ -107,5 +107,6 @@ export class AddressComponent implements OnInit {
 
   deleteAddress({summary, detail}: any) {
     this.messageService.add({severity:'info', summary: summary, detail: detail});
+    this.getAddresses();
   }
 }

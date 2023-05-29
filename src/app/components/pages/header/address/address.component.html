@@ -7,7 +7,7 @@
 
   <ng-template let-address pTemplate="item">
 
-    <div class="address-item" [address]="address"
+    <div class="address-item" [address]="address" [email]="email"
          (emitMainAddressId)="setAsMainAddress($event)"
          (emitUpdateAddress)="updatedAddress($event)"
          (emitDeleteAddress)="deleteAddress($event)"

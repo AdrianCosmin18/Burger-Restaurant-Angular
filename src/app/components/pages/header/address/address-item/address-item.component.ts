@@ -67,7 +67,6 @@ export class AddressItemComponent implements OnInit {
         })
       }
     })
-    console.log(this.address);
   }
 
 
