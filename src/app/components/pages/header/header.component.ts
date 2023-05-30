@@ -14,6 +14,7 @@ import {PersonalDataComponent} from "./personal-data/personal-data.component";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../../redux/app.reducer";
+import * as Actions from '../../../redux/auth.actions';
 import {AddressComponent} from "./address/address.component";
 
 @Component({
@@ -63,8 +64,10 @@ export class HeaderComponent implements OnInit {
       this.loggedIn = value.loggedIn;
       this.email = value.email;
 
-      if(this.email){
+      if(this.loggedIn){
         this.accountButtonLabel = value.firstName;
+      } else {
+        this.accountButtonLabel = 'Contul meu';
       }
       this.initMenuItems()
     });
@@ -112,6 +115,7 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.authService.logOut();
+    this.store.dispatch(new Actions.Logout());
     this.messageService.add({severity:'info', summary: 'Te-ai delogat'});
     this.ngOnInit();
   }

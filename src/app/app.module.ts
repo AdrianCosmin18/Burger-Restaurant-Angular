@@ -62,6 +62,7 @@ import { AddressItemComponent } from './components/pages/header/address/address-
 import { AddressUpdateFormComponent } from './components/pages/header/address/address-update-form/address-update-form.component';
 import {localStorageSync} from "ngrx-store-localstorage";
 import {CheckboxModule} from "primeng/checkbox";
+import { CardPageComponent } from './components/pages/header/card-page/card-page.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -105,6 +106,7 @@ const appRoutes: Routes = [
     AddressComponent,
     AddressItemComponent,
     AddressUpdateFormComponent,
+    CardPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -141,6 +143,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     DialogService,
+    MessageService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],

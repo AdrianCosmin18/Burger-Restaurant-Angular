@@ -37,6 +37,18 @@ export function authReducer(
         loggedIn: true
       }
 
+    case Actions.REGISTER:
+
+      return{
+        ...state,
+        email: action.payload.email,
+        firstName: action.payload.firstName,
+        token: action.payload.token,
+        role: action.payload.role,
+        authError: '',
+        loggedIn: true
+      }
+
     case Actions.AUTHENTICATE_FAIL:
       return {
         ...state,

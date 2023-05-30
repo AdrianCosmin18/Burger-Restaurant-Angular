@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomerService} from "../../../services/customer.service";
@@ -10,7 +10,8 @@ import {Constants, Roles} from "../../../constants/constants";
 import * as AuthAction from "../../../redux/auth.actions";
 import * as fromApp from "../../../redux/app.reducer";
 import {Store} from "@ngrx/store";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {NotificationService} from "../../../services/notification.service";
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,15 @@ import {Subscription} from "rxjs";
   styleUrls: ['./login.component.css'],
   providers: [MessageService]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit ,OnDestroy{
   public myForm!: FormGroup;
   private user!: User;
-  // public errorMessage!: string;
   public email: string = "";
   public password: string = "";
+  private auth$!: Observable<{ loggedIn: boolean }>;
+
+  private subscriptions: Subscription= new Subscription();
+
 
   private storeSub: Subscription = new Subscription();
 
@@ -33,7 +37,8 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private messageService: MessageService,
               private authService: AuthService,
-              private store: Store<fromApp.AppState>) { }
+              private store: Store<fromApp.AppState>,
+              private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.myForm = this.formBuilder.group({
@@ -72,10 +77,20 @@ export class LoginComponent implements OnInit {
     const passwordForm = this.myForm.get("password")?.value;
 
     this.store.dispatch(new AuthAction.LoginStart({email: emailForm, password: passwordForm}));
+    this.auth$ = this.store.select("auth");
+    this.subscriptions = this.auth$.subscribe(value => {
+      if(value.loggedIn){
+        this.myForm.reset();
+        this.router.navigate(['/home']);
+      }
+    })
     localStorage.removeItem("auth");
 
-    // this.myForm.reset();
+
   }
 
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 }

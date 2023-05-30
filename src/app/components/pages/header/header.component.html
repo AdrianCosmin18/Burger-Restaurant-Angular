@@ -21,7 +21,7 @@
             label="Comanda mea" (click)="openCart()" ></button>
   </article>
 
-  <article *ngIf="email; else elseBlock" class="user-group">
+  <article *ngIf="loggedIn; else elseBlock" class="user-group">
     <button type="button" pButton icon="pi pi-user" label="{{accountButtonLabel}}"
             (click)="menu.toggle($event)" style=""></button>
     <p-menu #menu [popup]="true" [model]="accountMenuItems"

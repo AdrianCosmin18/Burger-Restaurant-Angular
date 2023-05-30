@@ -7,14 +7,17 @@ import {User} from "../interfaces/user";
 import * as AuthAction from "./auth.actions";
 import {AuthorityModel} from "../models/authority-model";
 import {Roles} from "../constants/constants";
+import {NotificationService} from "../services/notification.service";
 
 
-@Injectable()
+@Injectable(
+)
 export class AuthEffects{
 
   constructor(
     private action$: Actions,
     private authService: AuthService,
+    private notificationService : NotificationService
   ) {
   }
 
@@ -45,14 +48,17 @@ export class AuthEffects{
               // this.authService.saveFirstName(response.body!.firstName);
               // this.authService.saveLoggedIn(true);
 
+              this.notificationService.onSuccess('loginSuccess','Te-ai logat cu success', '');
               return new AuthAction.AuthenticationSuccess({
                 email: response.body!.email,
                 firstName: response.body!.firstName,
                 token: response.body!.token,
-                role: role
+                role: role,
+
               })
             }),
             catchError(err => {
+              this.notificationService.onError('loginFailed','Email sau parola incorecta', '');
               return handleError(err);
             })
           )
@@ -65,26 +71,22 @@ export class AuthEffects{
 
 
 
-
-
-
-
-
 const handleError = (errorRes: any) => {
-  let errorMessage = 'An unknown error occurred!';
-  if (!errorRes.error || !errorRes.error.error) {
-    return of(new AuthAction.AuthenticateFail(errorMessage));
-  }
-  switch (errorRes.error.error.message) {
-    case 'EMAIL_EXISTS':
-      errorMessage = 'This email exists already';
-      break;
-    case 'EMAIL_NOT_FOUND':
-      errorMessage = 'This email does not exist.';
-      break;
-    case 'INVALID_PASSWORD':
-      errorMessage = 'This password is not correct.';
-      break;
-  }
+  let errorMessage = 'Email sau parola incorecta';
+  // this.notificationService.onError('loginFailed','Email sau parola incorecta', '');
+  // if (!errorRes.error || !errorRes.error.error) {
+  //   return of(new AuthAction.AuthenticateFail(errorMessage));
+  // }
+  // switch (errorRes.error.error.message) {
+  //   case 'EMAIL_EXISTS':
+  //     errorMessage = 'This email exists already';
+  //     break;
+  //   case 'EMAIL_NOT_FOUND':
+  //     errorMessage = 'This email does not exist.';
+  //     break;
+  //   case 'INVALID_PASSWORD':
+  //     errorMessage = 'This password is not correct.';
+  //     break;
+  // }
   return of(new AuthAction.AuthenticateFail(errorMessage));
 };
