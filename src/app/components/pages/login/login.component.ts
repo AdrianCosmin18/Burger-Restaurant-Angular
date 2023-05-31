@@ -20,7 +20,7 @@ import {NotificationService} from "../../../services/notification.service";
   providers: [MessageService]
 })
 export class LoginComponent implements OnInit ,OnDestroy{
-  public myForm!: FormGroup;
+  public form!: FormGroup;
   private user!: User;
   public email: string = "";
   public password: string = "";
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit ,OnDestroy{
               private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.myForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       email: ["", [Validators.required]],
       password: ["", [Validators.required, Validators.minLength(6)]]
     })
@@ -53,14 +53,14 @@ export class LoginComponent implements OnInit ,OnDestroy{
 
   login(){
 
-    const emailForm = this.myForm.get("email")?.value;
-    const passwordForm = this.myForm.get("password")?.value;
+    const emailForm = this.form.get("email")?.value;
+    const passwordForm = this.form.get("password")?.value;
 
     this.store.dispatch(new AuthAction.LoginStart({email: emailForm, password: passwordForm}));
     this.auth$ = this.store.select("auth");
     this.subscriptions = this.auth$.subscribe(value => {
       if(value.loggedIn){
-        this.myForm.reset();
+        this.form.reset();
         this.router.navigate(['/home']);
         localStorage.removeItem("auth");
       }

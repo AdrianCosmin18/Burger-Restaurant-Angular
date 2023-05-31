@@ -11,3 +11,13 @@ h3{
   margin-top: 1%;
   width: 50%;
 }
+
+button{
+  margin-top: 20px;
+  display: block;
+  margin-right: auto;
+}
+
+.go-to-login{
+  margin-bottom: 10px;
+}

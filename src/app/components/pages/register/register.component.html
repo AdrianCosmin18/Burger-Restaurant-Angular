@@ -3,74 +3,87 @@
   <h3 class="badge text-bg-danger">BurgerShop</h3>
   <h4 style="color: white; margin-bottom: 30px">Creaza cont</h4>
 
-  <form [formGroup]="myForm">
+  <form [formGroup]="form">
 
-<!--    <div class="col-12 md:col-4">-->
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">Prenume</span>
-        <input
-              pInputText
-              class="form-control"
-               aria-describedby="basic-addon1"
-               formControlName="firstName"
-               [ngClass]="myForm.controls['firstName'].errors ? 'is-invalid' : ''">
-      </div>
-<!--    </div>-->
+    <div class="d-flex flex-column gap-4">
 
-<!--    <div class="input-group mb-3">-->
-<!--      <span class="input-group-text">Prenume</span>-->
-<!--      <input class="form-control"-->
-<!--             placeholder="Prenume"-->
-<!--             aria-describedby="basic-addon1"-->
-<!--             formControlName="firstName"-->
-<!--             [ngClass]="myForm.controls['firstName'].errors ? 'is-invalid' : ''">-->
-<!--    </div>-->
+      <section>
+        <article class="p-inputgroup">
+          <span class="p-inputgroup-addon">Prenume</span>
+          <input
+            pInputText
+            class="form-control"
+            aria-describedby="basic-addon1"
+            formControlName="firstName">
+        </article>
+        <article *ngIf="form.get('firstName')!.invalid && form.get('firstName')!.dirty">
+          <small *ngIf="form.get('firstName')!.hasError('required')" class="p-error">Prenumele este obligatoriu</small>
+          <small *ngIf="form.get('firstName')!.hasError('minlength')" class="p-error">Prenumele trebuie sa contina minim 2 caractere</small>
+        </article>
+      </section>
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Nume</span>
-      <input class="form-control"
-             placeholder="Nume"
-             aria-describedby="basic-addon1"
-             formControlName="lastName"
-             [ngClass]="myForm.controls['lastName'].errors ? 'is-invalid' : ''">
+      <section>
+        <article class="p-inputgroup">
+          <span class="p-inputgroup-addon">Nume</span>
+          <input
+            pInputText
+            class="form-control"
+            aria-describedby="basic-addon1"
+            formControlName="lastName">
+        </article>
+        <article *ngIf="form.get('lastName')!.invalid && form.get('lastName')!.dirty">
+          <small *ngIf="form.get('lastName')!.hasError('required')" class="p-error">Numele este obligatoriu</small>
+          <small *ngIf="form.get('lastName')!.hasError('minlength')" class="p-error">Numele trebuie sa contina minim 2 caractere</small>
+        </article>
+      </section>
+
+      <section>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
+          <input type="text" pInputText formControlName="phone" placeholder="Numar de telefon">
+        </div>
+        <div *ngIf="form.get('phone')!.invalid && form.get('phone')!.dirty">
+          <small *ngIf="form.get('phone')!.hasError('required')" class="p-error">Numarul de telefon este obligatoriu</small>
+          <small *ngIf="form.get('phone')!.hasError('pattern')" class="p-error">Introdu un numar de telefon valid</small>
+        </div>
+      </section>
+
+      <section>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-at"></i></span>
+          <input type="text" pInputText formControlName="email" placeholder="email">
+        </div>
+        <div *ngIf="form.get('email')!.invalid && form.get('email')!.dirty" style="margin: 0px">
+          <small *ngIf="form.get('email')!.hasError('email')" class="p-error">Introdu o adresa de mail valida</small>
+          <small *ngIf="form.get('email')!.hasError('required')" class="p-error">Emailul este obligatoriu</small>
+        </div>
+      </section>
+
+
+      <section>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">Parola</span>
+          <input type="password" pInputText formControlName="password">
+        </div>
+        <div *ngIf="form.get('password')!.invalid && form.get('password')!.dirty" style="margin: 0px">
+          <small *ngIf="form.get('password')!.hasError('minlength')" class="p-error">Parola trebuie sa aiba minim 6 caractere</small>
+          <small *ngIf="form.get('password')!.hasError('required')" class="p-error">Parola este obligatorie</small>
+        </div>
+      </section>
+
     </div>
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Numar de telefon</span>
-      <input class="form-control"
-             aria-describedby="basic-addon1"
-             formControlName="phone"
-             [ngClass]="myForm.controls['phone'].errors ? 'is-invalid' : ''">
-    </div>
+    <button pButton pRipple type="button" label="Inregistreaza-te"
+            class="p-button-raised p-button-danger"
+            [disabled]="form.invalid || !form.dirty"
+            (click)="doRegister()"></button>
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Email</span>
-      <input class="form-control"
-             placeholder="Email"
-             aria-describedby="basic-addon1"
-             formControlName="email"
-             [ngClass]="myForm.controls['email'].errors ? 'is-invalid' : ''">
-    </div>
-
-    <div class="input-group mb-3" >
-      <span class="input-group-text">Password</span>
-      <input class="form-control"
-             placeholder="Parola"
-             formControlName="password"
-             type="password">
-    </div>
-
-    <button type="submit" class="btn btn-primary"
-            [disabled]="myForm.status === 'INVALID'"
-            (click)="doRegister()"
-    >Register</button>
+    <button pButton pRipple type="button" label="Mergi la login"
+            class="p-button-raised p-button-secondary go-to-login"
+            (click)="goToLogin()"></button>
   </form>
 
-  <button type="button"
-          class="btn btn-secondary"
-          (click)="goToLogin()"
-          style="margin-top: 30px; width: 30%; margin-bottom: 10px;">Go to login
-  </button>
+
 </div>
 
 <p-toast position="top-center"></p-toast>

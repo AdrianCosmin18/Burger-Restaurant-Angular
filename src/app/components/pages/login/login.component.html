@@ -3,38 +3,43 @@
 
   <h3 class="badge text-bg-danger">BurgerShop</h3>
 
-  <form [formGroup]="myForm">
+  <form [formGroup]="form">
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Email</span>
-      <input class="form-control"
-             placeholder="Email"
-             aria-label="Username"
-             aria-describedby="basic-addon1"
-             formControlName="email"
-             [ngClass]="myForm.controls['email'].errors ? 'is-invalid' : ''"
-             [(ngModel)]="email">
+    <div class="d-flex flex-column gap-4">
+      <section>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">Email</span>
+          <input type="text" pInputText formControlName="email">
+        </div>
+        <div *ngIf="form.get('email')!.invalid && form.get('email')!.dirty" style="margin: 0px">
+          <small *ngIf="form.get('email')!.hasError('email')" class="p-error">Introdu o adresa de mail valida</small>
+          <small *ngIf="form.get('email')!.hasError('required')" class="p-error">Emailul este obligatoriu</small>
+        </div>
+      </section>
+
+
+      <section>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">Parola</span>
+          <input type="password" pInputText formControlName="password">
+        </div>
+        <div *ngIf="form.get('password')!.invalid && form.get('password')!.dirty" style="margin: 0px">
+          <small *ngIf="form.get('password')!.hasError('minlength')" class="p-error">Parola trebuie sa aiba minim 6 caractere</small>
+          <small *ngIf="form.get('password')!.hasError('required')" class="p-error">Parola este obligatorie</small>
+        </div>
+      </section>
+
     </div>
 
-    <div class="input-group mb-3" >
-      <span class="input-group-text">Parola</span>
-      <input class="form-control"
-             placeholder="Password"
-             formControlName="password"
-             type="password"
-             [(ngModel)]="password">
-    </div>
+    <button pButton pRipple type="button" label="Intra in cont"
+            class="p-button-raised p-button-danger"
+            [disabled]="form.invalid || !form.dirty"
+            (click)="login()"></button>
 
-    <button type="submit" class="btn btn-primary"
-            [disabled]="myForm.status === 'INVALID'"
-    (click)="login()">Intra in cont</button>
+    <button pButton pRipple type="button" label="Creaza cont nou"
+            class="p-button-raised p-button-secondary go-to-register"
+            (click)="goToRegister()"></button>
   </form>
-
-  <button type="button"
-          class="btn btn-secondary"
-          (click)="goToRegister()"
-          style="margin-top: 30px; width: 30%; margin-bottom: 10px;">Creaza cont nou
-  </button>
 
 </div>
 

@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   // public email: string = "";
   // public password: string = "";
   // public fullName: string = "";
-  public myForm!: FormGroup;
+  public form!: FormGroup;
   private auth$!: Observable<{ loggedIn: boolean }>;
   private subscriptions: Subscription= new Subscription();
 
@@ -37,24 +37,28 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.myForm = this.formBuilder.group({
-      firstName: ["", Validators.required, Validators.minLength(2)],
-      lastName: ["", Validators.required, Validators.minLength(2)],
-      phone: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]]
-    })
+    this.initForm();
+  }
+
+  initForm(){
+    this.form = this.formBuilder.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('07\\d{8}')]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
   doRegister(): void{
-    let user: User = this.myForm.value;
+    let user: User = this.form.value;
     console.log(user);
 
     this.store.dispatch(new AuthAction.RegisterStart(user));
     this.auth$ = this.store.select("auth");
     this.subscriptions = this.auth$.subscribe(value => {
       if(value.loggedIn){
-        this.myForm.reset();
+        this.form.reset();
         this.router.navigate(['/home']);
         localStorage.removeItem("auth");
       }
