@@ -1,18 +1,30 @@
 
 <div class="container border d-flex flex-column">
   <h3 class="badge text-bg-danger">BurgerShop</h3>
-  <h4 style="color: white; margin-bottom: 30px">Create account</h4>
+  <h4 style="color: white; margin-bottom: 30px">Creaza cont</h4>
 
   <form [formGroup]="myForm">
 
-    <div class="input-group mb-3">
-      <span class="input-group-text">Prenume</span>
-      <input class="form-control"
-             placeholder="Prenume"
-             aria-describedby="basic-addon1"
-             formControlName="firstName"
-             [ngClass]="myForm.controls['firstName'].errors ? 'is-invalid' : ''">
-    </div>
+<!--    <div class="col-12 md:col-4">-->
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">Prenume</span>
+        <input
+              pInputText
+              class="form-control"
+               aria-describedby="basic-addon1"
+               formControlName="firstName"
+               [ngClass]="myForm.controls['firstName'].errors ? 'is-invalid' : ''">
+      </div>
+<!--    </div>-->
+
+<!--    <div class="input-group mb-3">-->
+<!--      <span class="input-group-text">Prenume</span>-->
+<!--      <input class="form-control"-->
+<!--             placeholder="Prenume"-->
+<!--             aria-describedby="basic-addon1"-->
+<!--             formControlName="firstName"-->
+<!--             [ngClass]="myForm.controls['firstName'].errors ? 'is-invalid' : ''">-->
+<!--    </div>-->
 
     <div class="input-group mb-3">
       <span class="input-group-text">Nume</span>

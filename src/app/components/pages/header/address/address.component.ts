@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../../../interfaces/user";
-import {config, Observable} from "rxjs";
+import {config, Observable, Subscription} from "rxjs";
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {CustomerService} from "../../../../services/customer.service";
 import {FormBuilder} from "@angular/forms";
@@ -18,13 +18,11 @@ import {FormType} from "../../../../constants/constants";
   styleUrls: ['./address.component.css'],
   providers: [MessageService]
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent implements OnInit, OnDestroy {
   public email: string = '';
   public addresses!: Array<Address>;
   private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean }>;
-
-  // public favoriteColor = 'p-button-secondary p-button-outlined';
-  // public isFavorite = false;
+  private subscription: Subscription = new Subscription();
 
 
 
@@ -46,7 +44,7 @@ export class AddressComponent implements OnInit {
 
   getInfoUser(){
     this.auth$ = this.store.select("auth");
-    this.auth$.subscribe(value => {
+    this.subscription = this.auth$.subscribe(value => {
       this.email = value.email;
       this.getAddresses();
     });
@@ -60,7 +58,7 @@ export class AddressComponent implements OnInit {
           console.log(this.addresses);
         },
         error: err => {
-          this.messageService.add({severity:'error', summary: `${err.error.message}`, detail: 'Message Content'});
+          this.messageService.add({severity:'error', summary: err.error.message, detail: 'Message Content'});
         }
       })
   }
@@ -108,5 +106,9 @@ export class AddressComponent implements OnInit {
   deleteAddress({summary, detail}: any) {
     this.messageService.add({severity:'info', summary: summary, detail: detail});
     this.getAddresses();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

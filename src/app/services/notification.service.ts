@@ -9,8 +9,8 @@ export class NotificationService {
 
   constructor(private messageService : MessageService) { }
 
-  onSuccess(key: string, summary: string, detail: string): void{
-    this.messageService.add({key: key,severity: Severity.SUCCESS, summary: summary, detail: detail});
+  onSuccess(key: string, summary: string): void{
+    this.messageService.add({key: key,severity: Severity.SUCCESS, summary: summary});
   }
 
   onInfo(summary: string, detail: string): void {
@@ -21,10 +21,10 @@ export class NotificationService {
     this.messageService.add({severity: Severity.WARNING, summary: summary, detail: detail});
   }
 
-  onError(key: string, summary: string, detail: string): void {
+  onError(key: string, summary: string): void {
     console.log(summary);
-    this.messageService.add({key: key, severity: Severity.ERROR, summary: summary, detail: detail});
-    this.messageService.add({severity:'error', summary: 'Error', detail: 'Message Content'});
+    this.messageService.add({key: key, severity: Severity.ERROR, summary: summary});
+    // this.messageService.add({severity:'error', summary: 'Error'});
 
   }
 }

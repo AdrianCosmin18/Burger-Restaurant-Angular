@@ -82,5 +82,5 @@ export class LoadData implements Action{
 }
 
 
-export type AuthActions = LoginStart | AuthenticationSuccess | AuthenticateFail | Logout | Register | LoadData;
+export type AuthActions = LoginStart | AuthenticationSuccess | AuthenticateFail | Logout | Register | LoadData | RegisterStart;
 

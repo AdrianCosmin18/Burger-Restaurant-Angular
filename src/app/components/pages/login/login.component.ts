@@ -53,26 +53,6 @@ export class LoginComponent implements OnInit ,OnDestroy{
 
   login(){
 
-    // this.authService.login(user).subscribe({
-    //   next: value => {
-    //     this.messageService.add({severity: 'success', summary: 'Autentificare realizata cu succes'});
-    //
-    //     let arrAuth: Array<AuthorityModel> = value.body?.authorities as Array<AuthorityModel>;
-    //     let role = '';
-    //     if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
-    //       role = Roles.ROLE_USER;
-    //     }
-    //     this.authService.saveRole(role);
-    //     this.authService.saveEmail(value.body!.email);
-    //     this.authService.saveToken(value.body!.token);
-    //     this.authService.saveFirstName(value.body!.firstName);
-    //     this.router.navigate(['/home']);
-    //   },
-    //   error: err => {
-    //     this.messageService.add({severity: "error", summary: `Email sau parola incorecta`});
-    //   }
-    // })
-
     const emailForm = this.myForm.get("email")?.value;
     const passwordForm = this.myForm.get("password")?.value;
 
@@ -82,9 +62,9 @@ export class LoginComponent implements OnInit ,OnDestroy{
       if(value.loggedIn){
         this.myForm.reset();
         this.router.navigate(['/home']);
+        localStorage.removeItem("auth");
       }
     })
-    localStorage.removeItem("auth");
 
 
   }

@@ -6,7 +6,7 @@ import {catchError, map, of, switchMap, tap} from "rxjs";
 import {User} from "../interfaces/user";
 import * as AuthAction from "./auth.actions";
 import {AuthorityModel} from "../models/authority-model";
-import {Roles} from "../constants/constants";
+import {ErrorMessages, Roles} from "../constants/constants";
 import {NotificationService} from "../services/notification.service";
 
 
@@ -42,13 +42,8 @@ export class AuthEffects{
               if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
                 role = Roles.ROLE_USER;
               }
-              // this.authService.saveRole(role);
-              // this.authService.saveEmail(response.body!.email);
-              // this.authService.saveToken(response.body!.token);
-              // this.authService.saveFirstName(response.body!.firstName);
-              // this.authService.saveLoggedIn(true);
 
-              this.notificationService.onSuccess('loginSuccess','Te-ai logat cu success', '');
+              this.notificationService.onSuccess('loginSuccess','Te-ai logat cu success');
               return new AuthAction.AuthenticationSuccess({
                 email: response.body!.email,
                 firstName: response.body!.firstName,
@@ -58,20 +53,58 @@ export class AuthEffects{
               })
             }),
             catchError(err => {
-              this.notificationService.onError('loginFailed','Email sau parola incorecta', '');
+              this.notificationService.onError('loginFailed','Email sau parola incorecta');
               return handleError(err);
             })
           )
       })
     );
   });
+
+  authRegister$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(AuthActions.REGISTER_START),
+      switchMap((authData: AuthActions.RegisterStart) => {
+        let user: User = {
+          email: authData.payload.email,
+          password: authData.payload.password,
+          phone: authData.payload.phone,
+          firstName: authData.payload.firstName,
+          lastName: authData.payload.lastName
+        };
+        return this.authService.register(user)
+          .pipe(
+            map(value => {//aici returneaza la noi un AuthResponse, trebuie facut if-ul cu roluri
+              let arrAuth: Array<AuthorityModel> = value.body?.authorities as Array<AuthorityModel>;
+              let role = '';
+              if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
+                role = Roles.ROLE_USER;
+              }
+
+              this.notificationService.onSuccess('loginSuccess','Ti-ai creat cont cu success');
+              return new AuthAction.AuthenticationSuccess({
+                email: value.body!.email,
+                firstName: value.body!.firstName,
+                token: value.body!.token,
+                role: role,
+              })
+            }),
+            catchError(err => {
+              if(err === ErrorMessages.USER_ALREADY_EXISTS_BY_EMAIL_EXCEPTION) {
+                this.notificationService.onError('registerFailed', 'Exista deja un cont cu acest email');
+              } else if(err === ErrorMessages.USER_ALREADY_EXISTS_PHONE_EXCEPTION){
+                this.notificationService.onError('registerFailed', 'Exista deja un cont cu acest numar de telefon');
+              }
+                return handleError(err);
+            })
+          )
+      })
+    )
+  })
 }
 
-
-
-
-
 const handleError = (errorRes: any) => {
+  console.log(errorRes);
   let errorMessage = 'Email sau parola incorecta';
   // this.notificationService.onError('loginFailed','Email sau parola incorecta', '');
   // if (!errorRes.error || !errorRes.error.error) {
