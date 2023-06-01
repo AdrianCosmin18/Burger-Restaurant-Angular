@@ -4,6 +4,6 @@ export interface Product{
   type: string;
   description: string;
   ingredients: string;
-  picture: string;
+  image: number[];
   restaurantName: string;
 }

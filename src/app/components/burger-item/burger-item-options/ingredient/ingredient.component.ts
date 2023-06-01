@@ -13,7 +13,7 @@ export class IngredientComponent implements OnInit {
     name: "",
     price: 0,
     ingredients: "",
-    picture: "",
+    image: [],
     description: "",
     type: "",
     restaurantName:""

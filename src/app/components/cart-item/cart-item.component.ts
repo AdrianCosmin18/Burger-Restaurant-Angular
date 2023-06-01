@@ -21,7 +21,7 @@ export class CartItemComponent implements OnInit {
     type: '',
     description: '',
     ingredients: '',
-    picture: '',
+    image: [],
     restaurantName: ''
   };
 

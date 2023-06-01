@@ -19,15 +19,20 @@ export class BurgerItemComponent implements OnInit {
   public favoriteColor = 'p-button-secondary p-button-outlined';
   public productInCart: number = 0;
   public favoriteTooltipMessage = 'Adauga la favorite';
+  public imageData: string = '';
 
   constructor(
     private dialogService: DialogService,
-    private messageService: MessageService) { }
-
-  ngOnInit(): void {
+    private messageService: MessageService) {
   }
 
-  addToCart(){
+  ngOnInit(): void {
+
+    const imageDataBytes: number[] = this.burger.image;
+    this.imageData = this.getUrl();
+  }
+
+  addToCart() {
 
     const ref = this.dialogService.open(BurgerItemOptionsComponent, {
       header: this.burger.name,
@@ -38,8 +43,11 @@ export class BurgerItemComponent implements OnInit {
     });
 
     ref.onClose.subscribe((productInfo: any) => {
-      if(productInfo !== undefined && productInfo.productName !== null){
-        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
+      if (productInfo !== undefined && productInfo.productName !== null) {
+        this.messageService.add({
+          severity: 'success',
+          summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`
+        });
       }
     });
 
@@ -47,9 +55,6 @@ export class BurgerItemComponent implements OnInit {
     this.burgerEvent.emit(this.burger);
   }
 
-  // eraseFromCart(){
-  //   this.productInCart--;
-  // }
 
   addToFavorites() {
     this.isFavorite = !this.isFavorite;
@@ -61,5 +66,22 @@ export class BurgerItemComponent implements OnInit {
       // Elimină produsul din lista de favorite
       this.favoriteTooltipMessage = 'Adauga la favorite';
     }
+  }
+
+
+  getUrl(){
+
+    return `data:image/png;base64,${this.toBase64(this.burger.image)}`
+  }
+
+  toBase64(arr: number[]) {
+let data="";
+
+ for(let i=0;i<arr.length;i++){
+   data += String.fromCharCode(arr[i]);
+ }
+    return btoa(
+     data
+    );
   }
 }
