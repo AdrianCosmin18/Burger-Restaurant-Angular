@@ -1,1 +1,22 @@
-<p>card-page works!</p>
+
+
+<div class="container">
+  <div class="row">
+      <article
+        class="app-card-item col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-4"
+        *ngFor="let card of cards"
+        (emitMainCardId)="setAsMainCard($event)"
+        [card] = card></article>
+  </div>
+
+  <p-divider></p-divider>
+
+  <section style="text-align: center"></section>
+    <button pButton pRipple label="Adauga nou card"
+            icon="pi pi-plus"
+            class="p-button-danger delete-button"
+            (click)="addNewCard()"
+    ></button>
+</div>
+
+

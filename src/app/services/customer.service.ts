@@ -6,6 +6,8 @@ import {Product} from "../interfaces/burger";
 import {environment} from "../../environments/environment";
 import {Address} from "../interfaces/address";
 import {City} from "../interfaces/city";
+import {Card} from "../interfaces/card";
+import {get} from "@angular/fire/database";
 
 
 @Injectable({
@@ -57,6 +59,18 @@ export class CustomerService {
   deleteAddress(email: string, addressId: number): Observable<void>{
     let url = `${this.path}/delete-address/${email}/${addressId}`;
     return this.http.delete<void>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getUserCards(email: string): Observable<Card[]>{
+    let url = `${this.path}/get-user-cards/${email}`;
+    return this.http.get<Card[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  setCardAsMainCard(email: string, cardId: number): Observable<void>{
+    let url = `${this.path}/set-as-main-card/${email}/${cardId}`;
+    return this.http.put<void>(url, null)
       .pipe(catchError(this.handleError));
   }
 

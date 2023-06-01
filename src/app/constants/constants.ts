@@ -42,3 +42,8 @@ export enum ErrorMessages{
   USER_ALREADY_EXISTS_BY_EMAIL_EXCEPTION = "Already exists a user with this email",
   USER_ALREADY_EXISTS_PHONE_EXCEPTION = "This phone number belongs to someone else",
 }
+
+export class Constant{
+  public static MASTERCARD: string = "Mastercard";
+  public static VISA: string = "Visa";
+}

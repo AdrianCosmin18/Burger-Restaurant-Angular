@@ -21,7 +21,6 @@ export class AddressItemComponent implements OnInit {
 
   public favoriteColor = 'p-button-secondary p-button-outlined';
   public tooltipMessage = '';
-  // public isFavorite = false;
 
   constructor(
     private dialogService: DialogService,
@@ -70,7 +69,6 @@ export class AddressItemComponent implements OnInit {
       }
     })
   }
-
 
   openUpdateAddressForm(): void{
 

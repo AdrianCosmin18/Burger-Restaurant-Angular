@@ -16,6 +16,7 @@ import {Store} from "@ngrx/store";
 import * as fromApp from "../../../redux/app.reducer";
 import * as Actions from '../../../redux/auth.actions';
 import {AddressComponent} from "./address/address.component";
+import {CardPageComponent} from "./card-page/card-page.component";
 
 @Component({
   selector: 'app-header',
@@ -94,7 +95,8 @@ export class HeaderComponent implements OnInit {
         },
         {
           label: 'Cardurile mele',
-          icon: 'pi pi-credit-card'
+          icon: 'pi pi-credit-card',
+          command: () => this.openCardsPage()
         },
         {
           separator: true
@@ -163,6 +165,12 @@ export class HeaderComponent implements OnInit {
     const ref = this.dialogService.open(AddressComponent, {
       header: 'Adresele mele',
       width: '60%'
+    })
+  }
+
+  openCardsPage(){
+    const ref = this.dialogService.open(CardPageComponent, {
+      header: 'Cardurile mele',
     })
   }
 }

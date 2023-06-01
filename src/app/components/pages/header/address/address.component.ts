@@ -23,6 +23,7 @@ export class AddressComponent implements OnInit, OnDestroy {
   public addresses!: Array<Address>;
   private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean }>;
   private subscription: Subscription = new Subscription();
+  public lenAddresses = 0;
 
 
 
@@ -54,6 +55,7 @@ export class AddressComponent implements OnInit, OnDestroy {
       this.userService.getUserAddresses(this.email).subscribe({
         next: value => {
           this.addresses = value;
+          this.lenAddresses = this.addresses.length;
           this.primengConfig.ripple = true;
           console.log(this.addresses);
         },
