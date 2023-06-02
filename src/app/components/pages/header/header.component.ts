@@ -171,6 +171,7 @@ export class HeaderComponent implements OnInit {
   openCardsPage(){
     const ref = this.dialogService.open(CardPageComponent, {
       header: 'Cardurile mele',
+      width: '50%'
     })
   }
 }

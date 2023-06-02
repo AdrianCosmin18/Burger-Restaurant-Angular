@@ -1,9 +1,9 @@
 
 
 <div class="container">
-  <div class="row">
+  <div class="cards">
       <article
-        class="app-card-item col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-4"
+        class="app-card-item"
         *ngFor="let card of cards"
         (emitMainCardId)="setAsMainCard($event)"
         [email]=email
