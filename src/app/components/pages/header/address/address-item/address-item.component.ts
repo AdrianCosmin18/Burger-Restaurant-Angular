@@ -9,8 +9,7 @@ import {CustomerService} from "../../../../../services/customer.service";
 @Component({
   selector: '.address-item',
   templateUrl: './address-item.component.html',
-  styleUrls: ['./address-item.component.css'],
-  providers: [ConfirmationService]
+  styleUrls: ['./address-item.component.css']
 })
 export class AddressItemComponent implements OnInit {
   @Input() address!: Address;

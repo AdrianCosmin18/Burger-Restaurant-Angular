@@ -150,6 +150,7 @@ const appRoutes: Routes = [
   providers: [
     DialogService,
     MessageService,
+    ConfirmationService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],

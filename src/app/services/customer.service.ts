@@ -74,6 +74,18 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  addCard(email: string, card: Card): Observable<void>{
+    let url = `${this.path}/add-card/${email}`;
+    return this.http.post<void>(url, card)
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteCard(email: string, cardId: number): Observable<void>{
+    let url = `${this.path}/delete-card/${email}/${cardId}`;
+    return this.http.delete<void>(url)
+      .pipe(catchError(this.handleError));
+  }
+
 
   // getProductsOfCustomer(id: number): Observable<Product[]>{
   //   let url = this.productsOfCustomerUrl + id;

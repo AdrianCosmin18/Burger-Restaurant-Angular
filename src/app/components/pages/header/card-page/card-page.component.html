@@ -6,7 +6,10 @@
         class="app-card-item col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-4"
         *ngFor="let card of cards"
         (emitMainCardId)="setAsMainCard($event)"
-        [card] = card></article>
+        [email]=email
+        [card] = card
+        (emitDeleteCard)="onDeleteCard($event)"
+      ></article>
   </div>
 
   <p-divider></p-divider>
@@ -18,5 +21,7 @@
             (click)="addNewCard()"
     ></button>
 </div>
+
+<p-toast position="bottom-center"></p-toast>
 
 

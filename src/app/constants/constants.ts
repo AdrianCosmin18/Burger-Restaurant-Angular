@@ -41,6 +41,7 @@ export enum ErrorMessages{
   USER_ALREADY_OWN_ADDRESS_EXCEPTION = "User already has this address",
   USER_ALREADY_EXISTS_BY_EMAIL_EXCEPTION = "Already exists a user with this email",
   USER_ALREADY_EXISTS_PHONE_EXCEPTION = "This phone number belongs to someone else",
+  USER_CARD_ALREADY_EXISTS_EXCEPTION = "Already added this card",
 }
 
 export class Constant{

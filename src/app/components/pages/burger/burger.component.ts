@@ -12,32 +12,17 @@ import {MessageService} from "primeng/api";
 })
 export class BurgerComponent implements OnInit {
   public burgers: Product[] = [];
-  private customerId!: number;
 
   constructor(private burgerService: BurgerService, private customerService: CustomerService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    // this.customerId = + sessionStorage.getItem("id")!;
-    // console.log(this.customerId + " din burger component");
-    // this.burgerService.getBurgers().subscribe(response => {
-    //   this.burgers = response;
-    // });
-
-    // this.burgerService.getBurgers().subscribe({
-    //   next: (response) => {
-    //     this.burgers = response.map(product => {
-    //       product.pictureUrl = this.createImageUrl(product.picture);
-    //       return product;
-    //     });
-    //   }
-    // });
 
     this.burgerService.getBurgers().subscribe({
       next: (response) => {
         this.burgers = response;
+        console.log(this.burgers);
       }
     });
-
   }
 
   addToCart(burger: Product){

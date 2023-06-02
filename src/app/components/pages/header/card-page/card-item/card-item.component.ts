@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Card} from "../../../../../interfaces/card";
 import {Constant} from "../../../../../constants/constants";
 import {cleanPackageJson} from "@angular/compiler-cli/ngcc/src/packages/build_marker";
+import {ConfirmationService} from "primeng/api";
+import {CustomerService} from "../../../../../services/customer.service";
 
 @Component({
   selector: '.app-card-item',
@@ -10,13 +12,18 @@ import {cleanPackageJson} from "@angular/compiler-cli/ngcc/src/packages/build_ma
 })
 export class CardItemComponent implements OnInit {
   @Input() card!: Card;
+  @Input() email!: string;
   @Output() emitMainCardId = new EventEmitter<number>();
+  @Output() emitDeleteCard = new EventEmitter<string>();
   public src = "";
   public expiry = "";
   public textColor = '';
   public tooltipMessage = '';
 
-  constructor() { }
+  constructor(
+    private confirmationService: ConfirmationService,
+    private userService: CustomerService,
+  ) { }
 
   ngOnInit(): void {
 
@@ -27,7 +34,7 @@ export class CardItemComponent implements OnInit {
     }else{
       this.textColor = 'p-button-outlined'
     }
-    console.log(this.card.fullExpiryDate);
+    // console.log(this.card.fullExpiryDate);
   }
 
   getCardType(){
@@ -37,13 +44,29 @@ export class CardItemComponent implements OnInit {
       this.src = './assets/Cards/visa.png';
     }
 
-    console.log(typeof this.card.expiryDate);
-    this.expiry = `${this.card.fullExpiryDate.day}.${this.card.fullExpiryDate.month}.${this.card.fullExpiryDate.year}`;
+    let month = this.card.fullExpiryDate[1];
+    if('1' <= month && month <= '9'){
+      month = `0${month}`;
+    }
+    // @ts-ignore
+    this.expiry = `${this.card.fullExpiryDate[2]}.${month}.${this.card.fullExpiryDate[0]}`;
   }
 
   makeMainCard(){
     if(!this.card.isDefault){
       this.emitMainCardId.emit(this.card.id);
     }
+  }
+
+  deleteCard() {
+    this.userService.deleteCard(this.email, this.card.id).subscribe({
+      next: () => {
+        const summary = `Cardul ${this.card.cardNumber} a fost sters cu succes`;
+        this.emitDeleteCard.emit(summary);
+      },
+      error: err => {
+        alert(err);
+      }
+    })
   }
 }

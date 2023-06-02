@@ -17,7 +17,7 @@ import {CardFormComponent} from "./card-form/card-form.component";
 })
 export class CardPageComponent implements OnInit {
   public cards: Card[] = [];
-  private email: string = '';
+  public email: string = '';
   private auth$!: Observable<{ email: string; }>;
   private authSubscription: Subscription = new Subscription();
 
@@ -54,11 +54,12 @@ export class CardPageComponent implements OnInit {
     const ref = this.dialogService.open(CardFormComponent, {
       header: 'Adauga card',
       width: '50%',
+      height: '60%'
     });
 
     ref.onClose.subscribe((message) => {
       if(message){
-        this.messageService.add({severity:'success', summary: `${message}`, detail: 'Message Content'});
+        this.messageService.add({severity:'success', summary: `${message}`});
       }
       this.getCards();
     });
@@ -67,9 +68,14 @@ export class CardPageComponent implements OnInit {
   setAsMainCard(cardId: number) {
     this.userService.setCardAsMainCard(this.email, cardId).subscribe({
       next: () => {
-        this.messageService.add({severity:'success', summary: `Ai o noua adresa principala`, detail: 'Message Content'});
+        this.messageService.add({severity:'success', summary: `Ai un nou card principal`});
         this.getCards();
       }
     })
+  }
+
+  onDeleteCard(summary: string){
+    this.messageService.add({severity:'info', summary: summary});
+    this.getCards();
   }
 }
