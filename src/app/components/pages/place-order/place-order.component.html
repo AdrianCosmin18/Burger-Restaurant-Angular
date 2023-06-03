@@ -1,0 +1,58 @@
+<div class="container-xl border mt-5">
+
+  <h2>Plaseaza comanda</h2>
+
+  <section class="d-flex gap-2">
+
+    <div class="d-flex flex-column gap-2" style="width: 100%">
+
+      <p-card [style]="{'width': '100%', 'margin-bottom': '2em', 'padding': '0px'}">
+        <section class="d-flex flex-row gap-3" style="">
+          <i class="pi pi-map-marker" style="font-size: 2em;"></i>
+          <h4 style="margin: 0px; margin-right: auto">Livrare la adresa: </h4>
+          <button pButton pRipple type="button"
+                  icon="pi pi-replay"
+                  class="p-button-rounded p-button-warning"
+                  tooltipPosition="top" pTooltip="Alege alta adresa"
+                  (click)="selectAddress()"
+          ></button>
+        </section>
+        <p *ngIf="hasSelectedAddress" style="margin: 0px;">{{toStringAddress}}</p>
+        <p *ngIf="!hasSelectedAddress" style="margin: 0px; color: red">{{noAddressMessage}}</p>
+      </p-card>
+
+      <p-card [style]="{'width': '100%', 'margin-bottom': '2em', 'padding': '0px'}">
+        <section class="d-flex flex-row gap-3" style="">
+          <i class="pi pi-credit-card" style="font-size: 2em;"></i>
+          <h4 style="margin: 0px; margin-right: auto">Plata: </h4>
+          <button pButton pRipple type="button"
+                  icon="pi pi-replay"
+                  class="p-button-rounded p-button-warning"
+                  tooltipPosition="top" pTooltip="Alege alt card"
+                  (click)="selectCard()"
+          ></button>
+        </section>
+
+        <p *ngIf="hasSelectedCard" style="margin: 0px;">{{toStringCard}}</p>
+        <p *ngIf="!hasSelectedCard" style="margin: 0px; color: red">{{noCardMessage}}</p>
+      </p-card>
+
+
+      <span class="p-float-label">
+        <textarea id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+        <label for="float-input" style="font-size: 15px;">Comentarii</label>
+      </span>
+
+
+    </div>
+
+    <div class="flex-1" style="width: 100%">
+
+
+    </div>
+
+  </section>
+
+
+
+</div>
