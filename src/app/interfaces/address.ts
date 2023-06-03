@@ -10,5 +10,4 @@ export interface Address{
   details: string;
   cityName: string;
   isDefault: boolean;
-
 }

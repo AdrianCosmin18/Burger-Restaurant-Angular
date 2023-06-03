@@ -23,7 +23,10 @@
 
     <ng-template let-address pTemplate="item">
 
-      <div class="address-item" [address]="address" [email]="email"
+      <div class="address-item"
+           [address]="address"
+           [email]="email"
+           [isAPlacedOrder]="isAPlacedOrder"
            (emitMainAddressId)="setAsMainAddress($event)"
            (emitUpdateAddress)="updatedAddress($event)"
            (emitDeleteAddress)="deleteAddress($event)">

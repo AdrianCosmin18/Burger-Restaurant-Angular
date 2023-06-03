@@ -66,6 +66,8 @@ import { CardPageComponent } from './components/pages/header/card-page/card-page
 import { CardItemComponent } from './components/pages/header/card-page/card-item/card-item.component';
 import { CardFormComponent } from './components/pages/header/card-page/card-form/card-form.component';
 import {InputMaskModule} from "primeng/inputmask";
+import { PlaceOrderComponent } from './components/pages/place-order/place-order.component';
+import {InputTextareaModule} from "primeng/inputtextarea";
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -77,7 +79,9 @@ const appRoutes: Routes = [
   {path: "deserts", component: DesertPageComponent},
   {path: "sauces", component: SaucePageComponent},
   //{path: "cart", component: CartComponent,},
-  {path: "**", component: MainPageComponent}
+  {path: "placeOrder", component: PlaceOrderComponent},
+  {path: "**", component: MainPageComponent},
+
 ]
 
 @NgModule({
@@ -112,6 +116,7 @@ const appRoutes: Routes = [
     CardPageComponent,
     CardItemComponent,
     CardFormComponent,
+    PlaceOrderComponent,
   ],
     imports: [
         BrowserModule,
@@ -146,6 +151,7 @@ const appRoutes: Routes = [
         CheckboxModule,
         ConfirmDialogModule,
         InputMaskModule,
+        InputTextareaModule,
     ],
   providers: [
     DialogService,

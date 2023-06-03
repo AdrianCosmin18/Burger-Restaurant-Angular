@@ -164,14 +164,20 @@ export class HeaderComponent implements OnInit {
 
     const ref = this.dialogService.open(AddressComponent, {
       header: 'Adresele mele',
-      width: '60%'
+      width: '60%',
+      data: {
+        isPlaceOrder: false
+      }
     })
   }
 
   openCardsPage(){
     const ref = this.dialogService.open(CardPageComponent, {
       header: 'Cardurile mele',
-      width: '50%'
+      width: '50%',
+      data: {
+        isPlaceOrder: false
+      }
     })
   }
 }

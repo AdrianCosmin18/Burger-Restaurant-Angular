@@ -62,6 +62,18 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  hasUserMainAddress(email: string): Observable<boolean>{
+    let url = `${this.path}/has-user-main-address/${email}`;
+    return this.http.get<boolean>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getUserMainAddress(email: string): Observable<Address>{
+    let url = `${this.path}/get-main-address/${email}`;
+    return this.http.get<Address>(url)
+      .pipe(catchError(this.handleError));
+  }
+
   getUserCards(email: string): Observable<Card[]>{
     let url = `${this.path}/get-user-cards/${email}`;
     return this.http.get<Card[]>(url)
@@ -83,6 +95,18 @@ export class CustomerService {
   deleteCard(email: string, cardId: number): Observable<void>{
     let url = `${this.path}/delete-card/${email}/${cardId}`;
     return this.http.delete<void>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  hasUserMainCard(email: string): Observable<boolean>{
+    let url = `${this.path}/has-user-main-card/${email}`;
+    return this.http.get<boolean>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getUserMainCard(email: string): Observable<Card>{
+    let url = `${this.path}/get-user-main-card/${email}`;
+    return this.http.get<Card>(url)
       .pipe(catchError(this.handleError));
   }
 

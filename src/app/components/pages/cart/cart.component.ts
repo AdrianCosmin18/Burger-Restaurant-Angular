@@ -6,6 +6,13 @@ import {OrderItem} from "../../../models/order-item";
 import {Constants} from "../../../constants/constants";
 import {BurgerService} from "../../../services/burger.service";
 import {DynamicDialogRef} from "primeng/dynamicdialog";
+import {Observable, Subscription} from "rxjs";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../../redux/app.reducer";
+import * as AuthAction from "../../../redux/auth.actions";
+import {Route, Router} from "@angular/router";
+import {NotificationService} from "../../../services/notification.service";
+import {AppState} from "../../../redux/app.reducer";
 
 @Component({
   selector: 'app-cart',
@@ -15,24 +22,30 @@ import {DynamicDialogRef} from "primeng/dynamicdialog";
 })
 export class CartComponent implements OnInit {
   public items: OrderItem[] = [];
-  private customerID!: number;
+  private auth$!: Observable<{ email: string, loggedIn: boolean }>;
+  private itemList$!: Observable<{ it: OrderItem[]}>;
+  private storeSub: Subscription = new Subscription();
+
+
 
   constructor(
     private customerService: CustomerService,
     private messageService: MessageService,
-    public ref: DynamicDialogRef
+    public ref: DynamicDialogRef,
+    private store: Store<fromApp.AppState>,
+    private router: Router,
+    private notificationService : NotificationService
   ) { }
 
   ngOnInit(): void {
-    // this.customerID = + sessionStorage.getItem("id")!;
-    // this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
-    //   this.products = list;
-    // });
 
     this.initCartList();
   }
 
   initCartList(){
+    //
+    // this.itemList$ = this.store.select("items");
+
     this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     console.log(this.items);
   }
@@ -46,31 +59,24 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(productName: string): void{
-    // this.ref.close(productName);
-    // this.messageService.add({severity: 'success', summary: `${productName} sters din cos`});
     this.initCartList();
 
-
-    // console.log(product);
-    // this.customerService.deleteFromCart(this.customerID, product.id).subscribe(async response => {
-    //   this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
-    //     this.products = list;
-    //   });
-    // }, error => {
-    //   alert(error.message);
-    // })
   }
 
-  // placeOrder(){
-  //   this.customerService.placeOrder(this.customerID).subscribe(response => {
-  //     this.customerService.getProductsOfCustomer(this.customerID).subscribe(list => {
-  //       this.products = list;
-  //     });
-  //     this.messageService.add({severity: "info", summary: `Comanda a fost plasata cu succes`});
-  //   }, error => {
-  //     alert(error.message);
-  //   })
-  // }
+  placeOrder(){
+
+    this.auth$ = this.store.select("auth");
+    this.storeSub = this.auth$.subscribe(value => {
+      if(value.loggedIn){
+        this.router.navigate(['/placeOrder']);
+        this.ref.close();
+      }else{
+        this.notificationService.onInfo('needToBeAuth','Trebuie sa fi conectat pentru a putea plasa o comanda', '');
+        this.ref.close();
+        this.router.navigate(['/login']);
+      }
+    })
+  }
 
 
 

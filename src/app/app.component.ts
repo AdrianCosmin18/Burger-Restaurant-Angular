@@ -1,12 +1,5 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
-import * as fromApp from "./redux/app.reducer";
-import {Observable} from "rxjs";
-import {UserCredentials} from "./interfaces/user-credentials";
-import {Constants} from "./constants/constants";
-import {NavigationEnd, NavigationStart, Router} from "@angular/router";
-import {LoadData} from "./redux/auth.actions";
-import * as Actions from "./redux/auth.actions";
+import {Component} from '@angular/core';
+
 
 @Component({
   selector: 'app-root',

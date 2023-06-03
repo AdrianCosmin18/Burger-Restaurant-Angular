@@ -13,8 +13,8 @@ export class NotificationService {
     this.messageService.add({key: key,severity: Severity.SUCCESS, summary: summary});
   }
 
-  onInfo(summary: string, detail: string): void {
-    this.messageService.add({severity: Severity.INFO, summary: summary, detail: detail});
+  onInfo(key: string, summary: string, detail: string): void {
+    this.messageService.add({key: key, severity: Severity.INFO, summary: summary, detail: detail});
   }
 
   onWarning(summary: string, detail: string): void {

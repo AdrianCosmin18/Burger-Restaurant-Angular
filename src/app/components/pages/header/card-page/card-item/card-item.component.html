@@ -7,10 +7,18 @@
       <h5 style="font-size: 18px; margin: 0px;">{{card.cardType}} {{card.cardNumber}}</h5>
     </div>
     <div class="col-md-3 d-flex justify-content-center align-items-center">
-      <button pButton pRipple type="button" icon="pi pi-trash"
+      <button *ngIf="!isAPlacedOrder"
+              pButton pRipple type="button" icon="pi pi-trash"
               class="p-button-rounded p-button-danger p-button-outlined"
               pTooltip="Sterge cardul" tooltipPosition="top"
               (click)="deleteCard()"
+      ></button>
+
+      <button *ngIf="isAPlacedOrder"
+              pButton pRipple type="button" icon="pi pi-eject"
+              class="p-button-rounded p-button-warning p-button-outlined"
+              pTooltip="Selecteaza cardul pentru adresa curenta" tooltipPosition="top"
+              (click)="selectCardToPlaceOrder()"
       ></button>
     </div>
     <div class="col-md-3"></div>

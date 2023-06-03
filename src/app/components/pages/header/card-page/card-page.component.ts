@@ -20,6 +20,8 @@ export class CardPageComponent implements OnInit {
   public email: string = '';
   private auth$!: Observable<{ email: string; }>;
   private authSubscription: Subscription = new Subscription();
+  public isAPlacedOrder: boolean = false;
+
 
 
   constructor(
@@ -32,7 +34,12 @@ export class CardPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getInfoFromParent();
     this.getCards();
+  }
+
+  getInfoFromParent(){
+    this.isAPlacedOrder = this.config.data.isPlaceOrder;
   }
 
   getCards(): void{

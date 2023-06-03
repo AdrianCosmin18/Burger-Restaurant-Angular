@@ -4,6 +4,7 @@ import {Constant} from "../../../../../constants/constants";
 import {cleanPackageJson} from "@angular/compiler-cli/ngcc/src/packages/build_marker";
 import {ConfirmationService} from "primeng/api";
 import {CustomerService} from "../../../../../services/customer.service";
+import {DynamicDialogRef} from "primeng/dynamicdialog";
 
 @Component({
   selector: '.app-card-item',
@@ -13,6 +14,7 @@ import {CustomerService} from "../../../../../services/customer.service";
 export class CardItemComponent implements OnInit {
   @Input() card!: Card;
   @Input() email!: string;
+  @Input() isAPlacedOrder!: boolean;
   @Output() emitMainCardId = new EventEmitter<number>();
   @Output() emitDeleteCard = new EventEmitter<string>();
   public src = "";
@@ -23,6 +25,7 @@ export class CardItemComponent implements OnInit {
   constructor(
     private confirmationService: ConfirmationService,
     private userService: CustomerService,
+    public ref: DynamicDialogRef,
   ) { }
 
   ngOnInit(): void {
@@ -68,5 +71,9 @@ export class CardItemComponent implements OnInit {
         alert(err);
       }
     })
+  }
+
+  selectCardToPlaceOrder() {
+    this.ref.close(this.card);
   }
 }

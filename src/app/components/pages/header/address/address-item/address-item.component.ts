@@ -14,6 +14,7 @@ import {CustomerService} from "../../../../../services/customer.service";
 export class AddressItemComponent implements OnInit {
   @Input() address!: Address;
   @Input() email!: string;
+  @Input() isAPlacedOrder!: boolean;
   @Output() emitMainAddressId = new EventEmitter<any>();
   @Output() emitUpdateAddress = new EventEmitter<any>();
   @Output() emitDeleteAddress = new EventEmitter<any>();
@@ -84,5 +85,9 @@ export class AddressItemComponent implements OnInit {
         this.emitUpdateAddress.emit(message);
     });
 
+  }
+
+  selectAddressToPlaceOrder() {
+    this.ref.close(this.address);
   }
 }

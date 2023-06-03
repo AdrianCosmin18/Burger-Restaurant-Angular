@@ -24,6 +24,7 @@ export class AddressComponent implements OnInit, OnDestroy {
   private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean }>;
   private subscription: Subscription = new Subscription();
   public lenAddresses = 0;
+  public isAPlacedOrder: boolean = false;
 
 
 
@@ -40,7 +41,12 @@ export class AddressComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.getInfoFromParent();
     this.getInfoUser();
+  }
+
+  getInfoFromParent(){
+    this.isAPlacedOrder = this.config.data.isPlaceOrder;
   }
 
   getInfoUser(){
@@ -80,12 +86,6 @@ export class AddressComponent implements OnInit, OnDestroy {
     }
     this.getAddresses();
   }
-
-
-  // makeDefaultAddress(){
-  //   this.isFavorite = !this.isFavorite;
-  //   this.favoriteColor = this.isFavorite ? 'p-button-danger' : 'p-button-secondary p-button-outlined';
-  // }
 
   addNewAddress() {
 
