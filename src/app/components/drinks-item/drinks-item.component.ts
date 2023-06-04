@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../interfaces/burger";
 import {DialogService} from "primeng/dynamicdialog";
 import {MessageService} from "primeng/api";
-import {BurgerItemOptionsComponent} from "../burger-item/burger-item-options/burger-item-options.component";
 import {DrinksItemOptionsComponent} from "./drinks-item-options/drinks-item-options.component";
 
 @Component({

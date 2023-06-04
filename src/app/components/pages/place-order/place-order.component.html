@@ -43,11 +43,69 @@
         <label for="float-input" style="font-size: 15px;">Comentarii</label>
       </span>
 
+      <p-card [style]="{'width': '100%', 'margin-bottom': '2em'}">
+        <ng-template pTemplate="header">
+          <div class="d-flex align-items-center gap-3">
+            <img style="width: 50px; height: 50px;" src="./assets/delivery_guy.png">
+            <h5 style="margin: 0;">Tips pe bon? Alege o varianta:</h5>
+          </div>
+
+        </ng-template>
+        <div class="d-flex justify-content-around">
+          <button pButton pRipple type="button" label="2 LEI" class="p-button-secondary"
+                  [ngClass]="tip2" (click)="clickTipsButton2Lei()"></button>
+
+          <button pButton pRipple type="button" label="4 LEI" class="p-button-secondary"
+                  [ngClass]="tip4" (click)="clickTipsButton4Lei()"></button>
+
+          <button pButton pRipple type="button" label="5 LEI" class="p-button-secondary"
+                  [ngClass]="tip5" (click)="clickTipsButton5Lei()"></button>
+
+          <button pButton pRipple type="button" label="Alta suma" class="p-button-secondary"
+                  [ngClass]="tipCustom" (click)="clickTipsButtonCustomeTip()"></button>
+        </div>
+
+      </p-card>
+
 
     </div>
 
-    <div class="flex-1" style="width: 100%">
+    <div class="d-flex flex-column gap-2" style="width: 100%">
 
+      <p-accordion>
+        <p-accordionTab header="Sumar ({{items.length}} produse)" [selected]="true">
+
+          <app-cart-item *ngFor="let item of items"
+                         [item] = "item"
+                         (productEvent)="removeFromCart($event)"
+                         style="display: flex; justify-content: center">
+          </app-cart-item>
+
+        </p-accordionTab>
+      </p-accordion>
+
+      <p-card [style]="{'width': '100%', 'margin-bottom': '2em'}">
+        <ng-template pTemplate="header">
+          <div class="d-flex justify-content-between gap-3">
+            <h5 style="margin: 0; margin-left: 10px;">Total produse</h5>
+            <h5 style="margin: 0; margin-right: 10px;">65 lei</h5>
+          </div>
+        </ng-template>
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-between gap-3">
+            <p style="margin: 0; ">Taxa transport</p>
+            <p style="margin: 0;">4.99 lei</p>
+          </div>
+        </div>
+
+        <p-divider></p-divider>
+
+        <div class="d-flex justify-content-between gap-3">
+          <h3 style="margin: 0; ">TOTAL</h3>
+          <h3 style="margin: 0;">69.99 lei</h3>
+        </div>
+
+      </p-card>
 
     </div>
 

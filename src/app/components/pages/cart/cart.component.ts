@@ -43,9 +43,6 @@ export class CartComponent implements OnInit {
   }
 
   initCartList(){
-    //
-    // this.itemList$ = this.store.select("items");
-
     this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     console.log(this.items);
   }

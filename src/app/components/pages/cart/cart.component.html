@@ -1,22 +1,24 @@
 <section>
 
   <h3 *ngIf="this.items.length === 0; else elseBlock"
-      style="color: gray; display: flex; justify-content: center; margin-top: 255px"
+      style="color: gray; display: flex; justify-content: center;"
   >Cosul este gol</h3>
 
   <ng-template #elseBlock>
-    <div class="container border">
+    <div class="container">
       <app-cart-item *ngFor="let item of items"
                      [item] = "item"
                      (productEvent)="removeFromCart($event)"
                      style="display: flex; justify-content: center">
       </app-cart-item>
 
-      <article class="footer">
-        <span class="badge text-bg-warning total-amount">Total: {{totalAmount()}} lei</span>
-        <button class="btn btn-danger" (click)="placeOrder()">Finalizeaza comanda</button>
-      </article>
     </div>
+
+    <article class="footer">
+      <span class="badge text-bg-warning total-amount">Total: {{totalAmount()}} lei</span>
+      <button class="btn btn-danger" (click)="placeOrder()">Finalizeaza comanda</button>
+    </article>
+
   </ng-template>
 
 </section>

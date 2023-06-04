@@ -9,6 +9,9 @@ import {AddressComponent} from "../header/address/address.component";
 import {DialogService} from "primeng/dynamicdialog";
 import {Card} from "../../../interfaces/card";
 import {CardPageComponent} from "../header/card-page/card-page.component";
+import {CustomTipsComponent} from "./custom-tips/custom-tips.component";
+import {OrderItem} from "../../../models/order-item";
+import {Constants} from "../../../constants/constants";
 
 @Component({
   selector: 'app-place-order',
@@ -33,6 +36,16 @@ export class PlaceOrderComponent implements OnInit {
   public noAddressMessage: string = 'Va rugam sa selectati o adresa';
   public noCardMessage: string = 'Va rugam sa selectati un card';
 
+  public classButtonForTips = 'p-button-raised p-button-text';
+  public tip2 = '';
+  public tip4 = '';
+  public tip5 = '';
+  public tipCustom = '';
+
+  public items: OrderItem[] = [];
+
+
+
 
   constructor(
     private messageService: MessageService,
@@ -43,6 +56,7 @@ export class PlaceOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInfo();
+    this.initCartList();
   }
 
   getInfo(){
@@ -158,6 +172,50 @@ export class PlaceOrderComponent implements OnInit {
         this.initToStringCard();
       }
     })
+  }
+
+  clickTipsButton2Lei(){
+    this.tip2 = this.classButtonForTips;
+    this.tip4 = '';
+    this.tip5 = '';
+    this.tipCustom = '';
+  }
+
+  clickTipsButton4Lei() {
+    this.tip2 = '';
+    this.tip4 = this.classButtonForTips;
+    this.tip5 = '';
+    this.tipCustom = '';
+  }
+
+  clickTipsButton5Lei() {
+    this.tip2 = '';
+    this.tip4 = '';
+    this.tip5 = this.classButtonForTips;
+    this.tipCustom = '';
+  }
+
+  clickTipsButtonCustomeTip() {
+    const ref = this.dialogService.open(CustomTipsComponent, {
+      width: '420px'
+    });
+    ref.onClose.subscribe((message) => {
+      if (message) {
+        this.tip2 = '';
+        this.tip4 = '';
+        this.tip5 = '';
+        this.tipCustom = this.classButtonForTips;
+      }
+    });
+  }
+
+  initCartList(){
+    this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
+    console.log(this.items);
+  }
+
+  removeFromCart(productName: string): void {
+    this.initCartList()
   }
 
 }

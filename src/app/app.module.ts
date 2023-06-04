@@ -68,6 +68,7 @@ import { CardFormComponent } from './components/pages/header/card-page/card-form
 import {InputMaskModule} from "primeng/inputmask";
 import { PlaceOrderComponent } from './components/pages/place-order/place-order.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
+import { CustomTipsComponent } from './components/pages/place-order/custom-tips/custom-tips.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -117,6 +118,7 @@ const appRoutes: Routes = [
     CardItemComponent,
     CardFormComponent,
     PlaceOrderComponent,
+    CustomTipsComponent,
   ],
     imports: [
         BrowserModule,
