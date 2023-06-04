@@ -1,68 +1,78 @@
-<div class="card" style="width: 95%;" >
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="../../../assets/burgerImg/filetFish.png" style="width: 150px;" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
+<!--<div class="card" style="width: 95%;" >-->
+<!--  <div class="row g-0">-->
+<!--    <div class="col-md-4">-->
+<!--      <img src="../../../assets/burgerImg/filetFish.png"-->
+<!--           style="width: 150px;" class="img-fluid rounded-start" alt="...">-->
+<!--    </div>-->
+<!--    <div class="col-md-8">-->
+<!--      <div class="card-body">-->
 
-          <ul class="list-group list-group-flush" style="color: #4a5057;">
-            <li class="list-group-item"><h4 class="card-title">{{item.name}}</h4></li>
-            <li class="list-group-item" *ngIf="item.extraIngredients !== ''" style="display: flex; flex-direction: row; gap: 10px;">
-              <p><strong>Extra optiuni: </strong></p> <p> {{item.extraIngredients}}</p> <h5 style="color: #f9c141"> +{{extraPrice}} lei</h5>
-            </li>
-            <li style="display: flex; flex-direction: row; gap: 10px;" *ngIf="item.lessIngredients !== ''" class="list-group-item"><p><strong> Fara: </strong></p> <p> {{item.lessIngredients}}</p></li>
-            <li class="list-group-item" style="display: flex; flex-direction: row; gap: 10px;"><h6>Pret baza: {{product.price}}</h6></li>
-            <li class="list-group-item">
-              <article style="display: flex; gap: 15px;">
-                <span class="p-buttonset">
-                  <button pButton pRipple icon="pi pi-minus" class="p-button-outlined p-button-warning" (click)="decreaseQuantity()"></button>
-                  <button pButton pRipple label="{{item.quantity}}" class="p-button-outlined p-button-warning"></button>
-                  <button pButton pRipple icon="pi pi-plus" class="p-button-outlined p-button-warning" (click)="increaseQuantity()"></button>
-                </span>
+<!--          <ul class="list-group list-group-flush" style="color: #4a5057;">-->
+<!--            <li class="list-group-item"><h4 class="card-title">{{item.name}}</h4></li>-->
+<!--            <li class="list-group-item" *ngIf="item.extraIngredients !== ''" style="display: flex; flex-direction: row; gap: 10px;">-->
+<!--              <p><strong>Extra optiuni: </strong></p> <p> {{item.extraIngredients}}</p> <h5 style="color: #f9c141"> +{{extraPrice}} lei</h5>-->
+<!--            </li>-->
+<!--            <li style="display: flex; flex-direction: row; gap: 10px;" *ngIf="item.lessIngredients !== ''" class="list-group-item"><p><strong> Fara: </strong></p> <p> {{item.lessIngredients}}</p></li>-->
+<!--            <li class="list-group-item" style="display: flex; flex-direction: row; gap: 10px;"><h6>Pret baza: {{product.price}}</h6></li>-->
+<!--            <li class="list-group-item">-->
+<!--              <article style="display: flex; gap: 15px;">-->
+<!--                <span class="p-buttonset">-->
+<!--                  <button pButton pRipple icon="pi pi-minus" class="p-button-outlined p-button-warning" (click)="decreaseQuantity()"></button>-->
+<!--                  <button pButton pRipple label="{{item.quantity}}" class="p-button-outlined p-button-warning"></button>-->
+<!--                  <button pButton pRipple icon="pi pi-plus" class="p-button-outlined p-button-warning" (click)="increaseQuantity()"></button>-->
+<!--                </span>-->
 
-                <p style="color: #ed9c00; font-size: 20px; padding-top: 10px; margin-right: auto;"><strong>{{orderItemTotalPrice()}} lei</strong></p>
+<!--                <p style="color: #ed9c00; font-size: 20px; padding-top: 10px; margin-right: auto;"><strong>{{orderItemTotalPrice()}} lei</strong></p>-->
 
-                <button pButton pRipple type="button" icon="pi pi-trash"
-                        class="p-button-rounded p-button-danger p-button-text"
-                        style="margin-right: 10px;"
-                        (click)="removeFromCart()"
-                ></button>
-              </article>
-            </li>
-          </ul>
+<!--                <button pButton pRipple type="button" icon="pi pi-trash"-->
+<!--                        class="p-button-rounded p-button-danger p-button-text"-->
+<!--                        style="margin-right: 10px;"-->
+<!--                        (click)="removeFromCart()"-->
+<!--                ></button>-->
+<!--              </article>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
+<p-card header={{item.name}} styleClass="p-card-shadow">
+  <ng-template pTemplate="header">
+    <img src="../../../assets/burgerImg/filetFish.png"
+         style="width: 150px;" class="img-fluid rounded-start" alt="...">
+  </ng-template>
 
-<!--        <h4 class="card-title">{{item.name}}</h4>-->
-<!--        <div style="display: flex; flex-direction: row; gap: 10px;">-->
-<!--          <p><strong> Optiuni extra: </strong></p>-->
-<!--          <p> {{item.extraIngredients}}</p>-->
-<!--          <h5 style="color: #f9c141"> +{{extraPrice}} lei</h5>-->
-<!--        </div>-->
+  <article *ngIf="item.extraIngredients !== ''" class="d-flex flex-row gap-2">
+    <p><strong>Extra optiuni: </strong></p>
+    <p> {{item.extraIngredients}}</p>
+    <h5 style="color: #f9c141"> +{{extraPrice}} lei</h5>
+  </article>
 
-<!--        <div *ngIf="item.lessIngredients !== ''" style="display: flex; flex-direction: row; gap: 10px;" >-->
-<!--          <p><strong> Fara: </strong></p>-->
-<!--          <p> {{item.lessIngredients}}</p>-->
-<!--        </div>-->
+  <article *ngIf="item.lessIngredients !== ''" class="d-flex flex-row gap-2">
+    <p><strong> Fara: </strong></p>
+    <p> {{item.lessIngredients}}</p>
+  </article>
 
-<!--        <h6>Pret baza: {{product.price}}</h6>-->
+  <article class="d-flex flex-row gap-2">
+    <h6>Pret baza: {{product.price}}</h6>
+  </article>
 
-<!--        <article style="display: flex; gap: 15px;">-->
-<!--          <span class="p-buttonset">-->
-<!--            <button pButton pRipple icon="pi pi-minus" class="p-button-outlined p-button-warning"></button>-->
-<!--            <button pButton pRipple label="{{item.quantity}}" class="p-button-outlined p-button-warning"></button>-->
-<!--            <button pButton pRipple icon="pi pi-plus" class="p-button-outlined p-button-warning"></button>-->
-<!--          </span>-->
+  <article class="d-flex gap-3">
 
-<!--          <p style="color: #ed9c00; font-size: 20px; padding-top: 10px; margin-right: auto;"><strong>{{item.price * item.quantity}} lei</strong></p>-->
+    <span class="p-buttonset">
+      <button pButton pRipple icon="pi pi-minus" class="p-button-outlined p-button-warning" (click)="decreaseQuantity()"></button>
+      <button pButton pRipple label="{{item.quantity}}" class="p-button-outlined p-button-warning"></button>
+      <button pButton pRipple icon="pi pi-plus" class="p-button-outlined p-button-warning" (click)="increaseQuantity()"></button>
+    </span>
 
-<!--          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text"></button>-->
-<!--        </article>-->
+    <p style="color: #ed9c00; font-size: 20px; padding-top: 10px; margin-right: auto;"><strong>{{orderItemTotalPrice()}} lei</strong></p>
 
+    <button pButton pRipple type="button" icon="pi pi-trash"
+            class="p-button-rounded p-button-danger p-button-text"
+            style="margin-right: 10px;"
+            (click)="removeFromCart()"
+    ></button>
+  </article>
 
-
-
-      </div>
-    </div>
-  </div>
-</div>
+</p-card>
