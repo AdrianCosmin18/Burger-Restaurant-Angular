@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
-import {ActionIngredientsEnum, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
+import {ActionIngredientsEnum, Constant, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
 import {ActionIngredient} from "../../../interfaces/action-ingredient";
 
 import * as fromApp from '../../../redux/app.reducer';
@@ -193,7 +193,10 @@ export class FriesItemOptionsComponent implements OnInit {
     lessIngr = lessIngr.slice(0, -1);
     console.log('lessIngr: ' + lessIngr);
 
-    const orderItem: OrderItem = new OrderItem(this.friesPrice, this.friesCounter, this.fries.name, extraIngr, lessIngr);
+    let extraIngrPrice = this.friesPrice - this.fries.price;
+    extraIngrPrice = Number(extraIngrPrice.toFixed(2));
+
+    const orderItem: OrderItem = new OrderItem(this.friesPrice, this.friesCounter, this.fries.name, extraIngr, lessIngr, extraIngrPrice, Constant.BURGER_SHOP);
     this.store.dispatch(new itemAction.AddItems(orderItem));
 
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");

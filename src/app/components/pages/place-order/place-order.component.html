@@ -1,8 +1,8 @@
-<div class="container-xl border mt-5">
+<div class="container-xl mt-5">
 
   <h2>Plaseaza comanda</h2>
 
-  <section class="d-flex gap-2">
+  <section class="main d-flex gap-2">
 
     <div class="d-flex flex-column gap-2" style="width: 100%">
 
@@ -39,7 +39,7 @@
 
 
       <span class="p-float-label">
-        <textarea id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+        <textarea [(ngModel)]="commentText" id="float-input" rows="5" cols="30" pInputTextarea></textarea>
         <label for="float-input" style="font-size: 15px;">Comentarii</label>
       </span>
 
@@ -77,7 +77,7 @@
 
           <app-cart-item *ngFor="let item of items"
                          [item] = "item"
-                         (productEvent)="removeFromCart($event)"
+                         (productEvent)="modifyCart($event)"
                          style="display: flex; justify-content: center">
           </app-cart-item>
 
@@ -88,21 +88,28 @@
         <ng-template pTemplate="header">
           <div class="d-flex justify-content-between gap-3">
             <h5 style="margin: 0; margin-left: 10px;">Total produse</h5>
-            <h5 style="margin: 0; margin-right: 10px;">65 lei</h5>
+            <h5 style="margin: 0; margin-right: 10px;">{{totalAmountProducts()}} lei</h5>
           </div>
         </ng-template>
-        <div class="d-flex flex-column">
+
+        <div *ngIf="totalAmountProducts() < 100" class="d-flex flex-column">
           <div class="d-flex justify-content-between gap-3">
             <p style="margin: 0; ">Taxa transport</p>
-            <p style="margin: 0;">4.99 lei</p>
+            <p style="margin: 0;">{{transportPrice}} lei</p>
           </div>
+          <p>Fara taxa transport pentru comenzi peste 100 lei</p>
         </div>
+
+          <div *ngIf="tipPrice > 0" class="d-flex justify-content-between gap-3">
+            <p style="margin: 0; ">Tips</p>
+            <p style="margin: 0;">{{tipPrice}} lei</p>
+          </div>
 
         <p-divider></p-divider>
 
         <div class="d-flex justify-content-between gap-3">
           <h3 style="margin: 0; ">TOTAL</h3>
-          <h3 style="margin: 0;">69.99 lei</h3>
+          <h3 style="margin: 0;">{{totalPrice}} lei</h3>
         </div>
 
       </p-card>
@@ -111,6 +118,13 @@
 
   </section>
 
+  <button pButton pRipple type="button" label="Trimite comanda"
+          iconPos="right" icon="pi pi-arrow-right"
+          [loading]="loading" (click)="load()"
+          style="float: right"
+          class="p-button-rounded p-button-danger"></button>
 
 
 </div>
+
+<p-toast key="notSelected" position="top-center"></p-toast>

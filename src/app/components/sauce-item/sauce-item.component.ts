@@ -3,7 +3,7 @@ import {Product} from "../../interfaces/burger";
 import {DialogService} from "primeng/dynamicdialog";
 import {MessageService} from "primeng/api";
 import {OrderItem} from "../../models/order-item";
-import {Constants} from "../../constants/constants";
+import {Constant, Constants} from "../../constants/constants";
 
 @Component({
   selector: '.sauce-item',
@@ -49,7 +49,7 @@ export class SauceItemComponent implements OnInit {
   }
 
   createBodyOrderItem(){
-    const orderItem: OrderItem = new OrderItem(this.sauce.price, 1, this.sauce.name, '', '');
+    const orderItem: OrderItem = new OrderItem(this.sauce.price, 1, this.sauce.name, '', '', 0, Constant.BURGER_SHOP);
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     itemsList.push(orderItem);
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));

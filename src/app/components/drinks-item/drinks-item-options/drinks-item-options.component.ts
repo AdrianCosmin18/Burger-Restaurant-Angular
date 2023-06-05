@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
-import {ActionIngredientsEnum, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
+import {ActionIngredientsEnum, Constant, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
 import {ActionIngredient} from "../../../interfaces/action-ingredient";
 import {OrderItem} from "../../../models/order-item";
 import * as itemAction from "../../../redux/product.action";
@@ -136,12 +136,17 @@ export class DrinksItemOptionsComponent implements OnInit {
     extraIngr = extraIngr.slice(0, -1);
     console.log('extraingr: '+ extraIngr);
 
+    let extraIngrPrice = this.drinkPrice - this.drinkList[this.optionSelected].price;
+    extraIngrPrice = Number(extraIngrPrice.toFixed(2));
+
     const orderItem: OrderItem = new OrderItem(
       this.drinkPrice,
       this.drinkCounter,
       this.drinkList[this.optionSelected].name,
       extraIngr,
-      ''
+      '',
+      extraIngrPrice,
+      Constant.BURGER_SHOP
     );
     // this.store.dispatch(new itemAction.AddItems(orderItem));
 

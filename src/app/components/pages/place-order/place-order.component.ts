@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MenuItem, MessageService} from "primeng/api";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
@@ -12,6 +12,9 @@ import {CardPageComponent} from "../header/card-page/card-page.component";
 import {CustomTipsComponent} from "./custom-tips/custom-tips.component";
 import {OrderItem} from "../../../models/order-item";
 import {Constants} from "../../../constants/constants";
+import {Route, Router} from "@angular/router";
+import {NotificationService} from "../../../services/notification.service";
+import {OrderRequest} from "../../../interfaces/OrderRequest";
 
 @Component({
   selector: 'app-place-order',
@@ -41,8 +44,15 @@ export class PlaceOrderComponent implements OnInit {
   public tip4 = '';
   public tip5 = '';
   public tipCustom = '';
+  public productsPrice = 0;
+  public transportPrice = 4.99;
+  public tipPrice = 0;
+  public totalPrice = 0;
 
   public items: OrderItem[] = [];
+
+  public loading = false;
+  public commentText: string = '';
 
 
 
@@ -52,11 +62,14 @@ export class PlaceOrderComponent implements OnInit {
     private store: Store<fromApp.AppState>,
     private userService: CustomerService,
     public dialogService: DialogService,
+    private router: Router,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
     this.getInfo();
     this.initCartList();
+    this.totalSum();
   }
 
   getInfo(){
@@ -179,6 +192,9 @@ export class PlaceOrderComponent implements OnInit {
     this.tip4 = '';
     this.tip5 = '';
     this.tipCustom = '';
+
+    this.tipPrice = 2;
+    this.totalSum();
   }
 
   clickTipsButton4Lei() {
@@ -186,6 +202,9 @@ export class PlaceOrderComponent implements OnInit {
     this.tip4 = this.classButtonForTips;
     this.tip5 = '';
     this.tipCustom = '';
+
+    this.tipPrice = 4;
+    this.totalSum();
   }
 
   clickTipsButton5Lei() {
@@ -193,18 +212,25 @@ export class PlaceOrderComponent implements OnInit {
     this.tip4 = '';
     this.tip5 = this.classButtonForTips;
     this.tipCustom = '';
+
+    this.tipPrice = 5;
+    this.totalSum();
   }
 
   clickTipsButtonCustomeTip() {
     const ref = this.dialogService.open(CustomTipsComponent, {
       width: '420px'
     });
-    ref.onClose.subscribe((message) => {
-      if (message) {
+    ref.onClose.subscribe((value) => {
+      if (value) {
+        let nr = parseInt(value);
         this.tip2 = '';
         this.tip4 = '';
         this.tip5 = '';
         this.tipCustom = this.classButtonForTips;
+
+        this.tipPrice = nr;
+        this.totalSum();
       }
     });
   }
@@ -214,8 +240,68 @@ export class PlaceOrderComponent implements OnInit {
     console.log(this.items);
   }
 
-  removeFromCart(productName: string): void {
-    this.initCartList()
+  modifyCart(productName: string): void{
+    this.initCartList();
+    this.totalSum();
+  }
+
+  totalAmountProducts(): number{
+    let sum = 0;
+    for(let p of this.items){
+      sum += Number((p.price * p.quantity).toFixed(2));
+    }
+    return Number(sum.toFixed(2));
+  }
+
+  totalSum(){
+    let totProd = this.totalAmountProducts();
+    this.totalPrice = totProd + this.tipPrice;
+    if(totProd < 100){
+      this.totalPrice += this.transportPrice;
+      this.totalPrice = Number(this.totalPrice.toFixed(2));
+    }
+  }
+
+
+  load() {
+
+    if(!this.hasSelectedCard){
+      this.messageService.add({key:'notSelected', severity:'error', summary: 'Selecteaza cardul pentru plata !'})
+    }else if(!this.hasSelectedAddress){
+      this.messageService.add({key:'notSelected', severity:'error', summary: 'Selecteaza adresa de livrare !'})
+    }else{
+
+      this.userService.placeOrder(this.createOrderRequest()).subscribe({
+        next: () => {
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+
+            this.router.navigate(['/mainPage']);
+            this.notificationService.onInfo('placedOrder', 'Comanda plasata cu succes', 'Pentru mai multe detalii aceseaza Istoric comenzi');
+          }, 3000);
+        }, error: err => {
+          this.notificationService.onError('placedOrder', 'A aparut o eroare la plasarea comenzii');
+        }
+      });
+
+    }
+  }
+
+  createOrderRequest(){
+    let orderRequest: OrderRequest = {
+      emailUser: this.email,
+      productsInCart: this.items,
+      cardId: this.card.id,
+      addressId: this.address.id,
+      productsAmount: this.totalAmountProducts(),
+      deliveryTax: this.transportPrice,
+      tipsTax: this.tipPrice,
+      totalAmount: this.totalPrice,
+      commentsSection: this.commentText
+    };
+
+    return orderRequest;
   }
 
 }

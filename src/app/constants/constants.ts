@@ -47,4 +47,5 @@ export enum ErrorMessages{
 export class Constant{
   public static MASTERCARD: string = "Mastercard";
   public static VISA: string = "Visa";
+  public static BURGER_SHOP: string = 'BurgerShop';
 }

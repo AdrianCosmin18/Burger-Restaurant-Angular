@@ -8,6 +8,7 @@ import {Address} from "../interfaces/address";
 import {City} from "../interfaces/city";
 import {Card} from "../interfaces/card";
 import {get} from "@angular/fire/database";
+import {OrderRequest} from "../interfaces/OrderRequest";
 
 
 @Injectable({
@@ -110,28 +111,12 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  placeOrder(orderRequest: OrderRequest): Observable<void>{
+    let url = `${this.path}/place-order`;
+    return this.http.post<void>(url, orderRequest)
+      .pipe(catchError(this.handleError));
+  }
 
-  // getProductsOfCustomer(id: number): Observable<Product[]>{
-  //   let url = this.productsOfCustomerUrl + id;
-  //   return this.http.get<Product[]>(url);
-  // }
-  //
-  // addToCart(id: number, productId: number): Observable<void>{
-  //   let url = this.addToCartUrl + id + "/" + productId;
-  //   console.log(url);
-  //   return this.http.post<void>(url, {}).pipe(catchError(this.handleError));
-  // }
-  //
-  // deleteFromCart(id: number, productId: number): Observable<void>{
-  //   let url = `${this.deleteFromCartUrl}${id}/${productId}`;
-  //   console.log(url);
-  //   return this.http.delete<void>(url).pipe(catchError(this.handleError));
-  // }
-  //
-  // placeOrder(id: number):Observable<void>{
-  //   let url = `${this.placeOrderUrl}${id}`;
-  //   return this.http.delete<void>(url).pipe(catchError(this.handleError));
-  // }
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

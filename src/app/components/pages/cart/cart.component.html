@@ -8,7 +8,7 @@
     <div class="container">
       <app-cart-item *ngFor="let item of items"
                      [item] = "item"
-                     (productEvent)="removeFromCart($event)"
+                     (productEvent)="modifyCart($event)"
                      style="display: flex; justify-content: center">
       </app-cart-item>
 

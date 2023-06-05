@@ -55,9 +55,8 @@ export class CartComponent implements OnInit {
     return Number(sum.toFixed(2));
   }
 
-  removeFromCart(productName: string): void{
+  modifyCart(productName: string): void{
     this.initCartList();
-
   }
 
   placeOrder(){

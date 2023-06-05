@@ -3,7 +3,7 @@ import {Product} from "../../../interfaces/burger";
 import {BurgerService} from "../../../services/burger.service";
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {ActionIngredient} from "../../../interfaces/action-ingredient";
-import {ActionIngredientsEnum, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
+import {ActionIngredientsEnum, Constant, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
 import {OrderItem} from "../../../models/order-item";
 
 import * as fromApp from '../../../redux/app.reducer';
@@ -196,7 +196,10 @@ export class BurgerItemOptionsComponent implements OnInit {
     lessIngr = lessIngr.slice(0, -1);
     console.log('lessIngr: ' + lessIngr);
 
-    const orderItem: OrderItem = new OrderItem(this.burgerPrice, this.burgerCounter, this.burger.name, extraIngr, lessIngr);
+    let extraIngrPrice = this.burgerPrice - this.burger.price;
+    extraIngrPrice = Number(extraIngrPrice.toFixed(2));
+
+    const orderItem: OrderItem = new OrderItem(this.burgerPrice, this.burgerCounter, this.burger.name, extraIngr, lessIngr, extraIngrPrice, Constant.BURGER_SHOP);
     this.store.dispatch(new itemAction.AddItems(orderItem));
 
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../interfaces/burger";
 import {OrderItem} from "../../models/order-item";
 import {BurgerService} from "../../services/burger.service";
-import {Constants} from "../../constants/constants";
+import {Constant, Constants} from "../../constants/constants";
 
 @Component({
   selector: 'app-cart-item',
@@ -10,7 +10,7 @@ import {Constants} from "../../constants/constants";
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent implements OnInit {
-  @Input() item: OrderItem = new OrderItem(-1,-1,'','','');
+  @Input() item: OrderItem = new OrderItem(-1,-1,'','','', 0, Constant.BURGER_SHOP);
   @Output() productEvent = new EventEmitter<string>();
 
   public extraIngr: string[] = [];
@@ -44,7 +44,7 @@ export class CartItemComponent implements OnInit {
   }
 
   getProductByName(){
-    this.burgerService.getProductByName(this.item.name).subscribe({
+    this.burgerService.getProductByName(this.item.productName).subscribe({
       next: data => {
         this.product = data;
         this.extraPrice = Number((this.item.price - this.product.price).toFixed(2));
@@ -115,7 +115,7 @@ export class CartItemComponent implements OnInit {
   equals(i1: OrderItem, i2: OrderItem): boolean{
     return i1.price === i2.price &&
       i1.quantity === i2.quantity &&
-      i1.name === i2.name &&
+      i1.productName === i2.productName &&
       i1.extraIngredients === i2.extraIngredients &&
       i1.lessIngredients === i2.lessIngredients;
 
