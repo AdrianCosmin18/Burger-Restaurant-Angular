@@ -9,6 +9,7 @@ import {City} from "../interfaces/city";
 import {Card} from "../interfaces/card";
 import {get} from "@angular/fire/database";
 import {OrderRequest} from "../interfaces/OrderRequest";
+import {Order} from "../interfaces/order";
 
 
 @Injectable({
@@ -114,6 +115,12 @@ export class CustomerService {
   placeOrder(orderRequest: OrderRequest): Observable<void>{
     let url = `${this.path}/place-order`;
     return this.http.post<void>(url, orderRequest)
+      .pipe(catchError(this.handleError));
+  }
+
+  getHistoryOrders(email: string): Observable<Order[]>{
+    let url = `${this.path}/history-orders/${email}`;
+    return this.http.get<Order[]>(url)
       .pipe(catchError(this.handleError));
   }
 

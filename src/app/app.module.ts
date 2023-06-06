@@ -69,6 +69,9 @@ import {InputMaskModule} from "primeng/inputmask";
 import { PlaceOrderComponent } from './components/pages/place-order/place-order.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import { CustomTipsComponent } from './components/pages/place-order/custom-tips/custom-tips.component';
+import { HistoryOrdersComponent } from './components/pages/header/history-oreders/history-orders.component';
+import { HistoryOrderItemComponent } from './components/pages/header/history-oreders/history-order-item/history-order-item.component';
+import { HistoryOrderItemDetailsComponent } from './components/pages/header/history-oreders/history-order-item/history-order-item-details/history-order-item-details.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -79,9 +82,10 @@ const appRoutes: Routes = [
   {path: "drinks", component: DrinksPageComponent},
   {path: "deserts", component: DesertPageComponent},
   {path: "sauces", component: SaucePageComponent},
-  //{path: "cart", component: CartComponent,},
   {path: "placeOrder", component: PlaceOrderComponent},
-  {path: "**", component: MainPageComponent},
+  {path: "historyOrders", component: HistoryOrdersComponent},
+  {path: "historyOrders/:id", component: HistoryOrderItemDetailsComponent},
+  // {path: "**", component: MainPageComponent},
 
 ]
 
@@ -119,6 +123,9 @@ const appRoutes: Routes = [
     CardFormComponent,
     PlaceOrderComponent,
     CustomTipsComponent,
+    HistoryOrdersComponent,
+    HistoryOrderItemComponent,
+    HistoryOrderItemDetailsComponent,
   ],
     imports: [
         BrowserModule,

@@ -91,7 +91,8 @@ export class HeaderComponent implements OnInit {
         },
         {
           label: 'Istoric comenzi',
-          icon: 'pi pi-replay'
+          icon: 'pi pi-replay',
+          routerLink: 'historyOrders'
         },
         {
           label: 'Cardurile mele',

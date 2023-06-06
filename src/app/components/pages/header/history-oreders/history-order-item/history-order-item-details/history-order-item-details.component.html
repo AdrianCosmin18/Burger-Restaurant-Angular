@@ -1,0 +1,92 @@
+<div class="container-xl mt-5">
+
+
+  <section class="d-flex gap-3">
+    <button pButton pRipple type="button"
+            icon="pi pi-arrow-left"
+            class="p-button-text p-button-rounded p-button-secondary"
+            routerLink="/historyOrders"
+    ></button>
+
+    <h2 style="margin: 0px;" class="d-flex align-items-center">Detalii comanda #{{orderId}}</h2>
+  </section>
+
+
+  <section class="d-flex gap-2 mt-5">
+
+    <div class="d-flex flex-column gap-2" style="width: 100%;">
+
+      <article>
+        <p style="margin: 0px">Data: <strong>{{order.placedOrderTime | date: 'dd/MM/yyyy HH:mm'}}</strong></p>
+      </article>
+
+      <p-divider></p-divider>
+
+      <article>
+        <h3 style="margin: 0px">Livrare la: </h3>
+        <p style="margin: 0px">{{order.addressToString}}</p>
+      </article>
+
+      <p-divider></p-divider>
+
+      <article>
+        <h3 style="margin: 0px">Plata cu cardul:</h3>
+        <p style="margin: 0px">{{order.cardNumber}}</p>
+      </article>
+
+      <p-divider style="margin: 0px;"></p-divider>
+
+      <article>
+        <h3 style="margin: 0px;">Sumar:</h3>
+        <div class="d-flex justify-content-between gap-3">
+          <h5 style="margin: 0px">{{getTotalQuantity()}} produse</h5>
+
+          <h5>{{order.productsAmount}} lei</h5>
+        </div>
+
+        <div *ngIf="order.productsAmount < 100" class="d-flex flex-column">
+          <div class="d-flex justify-content-between gap-3">
+            <h5 style="margin: 0; ">Taxa transport</h5>
+            <h5 style="margin: 0;">{{order.deliveryTax}} lei</h5>
+          </div>
+          <p>Fara taxa transport pentru comenzi peste 100 lei</p>
+        </div>
+
+        <div *ngIf="order.tipsTax > 0" class="d-flex justify-content-between gap-3">
+          <h5 style="margin: 0; ">Tips</h5>
+          <h5 style="margin: 0;">{{order.tipsTax}} lei</h5>
+        </div>
+
+        <div class="d-flex justify-content-between gap-3">
+          <h3 style="margin: 0; ">TOTAL</h3>
+          <h3 style="margin: 0;">{{order.amount}} lei</h3>
+        </div>
+      </article>
+
+    </div>
+
+
+    <div class="d-flex flex-column gap-2" style="width: 100%;">
+      <h3>Produse in comanda</h3>
+
+      <div *ngFor="let orderItem of orderItems" class="card border-0">
+        <div class="card-body">
+          <h5 class="card-title" style="margin: 0px;">{{orderItem.quantity}} X {{orderItem.productName}}</h5>
+          <p *ngIf="orderItem.extraIngredients !== ''"
+              class="card-text" style="margin: 0px;">
+            <strong>Extra optiuni: </strong>{{orderItem.extraIngredients}}</p>
+          <p *ngIf="orderItem.lessIngredients !== ''"
+             class="card-text" style="margin: 0px;">
+            <strong>Fara: </strong>{{orderItem.lessIngredients}}</p>
+          <p class="card-text" style="margin: 0px;">
+            <strong>{{orderItem.price}} lei</strong></p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+</div>
