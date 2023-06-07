@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {BehaviorSubject, map, Observable} from "rxjs";
+import {BehaviorSubject, catchError, map, Observable, throwError} from "rxjs";
 import {Product} from "../interfaces/burger";
 import {environment} from "../../environments/environment";
 import {FoodType} from "../constants/constants";
@@ -12,7 +12,8 @@ export class BurgerService {
   private burgersUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.BURGER}`;
   private friesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.FRIES}`;
   private extrasBurgerUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_BURGER}`;
-  private extrasFriesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_FRIES}`
+  private extrasFriesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_FRIES}`;
+  private extrasSaucesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_SAUCE}`;
   private saucesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.SAUCES}`;
   private drinksUrl: string = environment.apiUrl +  `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.DRINK}`;
   private extrasDrinkUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_DRINK}`
@@ -44,6 +45,10 @@ export class BurgerService {
     return this.http.get<Product[]>(this.extrasFriesUrl);
   }
 
+  getExtrasSauces(): Observable<Product[]>{
+    return this.http.get<Product[]>(this.extrasSaucesUrl);
+  }
+
   getDrinks(): Observable<Product[]>{
     return this.http.get<Product[]>(this.drinksUrl);
   }
@@ -60,6 +65,13 @@ export class BurgerService {
     const url = environment.apiUrl + `restaurant/get-product-by-restaurant-and-product-Name/BurgerShop?productName=${name}`;
     return this.http.get<Product>(url);
   }
+
+  getProductsByIngredients(foodType: string, ingredientList: string): Observable<Product[]>{
+    const url = `${environment.apiUrl}restaurant/get-products-by-ingredients?foodType=${foodType}&ingredientList=${ingredientList}` ;
+    return this.http.post<Product[]>(url, null)
+      .pipe(catchError(this.handleError));
+
+  }
   //
   // getDrinks(){
   //   return this.http.get<Product[]>(this.drinksUrl);
@@ -68,6 +80,20 @@ export class BurgerService {
   // getDesert(){
   //   return this.http.get<Product[]>(this.desertUrl);
   // }
+
+
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // console.error(
+      //   `Backend returned code ${error.status}, ` +
+      //   `body was: ${error.error}`);
+      return throwError(error.error.message);
+    }
+    return throwError('Something bad happened; please try again later.');
+  };
+
 
   private getPictureUrl(picture: any): string {
     const base64String = btoa(

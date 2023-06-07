@@ -34,7 +34,7 @@
         <p style="margin: 0px">{{order.cardNumber}}</p>
       </article>
 
-      <p-divider style="margin: 0px;"></p-divider>
+      <p-divider></p-divider>
 
       <article>
         <h3 style="margin: 0px;">Sumar:</h3>
@@ -62,6 +62,91 @@
           <h3 style="margin: 0;">{{order.amount}} lei</h3>
         </div>
       </article>
+
+<!--      <article class="status-order mt-4"></article>-->
+
+      <article class="d-flex flex-column gap-3 mt-5">
+
+        <h3>Status comanda</h3>
+
+        <div class="status-order"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--blue-200)'"
+             [message]="'Comanda plasata'"
+             [date]="'18 Apr 2023, 21:39'"
+             [active]="true"
+        ></div>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
+
+        <div class="status-order"
+             [icon]="'pi-exclamation-triangle'"
+             [colorIcon]="'var(--red-500)'"
+             [message]="'Comanda anulata'"
+             [date]="'18 Apr 2023, 21:39'"
+             [active]="false"
+        ></div>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
+
+
+        <div class="confirmedPayment d-flex gap-3">
+
+          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
+                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
+                  class="p-button-rounded p-button-secondary"></button>
+          <div>
+            <h5 style="margin: 0;">Plata confirmata</h5>
+            <p style="margin: 0;">18 Apr 2023, 21:42</p>
+          </div>
+
+        </div>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
+
+        <div class="prepareOrder d-flex gap-3">
+
+          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
+                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
+                  class="p-button-rounded p-button-secondary"></button>
+          <div>
+            <h5 style="margin: 0;">Comanda in pregatire</h5>
+            <p style="margin: 0;">18 Apr 2023, 21:45</p>
+          </div>
+
+        </div>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
+
+        <div class="prepareOrder d-flex gap-3">
+
+          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
+                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
+                  class="p-button-rounded p-button-secondary"></button>
+          <div>
+            <h5 style="margin: 0;">In curs de livrare</h5>
+            <p style="margin: 0;">18 Apr 2023, 21:50</p>
+          </div>
+
+        </div>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
+
+        <div class="prepareOrder d-flex gap-3">
+
+          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
+                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
+                  class="p-button-rounded p-button-secondary"></button>
+          <div>
+            <h5 style="margin: 0;">Comanda livrata</h5>
+            <p style="margin: 0;">18 Apr 2023, 22:00</p>
+          </div>
+
+        </div>
+
+      </article>
+
+
 
     </div>
 

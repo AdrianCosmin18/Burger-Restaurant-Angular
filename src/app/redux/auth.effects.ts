@@ -41,6 +41,10 @@ export class AuthEffects{
               let role = '';
               if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
                 role = Roles.ROLE_USER;
+              }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_ADMIN)){
+                role = Roles.ROLE_ADMIN;
+              }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_COURIER)){
+                role = Roles.ROLE_COURIER;
               }
 
               this.notificationService.onSuccess('loginSuccess','Te-ai logat cu success');
@@ -79,6 +83,10 @@ export class AuthEffects{
               let role = '';
               if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
                 role = Roles.ROLE_USER;
+              }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_ADMIN)){
+                role = Roles.ROLE_ADMIN;
+              }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_COURIER)){
+                role = Roles.ROLE_COURIER;
               }
 
               this.notificationService.onSuccess('loginSuccess','Ti-ai creat cont cu success');

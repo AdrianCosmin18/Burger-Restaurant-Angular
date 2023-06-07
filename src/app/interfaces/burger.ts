@@ -6,4 +6,7 @@ export interface Product{
   ingredients: string;
   image: number[];
   restaurantName: string;
+  containsLactose: boolean;
+  containsGluten: boolean;
+  isVegetarian: boolean;
 }

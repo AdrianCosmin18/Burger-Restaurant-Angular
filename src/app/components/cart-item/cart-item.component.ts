@@ -22,7 +22,10 @@ export class CartItemComponent implements OnInit {
     description: '',
     ingredients: '',
     image: [],
-    restaurantName: ''
+    restaurantName: '',
+    containsGluten: false,
+    containsLactose: false,
+    isVegetarian: false
   };
 
   constructor(

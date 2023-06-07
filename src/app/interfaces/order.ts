@@ -2,7 +2,7 @@ export interface Order{
   id: number;
   amount: number;
   status: string;
-  deliverTime: string;
+  deliverTime?: string;
   placedOrderTime: string;
   productsAmount: number;
   deliveryTax: number;

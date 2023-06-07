@@ -26,7 +26,10 @@ export class BurgerItemOptionsComponent implements OnInit {
     image: [],
     description: "",
     type: "",
-    restaurantName:""
+    restaurantName:"",
+    containsGluten: false,
+    containsLactose: false,
+    isVegetarian: false
   };
   public extraList: Product[] = [];
   public lessList: Product[] = [];

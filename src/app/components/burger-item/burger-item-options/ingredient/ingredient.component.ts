@@ -16,7 +16,10 @@ export class IngredientComponent implements OnInit {
     image: [],
     description: "",
     type: "",
-    restaurantName:""
+    restaurantName:"",
+    containsGluten: false,
+    containsLactose: false,
+    isVegetarian: false
   };
   @Input() message!: ExtraRemoveIngredientMessage;
   @Output() action = new EventEmitter<(ActionIngredient)>();

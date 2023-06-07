@@ -24,11 +24,6 @@ export class DrinksPageComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit(): void {
-    // this.customerId = + sessionStorage.getItem("id")!;
-    // console.log(this.customerId + " din drink component");
-    // this.burgerService.getDrinks().subscribe(response => {
-    //   this.drinks = response;
-    // });
 
     this.burgerService.getDrinks().subscribe({
       next: (response) => {
@@ -58,20 +53,12 @@ export class DrinksPageComponent implements OnInit {
       this.drinkMap.set(value, d);
     });
     // console.log(this.individualDrinkName);
-    // console.log("driank map: " + this.drinks);
-    // this.drinks.forEach((value, key) => {
+    // console.log("driank map: " + this.drinkMap);
+    // this.drinkMap.forEach((value, key) => {
     //   console.log(`${key}: ${value}\n`);
     // })
   }
 
-  addToCart(){
-    // console.log(drink);
-    // this.customerService.addToCart(this.customerId, drink.id).subscribe(response => {
-    //   this.messageService.add({severity: "success", summary: `${drink.name} adugat in cos`, detail: `Mai multe detalii la comanda mea`});
-    // }, error => {
-    //   alert(error.message);
-    // })
-  }
 
   getExtraIngredientsDrinks(): void{
     this.burgerService.getExtrasDrinks().subscribe({

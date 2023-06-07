@@ -17,7 +17,6 @@ import { FriesItemComponent } from './components/fries-item/fries-item.component
 import { DrinksItemComponent } from './components/drinks-item/drinks-item.component';
 import { DrinksPageComponent } from './components/pages/drinks-page/drinks-page.component';
 import { CartComponent } from './components/pages/cart/cart.component';
-import { AngularFireModule } from '@angular/fire/compat'
 import {environment} from "../environments/environment";
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
@@ -72,6 +71,12 @@ import { CustomTipsComponent } from './components/pages/place-order/custom-tips/
 import { HistoryOrdersComponent } from './components/pages/header/history-oreders/history-orders.component';
 import { HistoryOrderItemComponent } from './components/pages/header/history-oreders/history-order-item/history-order-item.component';
 import { HistoryOrderItemDetailsComponent } from './components/pages/header/history-oreders/history-order-item/history-order-item-details/history-order-item-details.component';
+import { StatusOrderComponent } from './components/pages/header/history-oreders/history-order-item/history-order-item-details/status-order/status-order.component';
+import { MyPreferencesComponent } from './components/pages/main-page/my-preferences/my-preferences.component';
+import {MegaMenuModule} from "primeng/megamenu";
+import {TabViewModule} from "primeng/tabview";
+import {MultiSelectModule} from "primeng/multiselect";
+import { IntoleranceFoodComponent } from './components/pages/main-page/intolerance-food/intolerance-food.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -85,6 +90,9 @@ const appRoutes: Routes = [
   {path: "placeOrder", component: PlaceOrderComponent},
   {path: "historyOrders", component: HistoryOrdersComponent},
   {path: "historyOrders/:id", component: HistoryOrderItemDetailsComponent},
+  {path: "myPreferences", component: MyPreferencesComponent},
+  {path: "intolerance", component: IntoleranceFoodComponent}
+
   // {path: "**", component: MainPageComponent},
 
 ]
@@ -126,42 +134,48 @@ const appRoutes: Routes = [
     HistoryOrdersComponent,
     HistoryOrderItemComponent,
     HistoryOrderItemDetailsComponent,
+    StatusOrderComponent,
+    MyPreferencesComponent,
+    IntoleranceFoodComponent,
   ],
-    imports: [
-        BrowserModule,
-        ButtonModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule.forRoot(appRoutes),
-        ReactiveFormsModule,
-        ToastModule,
-        BrowserAnimationsModule,
-        FieldsetModule,
-        CardModule,
-        BadgeModule,
-        StoreModule.forRoot(fromApp.appReducer, {
-            metaReducers: [localStorageSyncReducer]
-        }),
-        TooltipModule,
-        FieldsetModule,
-        AccordionModule,
-        SelectButtonModule,
-        StoreDevtoolsModule.instrument({logOnly: environment.production}),
-        StoreRouterConnectingModule.forRoot(),
-        RippleModule,
-        DropdownModule,
-        MenuModule,
-        OverlayPanelModule,
-        DividerModule,
-        InputTextModule,
-        EffectsModule.forRoot(([AuthEffects])),
-        PanelModule,
-        OrderListModule,
-        CheckboxModule,
-        ConfirmDialogModule,
-        InputMaskModule,
-        InputTextareaModule,
-    ],
+  imports: [
+    BrowserModule,
+    ButtonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    FieldsetModule,
+    CardModule,
+    BadgeModule,
+    StoreModule.forRoot(fromApp.appReducer, {
+      metaReducers: [localStorageSyncReducer]
+    }),
+    TooltipModule,
+    FieldsetModule,
+    AccordionModule,
+    SelectButtonModule,
+    StoreDevtoolsModule.instrument({logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot(),
+    RippleModule,
+    DropdownModule,
+    MenuModule,
+    OverlayPanelModule,
+    DividerModule,
+    InputTextModule,
+    EffectsModule.forRoot(([AuthEffects])),
+    PanelModule,
+    OrderListModule,
+    CheckboxModule,
+    ConfirmDialogModule,
+    InputMaskModule,
+    InputTextareaModule,
+    MegaMenuModule,
+    TabViewModule,
+    MultiSelectModule,
+  ],
   providers: [
     DialogService,
     MessageService,

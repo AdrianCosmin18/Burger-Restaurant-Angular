@@ -29,7 +29,7 @@ export class BurgerItemComponent implements OnInit {
   ngOnInit(): void {
 
     const imageDataBytes: number[] = this.burger.image;
-    this.imageData = this.getUrl();
+    //this.imageData = this.getUrl();
   }
 
   addToCart() {
@@ -71,17 +71,17 @@ export class BurgerItemComponent implements OnInit {
 
   getUrl(){
 
-    return `data:image/png;base64,${this.toBase64(this.burger.image)}`
+    //return `data:image/png;base64,${this.toBase64(this.burger.image)}`
   }
 
-  toBase64(arr: number[]) {
-let data="";
-
- for(let i=0;i<arr.length;i++){
-   data += String.fromCharCode(arr[i]);
- }
-    return btoa(
-     data
-    );
-  }
+  // toBase64(arr: number[]) {
+  //   let data="";
+  //
+  //    for(let i=0;i<arr.length;i++){
+  //      data += String.fromCharCode(arr[i]);
+  //    }
+  //       return btoa(
+  //        data
+  //       );
+  // }
 }

@@ -7,7 +7,8 @@ export enum FoodType{
   EXTRAS_FRIES = "extras-fries",
   EXTRAS_DESERT = "extras-desert",
   EXTRAS_DRINK = "extras-drink",
-  SAUCES = "sauces"
+  SAUCES = "sauces",
+  EXTRAS_SAUCE = "extras-sauce"
 }
 
 // daca e cu + sau vazut
@@ -29,7 +30,9 @@ export enum Constants{
 }
 
 export enum Roles{
-  ROLE_USER = "ROLE_USER"
+  ROLE_USER = "ROLE_USER",
+  ROLE_ADMIN = "ROLE_ADMIN",
+  ROLE_COURIER = "ROLE_COURIER"
 }
 
 export enum FormType{
@@ -48,4 +51,17 @@ export class Constant{
   public static MASTERCARD: string = "Mastercard";
   public static VISA: string = "Visa";
   public static BURGER_SHOP: string = 'BurgerShop';
+}
+
+export class Intolerance{
+  public name: string;
+
+  public static LACTOSE: string = "Lactoza";
+  public static GLUTEN: string = "Gluten";
+  public static VEGETARIAN: string = "Vegetarian";
+
+
+  constructor(name: string) {
+    this.name = name;
+  }
 }
