@@ -5,7 +5,7 @@ import {CustomerService} from "../../../services/customer.service";
 import {User} from "../../../interfaces/user";
 import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
-import {Constants} from "../../../constants/constants";
+import {Constants, Roles} from "../../../constants/constants";
 import {ConfirmationService, MenuItem, MessageService} from "primeng/api";
 import {City} from "../../../interfaces/city";
 import {CityService} from "../../../services/city.service";
@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   public citySelected: string = '';
   public email: string | null | undefined = "";
   public name: string = "";
+  private role: string = "";
   public count: number = 0;
 
   public tooltipCount = '';
@@ -37,7 +38,7 @@ export class HeaderComponent implements OnInit {
   public accountMenuItems!: MenuItem[];
   public showMenu: boolean = false;
 
-  private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean }>;
+  private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean; role: string }>;
   private authSubscription: Subscription = new Subscription();
   public loggedIn: any;
 
@@ -64,6 +65,7 @@ export class HeaderComponent implements OnInit {
     this.authSubscription = this.auth$.subscribe(value => {
       this.loggedIn = value.loggedIn;
       this.email = value.email;
+      this.role = value.role;
 
       if(this.loggedIn){
         this.accountButtonLabel = value.firstName;
@@ -90,14 +92,14 @@ export class HeaderComponent implements OnInit {
           command: () => this.openAddresses()
         },
         {
-          label: 'Istoric comenzi',
-          icon: 'pi pi-replay',
-          routerLink: 'historyOrders'
-        },
-        {
           label: 'Cardurile mele',
           icon: 'pi pi-credit-card',
           command: () => this.openCardsPage()
+        },
+        {
+          label: 'Istoric comenzi',
+          icon: 'pi pi-replay',
+          routerLink: 'historyOrders'
         },
         {
           separator: true
@@ -108,6 +110,15 @@ export class HeaderComponent implements OnInit {
           command: () => this.logout()
         }
       ];
+
+      if(this.role === Roles.ROLE_ADMIN){
+        this.accountMenuItems.push(
+          {
+            label: 'Pagina admin',
+            icon: 'pi pi-verified',
+          }
+        )
+      }
     }
 
   }

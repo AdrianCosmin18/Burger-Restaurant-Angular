@@ -12,6 +12,7 @@ p , article, section{
   width: 80px;
   margin: 10px 10px 10px 10%;
   border-radius: 50%;
+  margin-right: auto;
 }
 
 .dropdown-city{

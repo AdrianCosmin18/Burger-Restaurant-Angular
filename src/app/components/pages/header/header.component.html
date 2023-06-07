@@ -3,18 +3,9 @@
 
   <img class="logo" src="../../../../assets/logo.png" routerLink="/mainPage">
 
-  <p-dropdown [options]="cities" [(ngModel)]="citySelected"
-              class="dropdown-city" placeholder="Alege orasul"
-              optionLabel="name" styleClass="custom-dropdown"></p-dropdown>
-
-<!--  <article class="mb-3 d-flex align-items-center order-group">-->
-<!--&lt;!&ndash;    <i class="pi pi-bell mr-4 p-text-secondary" pBadge style="font-size: 2rem" value="2"></i>&ndash;&gt;-->
-<!--    <i class="pi pi-cart-plus"-->
-<!--       pBadge value="{{count}}"-->
-<!--       style="font-size: 2rem"-->
-<!--       severity="danger"></i>-->
-<!--    <p class="order-group-text" (click)="openCart()">Comanda mea</p>-->
-<!--  </article>-->
+<!--  <p-dropdown [options]="cities" [(ngModel)]="citySelected"-->
+<!--              class="dropdown-city" placeholder="Alege orasul"-->
+<!--              optionLabel="name" styleClass="custom-dropdown"></p-dropdown>-->
 
   <article class="mb-3 d-flex align-items-center order-group">
     <button type="button" pButton icon="pi pi-cart-plus"
@@ -62,11 +53,9 @@
 
     <button type="button" class="btn btn-danger" routerLink="/drinks">Bauturi</button>
 
-    <button type="button" class="btn btn-danger" routerLink="/deserts">Deserturi</button>
+<!--    <button type="button" class="btn btn-danger" routerLink="/deserts">Deserturi</button>-->
 
     <button type="button" class="btn btn-danger" routerLink="/sauces">Sosuri</button>
-
-    <button type="button" class="btn btn-danger" routerLink="/menus">Meniuri</button>
 
 </section>
 
