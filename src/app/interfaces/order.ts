@@ -9,4 +9,5 @@ export interface Order{
   tipsTax: number;
   addressToString: string;
   cardNumber: string;
+  username: string;
 }

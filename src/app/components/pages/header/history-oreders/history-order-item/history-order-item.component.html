@@ -1,10 +1,11 @@
-<div class="card h-100" role="button" (click)="checkOrder()">
+<div class="card h-100" role="button" (click)="checkOrder()" style="border-color: {{borderColor}}">
   <div class="card-header d-flex justify-content-between">
     <p style="margin: 0;">ID Comanda <strong> #{{order.id}}</strong></p>
     <h5 class="d-flex align-items-center"
-    style="margin: 0px;">{{order.status}}</h5>
+    style="margin: 0px;">{{status}}</h5>
   </div>
   <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngIf="hasNotRoute('/historyOrders')">Nume client: <strong>{{order.username}}</strong></li>
     <li class="list-group-item">Data: <strong>{{order.placedOrderTime | date: 'dd/MM/yyyy HH:mm'}}</strong></li>
     <li class="list-group-item">Livrare la {{order.addressToString}}</li>
     <li class="list-group-item">Plata cu cardul: <strong>{{order.cardNumber}}</strong></li>

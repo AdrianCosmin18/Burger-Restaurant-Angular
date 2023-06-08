@@ -124,6 +124,18 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  confirmReceivedOrder(email: string, orderId: number): Observable<void>{
+    let url = `${this.path}/confirm-received-order/${email}/${orderId}`;
+    return this.http.put<void>(url, null)
+      .pipe(catchError(this.handleError))
+  }
+
+  cancelOrder(email: string, orderId: number): Observable<void>{
+    let url = `${this.path}/cancel-order/${email}/${orderId}`;
+    return this.http.delete<void>(url)
+      .pipe(catchError(this.handleError))
+  }
+
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

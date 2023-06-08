@@ -4,6 +4,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Order} from "../interfaces/order";
 import {OrderItem} from "../models/order-item";
+import {Product} from "../interfaces/burger";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,55 @@ export class OrderService {
       .pipe(catchError(this.handleError));
   }
 
+//admin functions
 
+  getOrdersInPlacedOrderState(): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-placed-order-state`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  putOrderInPaymentConfirmationState(orderId: number): Observable<void>{
+    let url = `${this.path}/put-order-in-payment-confirmation-state/${orderId}`;
+    return this.http.put<void>(url, null)
+      .pipe(catchError(this.handleError));
+  }
+
+  getOrdersInPaymentConfirmedState(): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-payment-confirmation-state`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  putOrderInPreparationState(orderId: number): Observable<void>{
+    let url = `${this.path}/put-order-in-preparation-state/${orderId}`;
+    return this.http.put<void>(url, null)
+      .pipe(catchError(this.handleError));
+  }
+
+  getOrdersInPreparationState(): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-preparation-state`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  putOrderInDeliveryState(orderId: number, courierId: number): Observable<void>{
+    let url = `${this.path}/put-order-in-delivery-state/${orderId}/${courierId}`;
+    return this.http.put<void>(url, null)
+      .pipe(catchError(this.handleError));
+  }
+
+  getOrdersInDeliveryState(): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-delivery-state`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getFinalizedOrders(): Observable<Order[]>{
+    let url = `${this.path}/get-finalized-orders`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
 
 
 

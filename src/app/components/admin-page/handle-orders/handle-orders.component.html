@@ -1,0 +1,127 @@
+
+
+<section class="container mt-5">
+
+  <section class="d-flex gap-3">
+
+    <button pButton pRipple type="button"
+            icon="pi pi-arrow-left"
+            class="p-button-text p-button-rounded p-button-secondary"
+            routerLink="/adminPage"
+    ></button>
+    <h3 class="d-flex align-items-center" style="margin: 0;">Manipularea comenzilor</h3>
+  </section>
+
+
+  <h6 class="text-muted mt-5">In aceasta sectiune sunt prezente toate comenzile plasate de fiecare user care utilizeaza aplicatia.</h6>
+  <h6 class="text-muted">Rolul adminului este sa mute o comanda dintr-un status in altul in cazul in care aceasta a trecut de etapa curenta.</h6>
+  <h6 class="text-muted mb-5">ATENTIE! Fiecare admin poate muta orice comanda dintr-o stare in alta, asa ca asigurati-va ca selectati coamnda corecta.</h6>
+
+
+  <p-tabView>
+    <p-tabPanel header="{{placedOrder}}">
+
+      <section class="container-xl mt-5">
+
+        <h3 *ngIf="orderInPlacedOrderState.length === 0"
+            class="d-flex justify-content-center"
+            style="color: gray; margin-top: 30px;">Nu exista comenzi recente</h3>
+
+        <article class="container container-orders">
+          <div *ngFor="let order of orderInPlacedOrderState"
+               class="history-order-item"
+               [order]="order"
+               [stateOrderMessageAdmin]="'plată confirmată'"
+               [currentStateOrderAdmin]="placedOrder"
+               (emitUpdateOrderStatusAdmin)="reloadOrderStates()"
+          ></div>
+        </article>
+      </section>
+
+
+    </p-tabPanel>
+    <p-tabPanel header="{{paymentConfirmed}}">
+
+      <section class="container-xl mt-5">
+
+        <h3 *ngIf="ordersInPaymentConfirmedState.length === 0"
+            class="d-flex justify-content-center"
+            style="color: gray; margin-top: 30px;">Nu exista comenzi recente</h3>
+
+        <article class="container container-orders">
+          <div *ngFor="let order of ordersInPaymentConfirmedState"
+               class="history-order-item"
+               [order]="order"
+               [stateOrderMessageAdmin]="'comandă în preparare'"
+               [currentStateOrderAdmin]="paymentConfirmed"
+               (emitUpdateOrderStatusAdmin)="reloadOrderStates()"
+          ></div>
+        </article>
+      </section>
+
+   </p-tabPanel>
+    <p-tabPanel header="{{orderInPreparation}}">
+
+      <section class="container-xl mt-5">
+
+        <h3 *ngIf="ordersInPreparationState.length === 0"
+            class="d-flex justify-content-center"
+            style="color: gray; margin-top: 30px;">Nu exista comenzi recente</h3>
+
+        <article class="container container-orders">
+          <div *ngFor="let order of ordersInPreparationState"
+               class="history-order-item"
+               [order]="order"
+               [stateOrderMessageAdmin]="'comandă în curs de livrare'"
+               [currentStateOrderAdmin]="orderInPreparation"
+               (emitUpdateOrderStatusAdmin)="reloadOrderStates()"
+          ></div>
+        </article>
+      </section>
+
+    </p-tabPanel>
+    <p-tabPanel header="{{orderInDelivery}}">
+
+      <section class="container-xl mt-5">
+
+        <h3 *ngIf="ordersInDeliveryState.length === 0"
+            class="d-flex justify-content-center"
+            style="color: gray; margin-top: 30px;">Nu exista comenzi recente</h3>
+
+        <article class="container container-orders">
+          <div *ngFor="let order of ordersInDeliveryState"
+               class="history-order-item"
+               [order]="order"
+               [stateOrderMessageAdmin]="'comandă livrată'"
+               [currentStateOrderAdmin]="orderInDelivery"
+               (emitUpdateOrderStatusAdmin)="reloadOrderStates()"
+          ></div>
+        </article>
+      </section>
+
+    </p-tabPanel>
+    <p-tabPanel header="{{orderDelivered}}">
+
+      <section class="container-xl mt-5">
+
+        <h3 *ngIf="finalizedOrders.length === 0"
+            class="d-flex justify-content-center"
+            style="color: gray; margin-top: 30px;">Nu exista comenzi recente</h3>
+
+        <article class="container container-orders">
+          <div *ngFor="let order of finalizedOrders"
+               class="history-order-item"
+               [order]="order"
+          ></div>
+        </article>
+      </section>
+
+    </p-tabPanel>
+    <p-tabPanel header="{{cancelOrder}}">
+      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+        cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+    </p-tabPanel>
+  </p-tabView>
+
+</section>

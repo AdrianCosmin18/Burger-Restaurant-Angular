@@ -65,3 +65,21 @@ export class Intolerance{
     this.name = name;
   }
 }
+
+
+export class OrderStatus{
+
+  public static PLACED_ORDER = "Placed order";
+  public static CANCELED_ORDER = "Canceled order";
+  public static PAYMENT_CONFIRMED = "Payment confirmed";
+  public static ORDER_IN_PREPARATION = "Order in preparation";
+  public static ORDER_IN_DELIVERY = "Order is being delivered";
+  public static ORDER_DELIVERED = "Order delivered";
+
+  public static COMENZI_PLASATE = "Comenzi plasate";
+  public static COMENZI_ANULATE = "Comenzi anulate";
+  public static PLATA_CONFIRMATA = "Plati confimrate";
+  public static COMENZI_IN_PREPARARE = "Comenzi in preparare";
+  public static COMENZI_IN_CURS_DE_LIVRARE = "Comenzi in curs de livrare";
+  public static COMENZI_LIVRATE = "Comenzi livrate";
+}

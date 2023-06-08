@@ -116,6 +116,7 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Pagina admin',
             icon: 'pi pi-verified',
+            routerLink: 'adminPage'
           }
         )
       }

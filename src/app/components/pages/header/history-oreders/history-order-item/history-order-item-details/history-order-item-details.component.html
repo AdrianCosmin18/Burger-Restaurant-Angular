@@ -61,6 +61,9 @@
           <h3 style="margin: 0; ">TOTAL</h3>
           <h3 style="margin: 0;">{{order.amount}} lei</h3>
         </div>
+
+
+
       </article>
 
 <!--      <article class="status-order mt-4"></article>-->
@@ -168,10 +171,27 @@
         </div>
       </div>
 
+      <button *ngIf="order.status === 'Order is being delivered'"
+              pButton pRipple type="button" label="Confirmă primirea comenzii"
+              (click)="confirmReceivedOrder()"
+              class="p-button-rounded p-button-danger"
+              [loading]="loading" style="float: right"
+      ></button>
+
+      <button *ngIf="order.status === 'Placed order' ||
+                     order.status === 'Payment confirmed' ||
+                     order.status === 'Order in preparation'"
+              pButton pRipple type="button" label="Anuleaza comanda"
+              (click)="cancelOrder()"
+              class="p-button-rounded p-button-danger"
+              [loading]="loading" style="float: right"
+      ></button>
+
     </div>
 
   </section>
 
-
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+  <p-toast position="top-right"></p-toast>
 
 </div>

@@ -77,6 +77,10 @@ import {MegaMenuModule} from "primeng/megamenu";
 import {TabViewModule} from "primeng/tabview";
 import {MultiSelectModule} from "primeng/multiselect";
 import { IntoleranceFoodComponent } from './components/pages/main-page/intolerance-food/intolerance-food.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { HandleOrdersComponent } from './components/admin-page/handle-orders/handle-orders.component';
+import { HandleOrderItemComponent } from './components/admin-page/handle-orders/handle-order-item/handle-order-item.component';
+import { SelectCourierComponent } from './components/admin-page/handle-orders/handle-order-item/select-courier/select-courier.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -91,7 +95,9 @@ const appRoutes: Routes = [
   {path: "historyOrders", component: HistoryOrdersComponent},
   {path: "historyOrders/:id", component: HistoryOrderItemDetailsComponent},
   {path: "myPreferences", component: MyPreferencesComponent},
-  {path: "intolerance", component: IntoleranceFoodComponent}
+  {path: "intolerance", component: IntoleranceFoodComponent},
+  {path: "adminPage", component: AdminPageComponent},
+  {path: "adminPage/handleOrders", component: HandleOrdersComponent}
 
   // {path: "**", component: MainPageComponent},
 
@@ -137,6 +143,10 @@ const appRoutes: Routes = [
     StatusOrderComponent,
     MyPreferencesComponent,
     IntoleranceFoodComponent,
+    AdminPageComponent,
+    HandleOrdersComponent,
+    HandleOrderItemComponent,
+    SelectCourierComponent,
   ],
   imports: [
     BrowserModule,

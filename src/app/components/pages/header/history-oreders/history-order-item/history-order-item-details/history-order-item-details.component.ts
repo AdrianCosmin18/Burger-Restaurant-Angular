@@ -3,6 +3,11 @@ import {ActivatedRoute} from "@angular/router";
 import {OrderService} from "../../../../../../services/order.service";
 import {Order} from "../../../../../../interfaces/order";
 import {OrderItem} from "../../../../../../models/order-item";
+import {CustomerService} from "../../../../../../services/customer.service";
+import {Observable, Subscription} from "rxjs";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../../../../../redux/app.reducer";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-history-order-item-details',
@@ -14,13 +19,28 @@ export class HistoryOrderItemDetailsComponent implements OnInit {
   public order!: Order;
   public orderItems: OrderItem[] = [];
 
+  private auth$!: Observable<{email: string}>;
+  private email!: string;
+  private storeSub: Subscription = new Subscription();
+  public loading = false;
+
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
+    private userService: CustomerService,
+    private store: Store<fromApp.AppState>,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
+
   ) { }
 
   ngOnInit(): void {
     this.getIdFromRoute();
+
+    this.auth$ = this.store.select("auth");
+    this.storeSub = this.auth$.subscribe(value => {
+      this.email = value.email;
+    });
   }
 
   getIdFromRoute(){
@@ -65,5 +85,46 @@ export class HistoryOrderItemDetailsComponent implements OnInit {
       nr += oi.quantity;
     });
     return nr;
+  }
+
+  confirmReceivedOrder() {
+
+    this.userService.confirmReceivedOrder(this.email, this.orderId).subscribe({
+      next: value => {
+
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.ngOnInit();
+        }, 2000);
+      }
+    })
+  }
+
+  cancelOrder(){
+
+    this.confirmationService.confirm({
+      message: 'Sunteți sigur că doriți să anulați comanda ?',
+      header: 'Confirmation',
+      acceptLabel: 'Da',
+      rejectLabel: 'Nu',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+
+        this.userService.cancelOrder(this.email, this.orderId).subscribe({
+          next: () => {
+            this.loading = true;
+            setTimeout(() => {
+              this.loading = false;
+              this.ngOnInit();
+              this.messageService.add({severity:'error', summary:'Comanda anulata'});
+            }, 2000);
+          }
+        })
+
+      }
+    });
+
+
   }
 }
