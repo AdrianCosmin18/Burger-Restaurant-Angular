@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {OrderService} from "../../../../../../services/order.service";
 import {Order} from "../../../../../../interfaces/order";
@@ -8,13 +8,14 @@ import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../../../../../redux/app.reducer";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {OrderStatus} from "../../../../../../constants/constants";
 
 @Component({
   selector: 'app-history-order-item-details',
   templateUrl: './history-order-item-details.component.html',
   styleUrls: ['./history-order-item-details.component.css']
 })
-export class HistoryOrderItemDetailsComponent implements OnInit {
+export class HistoryOrderItemDetailsComponent implements OnInit, OnDestroy {
   public orderId: number = -1;
   public order!: Order;
   public orderItems: OrderItem[] = [];
@@ -126,5 +127,9 @@ export class HistoryOrderItemDetailsComponent implements OnInit {
     });
 
 
+  }
+
+  ngOnDestroy() {
+    this.storeSub.unsubscribe();
   }
 }

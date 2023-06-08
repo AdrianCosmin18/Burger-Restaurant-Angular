@@ -68,89 +68,168 @@
 
 <!--      <article class="status-order mt-4"></article>-->
 
-      <article class="d-flex flex-column gap-3 mt-5">
+      <article *ngIf="!order.canceledOrder" class="d-flex flex-column gap-3 mt-5">
 
         <h3>Status comanda</h3>
 
         <div class="status-order"
              [icon]="'pi-check'"
-             [colorIcon]="'var(--blue-200)'"
-             [message]="'Comanda plasata'"
-             [date]="'18 Apr 2023, 21:39'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Comandă plasată'"
+             [date]="order.placedOrderTime"
              [active]="true"
         ></div>
 
         <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
 
+        <div class="status-order" *ngIf="order.paymentConfirmed; else elseBlockPaymentConfirmed"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Plată confirmată'"
+             [date]="order.paymentConfirmed"
+             [active]="true"
+        ></div>
+
+        <ng-template #elseBlockPaymentConfirmed>
+          <div class="status-order"
+               [icon]="'pi-question'"
+               [colorIcon]="'var(--yellow-500)'"
+               [message]="'Plată confirmată'"
+               [active]="true"
+          ></div>
+        </ng-template>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" *ngIf="order.paymentConfirmed" style="font-size: 2rem"></i>
+
+        <div class="status-order" *ngIf="order.orderInPreparation && order.paymentConfirmed; else elseBlockInPreparation"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Comandă în preparare'"
+             [date]="order.orderInPreparation"
+             [active]="true"
+        ></div>
+
+        <ng-template #elseBlockInPreparation>
+
+          <div class="status-order" *ngIf="order.paymentConfirmed"
+               [icon]="'pi-question'"
+               [colorIcon]="'var(--yellow-500)'"
+               [message]="'Comandă în preparare'"
+               [active]="true"
+          ></div>
+
+        </ng-template>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" *ngIf="order.orderInPreparation" style="font-size: 2rem"></i>
+
+
+        <div class="status-order" *ngIf="order.orderInDelivery && order.orderInPreparation && order.paymentConfirmed; else elseBlockInDelivery"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Comandă în curs de livrare'"
+             [date]="order.orderInDelivery"
+             [active]="true"
+        ></div>
+
+        <ng-template #elseBlockInDelivery>
+
+          <div class="status-order" *ngIf="order.orderInPreparation"
+               [icon]="'pi-question'"
+               [colorIcon]="'var(--yellow-500)'"
+               [message]="'Comandă în curs de livrare'"
+               [active]="true"
+          ></div>
+
+        </ng-template>
+
+        <i class="pi pi-arrow-down p-text-secondary ms-2" *ngIf="order.orderInDelivery" style="font-size: 2rem"></i>
+
+
+        <div class="status-order" *ngIf="order.deliverTime && order.orderInDelivery && order.orderInPreparation && order.paymentConfirmed; else elseBlockDelivered"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Comandă livrată'"
+             [date]="order.deliverTime"
+             [active]="true"
+        ></div>
+
+        <ng-template #elseBlockDelivered>
+
+          <div class="status-order" *ngIf="order.orderInDelivery"
+               [icon]="'pi-question'"
+               [colorIcon]="'var(--yellow-500)'"
+               [message]="'Comandă livrată'"
+               [active]="true"
+          ></div>
+
+        </ng-template>
+
+
+      </article>
+
+      <article *ngIf="order.canceledOrder" class="d-flex flex-column gap-3 mt-5">
+
+        <h3>Status comandă</h3>
+
         <div class="status-order"
-             [icon]="'pi-exclamation-triangle'"
-             [colorIcon]="'var(--red-500)'"
-             [message]="'Comanda anulata'"
-             [date]="'18 Apr 2023, 21:39'"
-             [active]="false"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Comandă plasată'"
+             [date]="order.placedOrderTime"
+             [active]="true"
         ></div>
 
         <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
 
+        <div class="status-order" *ngIf="order.paymentConfirmed; else elseBlockPaymentConfirmed"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Plată confirmată'"
+             [date]="order.paymentConfirmed"
+             [active]="true"
+        ></div>
 
-        <div class="confirmedPayment d-flex gap-3">
+        <ng-template #elseBlockPaymentConfirmed>
+          <div class="status-order"
+               [icon]="'pi-times-circle'"
+               [colorIcon]="'var(--red-500)'"
+               [message]="'Comandă anulată'"
+               [date]="order.canceledOrder"
+               [active]="true"
+          ></div>
+        </ng-template>
 
-          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
-                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
-                  class="p-button-rounded p-button-secondary"></button>
-          <div>
-            <h5 style="margin: 0;">Plata confirmata</h5>
-            <p style="margin: 0;">18 Apr 2023, 21:42</p>
-          </div>
+        <i class="pi pi-arrow-down p-text-secondary ms-2" *ngIf="order.paymentConfirmed" style="font-size: 2rem"></i>
 
-        </div>
+        <div class="status-order" *ngIf="order.orderInPreparation && order.paymentConfirmed; else elseBlockInPreparation"
+             [icon]="'pi-check'"
+             [colorIcon]="'var(--green-600)'"
+             [message]="'Comandă în preparare'"
+             [date]="order.paymentConfirmed"
+             [active]="true"
+        ></div>
 
-        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
+        <ng-template #elseBlockInPreparation>
+          <div class="status-order" *ngIf="order.paymentConfirmed"
+               [icon]="'pi-times-circle'"
+               [colorIcon]="'var(--red-500)'"
+               [message]="'Comandă anulată'"
+               [date]="order.canceledOrder"
+               [active]="true"
+          ></div>
+        </ng-template>
 
-        <div class="prepareOrder d-flex gap-3">
+        <i class="pi pi-arrow-down p-text-secondary ms-2" *ngIf="order.orderInPreparation" style="font-size: 2rem"></i>
 
-          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
-                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
-                  class="p-button-rounded p-button-secondary"></button>
-          <div>
-            <h5 style="margin: 0;">Comanda in pregatire</h5>
-            <p style="margin: 0;">18 Apr 2023, 21:45</p>
-          </div>
-
-        </div>
-
-        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
-
-        <div class="prepareOrder d-flex gap-3">
-
-          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
-                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
-                  class="p-button-rounded p-button-secondary"></button>
-          <div>
-            <h5 style="margin: 0;">In curs de livrare</h5>
-            <p style="margin: 0;">18 Apr 2023, 21:50</p>
-          </div>
-
-        </div>
-
-        <i class="pi pi-arrow-down p-text-secondary ms-2" style="font-size: 2rem"></i>
-
-        <div class="prepareOrder d-flex gap-3">
-
-          <button pButton pRipple type="button" icon="pi pi-check" [disabled]="true"
-                  [ngStyle]="{backgroundColor:'var(--blue-200)'}"
-                  class="p-button-rounded p-button-secondary"></button>
-          <div>
-            <h5 style="margin: 0;">Comanda livrata</h5>
-            <p style="margin: 0;">18 Apr 2023, 22:00</p>
-          </div>
-
-        </div>
+        <div class="status-order" *ngIf="!order.orderInDelivery && order.orderInPreparation"
+             [icon]="'pi-times-circle'"
+             [colorIcon]="'var(--red-500)'"
+             [message]="'Comandă anulată'"
+             [date]="order.canceledOrder"
+             [active]="true"
+        ></div>
 
       </article>
-
-
-
     </div>
 
 
