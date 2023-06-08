@@ -54,7 +54,7 @@ export class HistoryOrderItemComponent implements OnInit {
 
   checkOrder() {
 
-    if(this.hasNotRoute('/historyOrders') && this.order.status !== OrderStatus.ORDER_DELIVERED){
+    if(this.hasNotRoute('/historyOrders')){
 
       const ref = this.dialogService.open(HandleOrderItemComponent, {
         header: `Comanda #${this.order.id}`,

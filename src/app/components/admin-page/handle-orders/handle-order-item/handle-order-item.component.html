@@ -12,7 +12,11 @@
   </div>
 </div>
 
-<button *ngIf="currentStateOrder !== 'Comenzi in preparare' && currentStateOrder !== 'Comenzi in curs de livrare' && role === 'ROLE_ADMIN'"
+<button *ngIf="currentStateOrder !== 'Comenzi in preparare' &&
+               currentStateOrder !== 'Comenzi in curs de livrare' &&
+               currentStateOrder !== 'Comenzi livrate' &&
+               currentStateOrder !== 'Comenzi anulate' &&
+               role === 'ROLE_ADMIN'"
         pButton pRipple type="button"
         label="Treceti comanda in starea de {{message}}"
         class="p-button-rounded p-button-danger"

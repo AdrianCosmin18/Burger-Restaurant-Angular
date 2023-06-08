@@ -21,6 +21,8 @@ export class HandleOrdersComponent implements OnInit {
   public ordersInPreparationState: Order[] = [];
   public ordersInDeliveryState: Order[] = [];
   public finalizedOrders: Order[] = [];
+  public canceledOrders: Order[] = [];
+
 
 
   constructor(
@@ -33,6 +35,7 @@ export class HandleOrdersComponent implements OnInit {
     this.getOrdersInPreparationState();
     this.getOrdersInDeliveryState();
     this.getFinalizedOrders();
+    this.getCanceledOrders();
   }
 
 
@@ -88,6 +91,18 @@ export class HandleOrdersComponent implements OnInit {
     this.orderService.getFinalizedOrders().subscribe({
       next: value => {
         this.finalizedOrders = value;
+        console.log(value);
+      },
+      error: err => {
+        alert('smth went wrong to get order: ' + err.error.message)
+      }
+    })
+  }
+
+  getCanceledOrders(){
+    this.orderService.getCanceledOrders().subscribe({
+      next: value => {
+        this.canceledOrders = value;
         console.log(value);
       },
       error: err => {

@@ -112,15 +112,29 @@
           <div *ngFor="let order of finalizedOrders"
                class="history-order-item"
                [order]="order"
+               [currentStateOrderAdmin]="orderDelivered"
           ></div>
         </article>
       </section>
 
     </p-tabPanel>
     <p-tabPanel header="{{cancelOrder}}">
-      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-        cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-        Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+
+      <section class="container-xl mt-5">
+
+        <h3 *ngIf="canceledOrders.length === 0"
+            class="d-flex justify-content-center"
+            style="color: gray; margin-top: 30px;">Nu exista comenzi recente</h3>
+
+        <article class="container container-orders">
+          <div *ngFor="let order of canceledOrders"
+               class="history-order-item"
+               [order]="order"
+               [currentStateOrderAdmin]="cancelOrder"
+          ></div>
+        </article>
+      </section>
+
     </p-tabPanel>
   </p-tabView>
 

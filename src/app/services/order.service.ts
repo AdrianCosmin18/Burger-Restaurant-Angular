@@ -77,6 +77,12 @@ export class OrderService {
       .pipe(catchError(this.handleError));
   }
 
+  getCanceledOrders(): Observable<Order[]>{
+    let url = `${this.path}/get-canceled-orders`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
 
 
 
