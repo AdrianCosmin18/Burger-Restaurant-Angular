@@ -12,6 +12,8 @@ export interface Order{
   deliveryTax: number;
   tipsTax: number;
   addressToString: string;
+  city: string
   cardNumber: string;
   username: string;
+  commentsSection: string
 }

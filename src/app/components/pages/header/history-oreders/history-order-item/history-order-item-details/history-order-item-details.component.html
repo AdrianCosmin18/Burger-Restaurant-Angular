@@ -36,6 +36,14 @@
 
       <p-divider></p-divider>
 
+      <article *ngIf="order.commentsSection">
+        <h3 style="margin: 0px">Comentarii:</h3>
+        <p style="margin:0px;">{{order.commentsSection}}</p>
+      </article>
+
+      <p-divider *ngIf="order.commentsSection"></p-divider>
+
+
       <article>
         <h3 style="margin: 0px;">Sumar:</h3>
         <div class="d-flex justify-content-between gap-3">
@@ -66,7 +74,6 @@
 
       </article>
 
-<!--      <article class="status-order mt-4"></article>-->
 
       <article *ngIf="!order.canceledOrder" class="d-flex flex-column gap-3 mt-5">
 

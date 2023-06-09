@@ -35,6 +35,12 @@ export class OrderService {
       .pipe(catchError(this.handleError));
   }
 
+  getOrdersInPlacedOrderStateInACity(cityName: string): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-placed-order-state/${cityName}`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
   putOrderInPaymentConfirmationState(orderId: number): Observable<void>{
     let url = `${this.path}/put-order-in-payment-confirmation-state/${orderId}`;
     return this.http.put<void>(url, null)
@@ -43,6 +49,12 @@ export class OrderService {
 
   getOrdersInPaymentConfirmedState(): Observable<Order[]>{
     let url = `${this.path}/get-orders-in-payment-confirmation-state`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getOrdersInPaymentConfirmedStateInACity(cityName: string): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-payment-confirmation-state/${cityName}`;
     return this.http.get<Order[]>(url)
       .pipe(catchError(this.handleError));
   }
@@ -59,6 +71,12 @@ export class OrderService {
       .pipe(catchError(this.handleError));
   }
 
+  getOrdersInPreparationStateInACity(cityName: string): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-preparation-state/${cityName}`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
   putOrderInDeliveryState(orderId: number, courierId: number): Observable<void>{
     let url = `${this.path}/put-order-in-delivery-state/${orderId}/${courierId}`;
     return this.http.put<void>(url, null)
@@ -71,6 +89,12 @@ export class OrderService {
       .pipe(catchError(this.handleError));
   }
 
+  getOrdersInDeliveryStateInACity(cityName: string): Observable<Order[]>{
+    let url = `${this.path}/get-orders-in-delivery-state/${cityName}`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
   getFinalizedOrders(): Observable<Order[]>{
     let url = `${this.path}/get-finalized-orders`;
     return this.http.get<Order[]>(url)
@@ -79,6 +103,18 @@ export class OrderService {
 
   getCanceledOrders(): Observable<Order[]>{
     let url = `${this.path}/get-canceled-orders`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getFinalizedOrdersInACity(cityName: string): Observable<Order[]>{
+    let url = `${this.path}/get-finalized-orders/${cityName}`;
+    return this.http.get<Order[]>(url)
+      .pipe(catchError(this.handleError));
+  }
+
+  getCanceledOrdersInACity(cityName: string): Observable<Order[]>{
+    let url = `${this.path}/get-canceled-orders/${cityName}`;
     return this.http.get<Order[]>(url)
       .pipe(catchError(this.handleError));
   }

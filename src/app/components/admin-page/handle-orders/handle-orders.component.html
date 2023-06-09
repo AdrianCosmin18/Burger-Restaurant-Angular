@@ -13,13 +13,23 @@
   </section>
 
 
-  <h6 class="text-muted mt-5">In aceasta sectiune sunt prezente toate comenzile plasate de fiecare user care utilizeaza aplicatia.</h6>
-  <h6 class="text-muted">Rolul adminului este sa mute o comanda dintr-un status in altul in cazul in care aceasta a trecut de etapa curenta.</h6>
-  <h6 class="text-muted mb-5">ATENTIE! Fiecare admin poate muta orice comanda dintr-o stare in alta, asa ca asigurati-va ca selectati coamnda corecta.</h6>
+  <h6 class="text-muted mt-5">în această secțiune sunt prezente toate comenzile plasate de fiecare user care utilizează aplicația.</h6>
+  <h6 class="text-muted">Rolul adminului este să mute o comandă dintr-un status in altul in cazul in care aceasta a trecut de etapa curentă.</h6>
+  <h6 class="text-muted mb-5">ATENȚIE! Fiecare admin poate muta orice comandă dintr-o stare in alta, asa ca asigurați-vă că selectați coamnda corectă.</h6>
 
 
   <p-tabView>
     <p-tabPanel header="{{placedOrder}}">
+
+      <div class="col-6">
+        <p-dropdown [options]="cities"
+                    [(ngModel)]="citySelected"
+                    placeholder="Alege orasul"
+                    optionLabel="name"
+                    (onChange)="filterOrders()"
+                    [style]="{'width': '100%'}"
+                    [showClear]="true"></p-dropdown>
+      </div>
 
       <section class="container-xl mt-5">
 
@@ -42,6 +52,16 @@
     </p-tabPanel>
     <p-tabPanel header="{{paymentConfirmed}}">
 
+      <div class="col-6">
+        <p-dropdown [options]="cities"
+                    [(ngModel)]="citySelected"
+                    placeholder="Alege orasul"
+                    optionLabel="name"
+                    (onChange)="filterOrders()"
+                    [style]="{'width': '100%'}"
+                    [showClear]="true"></p-dropdown>
+      </div>
+
       <section class="container-xl mt-5">
 
         <h3 *ngIf="ordersInPaymentConfirmedState.length === 0"
@@ -61,6 +81,16 @@
 
    </p-tabPanel>
     <p-tabPanel header="{{orderInPreparation}}">
+
+      <div class="col-6">
+        <p-dropdown [options]="cities"
+                    [(ngModel)]="citySelected"
+                    placeholder="Alege orasul"
+                    optionLabel="name"
+                    (onChange)="filterOrders()"
+                    [style]="{'width': '100%'}"
+                    [showClear]="true"></p-dropdown>
+      </div>
 
       <section class="container-xl mt-5">
 
@@ -82,11 +112,21 @@
     </p-tabPanel>
     <p-tabPanel header="{{orderInDelivery}}">
 
+      <div class="col-6">
+        <p-dropdown [options]="cities"
+                    [(ngModel)]="citySelected"
+                    placeholder="Alege orasul"
+                    optionLabel="name"
+                    (onChange)="filterOrders()"
+                    [style]="{'width': '100%'}"
+                    [showClear]="true"></p-dropdown>
+      </div>
+
       <section class="container-xl mt-5">
 
         <h3 *ngIf="ordersInDeliveryState.length === 0"
             class="d-flex justify-content-center"
-            style="color: gray; margin-top: 30px;">Nu exista comenzi recente</h3>
+            style="color: gray; margin-top: 30px;">Nu există comenzi recente</h3>
 
         <article class="container container-orders">
           <div *ngFor="let order of ordersInDeliveryState"
@@ -101,6 +141,17 @@
 
     </p-tabPanel>
     <p-tabPanel header="{{orderDelivered}}">
+
+      <div class="col-6">
+        <p-dropdown [options]="cities"
+                    [(ngModel)]="citySelected"
+                    placeholder="Alege orasul"
+                    optionLabel="name"
+                    (onChange)="filterOrders()"
+                    [style]="{'width': '100%'}"
+                    [showClear]="true"></p-dropdown>
+      </div>
+
 
       <section class="container-xl mt-5">
 
@@ -119,6 +170,16 @@
 
     </p-tabPanel>
     <p-tabPanel header="{{cancelOrder}}">
+
+      <div class="col-6">
+        <p-dropdown [options]="cities"
+                    [(ngModel)]="citySelected"
+                    placeholder="Alege orasul"
+                    optionLabel="name"
+                    (onChange)="filterOrders()"
+                    [style]="{'width': '100%'}"
+                    [showClear]="true"></p-dropdown>
+      </div>
 
       <section class="container-xl mt-5">
 

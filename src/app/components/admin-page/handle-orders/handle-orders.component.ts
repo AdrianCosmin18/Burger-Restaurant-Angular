@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {OrderStatus} from "../../../constants/constants";
 import {OrderService} from "../../../services/order.service";
 import {Order} from "../../../interfaces/order";
+import {CityService} from "../../../services/city.service";
+import {City} from "../../../interfaces/city";
 
 @Component({
   selector: 'app-handle-orders',
@@ -24,18 +26,29 @@ export class HandleOrdersComponent implements OnInit {
   public canceledOrders: Order[] = [];
 
 
+  public cities: City[] = [];
+  public citySelected!: City;
+
+  public date!: Date;
+
+
 
   constructor(
     private orderService: OrderService,
+    private cityService: CityService,
   ) { }
 
   ngOnInit(): void {
+
     this.getOrdersInPlacedOrderState();
     this.getOrdersInPaymentConfState();
     this.getOrdersInPreparationState();
     this.getOrdersInDeliveryState();
     this.getFinalizedOrders();
     this.getCanceledOrders();
+
+
+    this.getCities();
   }
 
 
@@ -111,7 +124,90 @@ export class HandleOrdersComponent implements OnInit {
     })
   }
 
+  getCities(){
+    this.cityService.getCities().subscribe({
+      next:value => {
+        this.cities = value;
+        console.log(this.cities);
+      },
+      error:err => {
+        alert("Something went wrong");
+      }
+    });
+  }
+
   reloadOrderStates() {
     this.ngOnInit();
   }
+
+  filterOrders() {
+
+    if(this.citySelected){
+
+      this.orderService.getOrdersInPlacedOrderStateInACity(this.citySelected.name).subscribe({
+        next: value => {
+          this.orderInPlacedOrderState = value;
+          console.log(value);
+        },
+        error: err => {
+          alert('smth went wrong to get order: ' + err.error.message)
+        }
+      });
+
+      this.orderService.getOrdersInPaymentConfirmedStateInACity(this.citySelected.name).subscribe({
+        next: value => {
+          this.ordersInPaymentConfirmedState = value;
+          console.log(value);
+        },
+        error: err => {
+          alert('smth went wrong to get order: ' + err.error.message)
+        }
+      });
+
+      this.orderService.getOrdersInPreparationStateInACity(this.citySelected.name).subscribe({
+        next: value => {
+          this.ordersInPreparationState = value;
+          console.log(value);
+        },
+        error: err => {
+          alert('smth went wrong to get order: ' + err.error.message)
+        }
+      });
+
+      this.orderService.getOrdersInDeliveryStateInACity(this.citySelected.name).subscribe({
+        next: value => {
+          this.ordersInDeliveryState = value;
+          console.log(value);
+        },
+        error: err => {
+          alert('smth went wrong to get order: ' + err.error.message)
+        }
+      });
+
+      this.orderService.getFinalizedOrdersInACity(this.citySelected.name).subscribe({
+        next: value => {
+          this.finalizedOrders = value;
+          console.log(value);
+        },
+        error: err => {
+          alert('smth went wrong to get order: ' + err.error.message)
+        }
+      });
+
+      this.orderService.getCanceledOrdersInACity(this.citySelected.name).subscribe({
+        next: value => {
+          this.canceledOrders = value;
+          console.log(value);
+        },
+        error: err => {
+          alert('smth went wrong to get order: ' + err.error.message)
+        }
+      })
+
+    }else{
+      this.ngOnInit();
+    }
+  }
+
+
 }
