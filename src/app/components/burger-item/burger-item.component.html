@@ -2,8 +2,8 @@
 
 <p-card header={{burger.name}} subheader="" [style]="{width: '360px'}" styleClass="p-card-shadow">
   <ng-template pTemplate="header">
-<!--    <img alt="Card" src="{{imageData}}" style="width: 100px"/>-->
-    <img [src]="imageData" alt="Image">
+    <img alt="img" src="{{getImageUrl(burger.imageId)}}" style="width: 150px;"/>
+<!--    <img [src]="imageData" alt="Image">-->
   </ng-template>
   <p>{{burger.description}}</p>
   <ng-template pTemplate="footer">

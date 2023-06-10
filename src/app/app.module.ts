@@ -82,6 +82,10 @@ import { HandleOrdersComponent } from './components/admin-page/handle-orders/han
 import { HandleOrderItemComponent } from './components/admin-page/handle-orders/handle-order-item/handle-order-item.component';
 import { SelectCourierComponent } from './components/admin-page/handle-orders/handle-order-item/select-courier/select-courier.component';
 import {CalendarModule} from "primeng/calendar";
+import { StatisticsComponent } from './components/admin-page/statistics/statistics.component';
+import {ChartModule} from "primeng/chart";
+import { ChangePasswordComponent } from './components/pages/header/change-password/change-password.component';
+import {PasswordModule} from "primeng/password";
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -98,9 +102,8 @@ const appRoutes: Routes = [
   {path: "myPreferences", component: MyPreferencesComponent},
   {path: "intolerance", component: IntoleranceFoodComponent},
   {path: "adminPage", component: AdminPageComponent},
-  {path: "adminPage/handleOrders", component: HandleOrdersComponent}
-
-  // {path: "**", component: MainPageComponent},
+  {path: "adminPage/handleOrders", component: HandleOrdersComponent},
+  {path: "adminPage/statistics", component: StatisticsComponent}
 
 ]
 
@@ -148,46 +151,50 @@ const appRoutes: Routes = [
     HandleOrdersComponent,
     HandleOrderItemComponent,
     SelectCourierComponent,
+    StatisticsComponent,
+    ChangePasswordComponent,
   ],
-    imports: [
-        BrowserModule,
-        ButtonModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule.forRoot(appRoutes),
-        ReactiveFormsModule,
-        ToastModule,
-        BrowserAnimationsModule,
-        FieldsetModule,
-        CardModule,
-        BadgeModule,
-        StoreModule.forRoot(fromApp.appReducer, {
-            metaReducers: [localStorageSyncReducer]
-        }),
-        TooltipModule,
-        FieldsetModule,
-        AccordionModule,
-        SelectButtonModule,
-        StoreDevtoolsModule.instrument({logOnly: environment.production}),
-        StoreRouterConnectingModule.forRoot(),
-        RippleModule,
-        DropdownModule,
-        MenuModule,
-        OverlayPanelModule,
-        DividerModule,
-        InputTextModule,
-        EffectsModule.forRoot(([AuthEffects])),
-        PanelModule,
-        OrderListModule,
-        CheckboxModule,
-        ConfirmDialogModule,
-        InputMaskModule,
-        InputTextareaModule,
-        MegaMenuModule,
-        TabViewModule,
-        MultiSelectModule,
-        CalendarModule,
-    ],
+  imports: [
+    BrowserModule,
+    ButtonModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    FieldsetModule,
+    CardModule,
+    BadgeModule,
+    StoreModule.forRoot(fromApp.appReducer, {
+      metaReducers: [localStorageSyncReducer]
+    }),
+    TooltipModule,
+    FieldsetModule,
+    AccordionModule,
+    SelectButtonModule,
+    StoreDevtoolsModule.instrument({logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot(),
+    RippleModule,
+    DropdownModule,
+    MenuModule,
+    OverlayPanelModule,
+    DividerModule,
+    InputTextModule,
+    EffectsModule.forRoot(([AuthEffects])),
+    PanelModule,
+    OrderListModule,
+    CheckboxModule,
+    ConfirmDialogModule,
+    InputMaskModule,
+    InputTextareaModule,
+    MegaMenuModule,
+    TabViewModule,
+    MultiSelectModule,
+    CalendarModule,
+    ChartModule,
+    PasswordModule,
+  ],
   providers: [
     DialogService,
     MessageService,

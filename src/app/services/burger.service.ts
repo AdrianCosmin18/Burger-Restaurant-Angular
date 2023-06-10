@@ -17,7 +17,6 @@ export class BurgerService {
   private saucesUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.SAUCES}`;
   private drinksUrl: string = environment.apiUrl +  `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.DRINK}`;
   private extrasDrinkUrl: string = environment.apiUrl + `restaurant/get-restaurant-products/BurgerShop?type=${FoodType.EXTRAS_DRINK}`
-  // private desertUrl: string =environment.apiUrl + "burger-shop/products-controller/get-product-by-productType?productType=extras"
 
   public subjectExtraIngredientsDrinks = new BehaviorSubject<Product[]>([]);
 
@@ -72,35 +71,19 @@ export class BurgerService {
       .pipe(catchError(this.handleError));
 
   }
-  //
-  // getDrinks(){
-  //   return this.http.get<Product[]>(this.drinksUrl);
-  // }
-  //
-  // getDesert(){
-  //   return this.http.get<Product[]>(this.desertUrl);
-  // }
+
+  getProductImageById(imageId: number){
+    return `${environment.apiUrl}restaurant/get-image-product/${imageId}`;
+  }
 
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
-      // console.error(
-      //   `Backend returned code ${error.status}, ` +
-      //   `body was: ${error.error}`);
       return throwError(error.error.message);
     }
     return throwError('Something bad happened; please try again later.');
   };
-
-
-  private getPictureUrl(picture: any): string {
-    const base64String = btoa(
-      new Uint8Array(picture)
-        .reduce((data, byte) => data + String.fromCharCode(byte), '')
-    );
-    return `data:image/png;base64, ${base64String}`;
-  }
 
 }

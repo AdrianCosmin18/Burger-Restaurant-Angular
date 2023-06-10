@@ -17,6 +17,7 @@ import * as fromApp from "../../../redux/app.reducer";
 import * as Actions from '../../../redux/auth.actions';
 import {AddressComponent} from "./address/address.component";
 import {CardPageComponent} from "./card-page/card-page.component";
+import {ChangePasswordComponent} from "./change-password/change-password.component";
 
 @Component({
   selector: 'app-header',
@@ -102,6 +103,11 @@ export class HeaderComponent implements OnInit {
           routerLink: 'historyOrders'
         },
         {
+          label: 'Schimbare parolă',
+          icon: 'pi pi-sync',
+          command: () => this.openChangePassword()
+        },
+        {
           separator: true
         },
         {
@@ -132,6 +138,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logOut();
     this.store.dispatch(new Actions.Logout());
     this.messageService.add({severity:'info', summary: 'Te-ai delogat'});
+    this.router.navigate(['/mainPage']);
     this.ngOnInit();
   }
 
@@ -191,6 +198,14 @@ export class HeaderComponent implements OnInit {
       data: {
         isPlaceOrder: false
       }
+    })
+  }
+
+  openChangePassword(){
+    const ref = this.dialogService.open(ChangePasswordComponent, {
+      header: 'Schimbă parola',
+      width: '30%',
+      // height: '60%'
     })
   }
 }

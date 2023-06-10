@@ -10,10 +10,11 @@ import {ActionIngredientsEnum, ExtraRemoveIngredientMessage} from "../../../../c
 })
 export class IngredientComponent implements OnInit {
   @Input() ingredient: Product = {
+    id: -1,
     name: "",
     price: 0,
     ingredients: "",
-    image: [],
+    imageId: -1,
     description: "",
     type: "",
     restaurantName:"",

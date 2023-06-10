@@ -3,7 +3,7 @@
 
 <p-card header={{drink.key}} [style]="{width: '360px'}" styleClass="p-card-shadow">
   <ng-template pTemplate="header">
-    <img alt="Card" src="../../../../assets/drinksImg/Cola.jpeg" style="width: 100px">
+    <img alt="Card" src="{{getImageUrl(drink.value[0].imageId)}}" style="width: 150px">
   </ng-template>
   <p>{{descriptionDrink}}</p>
   <ng-template pTemplate="footer">

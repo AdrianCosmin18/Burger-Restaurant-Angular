@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit ,OnDestroy{
     this.form = this.formBuilder.group({
       email: ["", [Validators.required]],
       password: ["", [Validators.required, Validators.minLength(6)]]
+      //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$') -> trebuie adaugat
     })
   }
 
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit ,OnDestroy{
     this.subscriptions = this.auth$.subscribe(value => {
       if(value.loggedIn){
         this.form.reset();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/mainPage']);
         localStorage.removeItem("auth");
       }
     })
@@ -73,4 +74,6 @@ export class LoginComponent implements OnInit ,OnDestroy{
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
+
+  protected readonly fromApp = fromApp;
 }

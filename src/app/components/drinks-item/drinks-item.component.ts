@@ -3,6 +3,7 @@ import {Product} from "../../interfaces/burger";
 import {DialogService} from "primeng/dynamicdialog";
 import {MessageService} from "primeng/api";
 import {DrinksItemOptionsComponent} from "./drinks-item-options/drinks-item-options.component";
+import {BurgerService} from "../../services/burger.service";
 
 @Component({
   selector: '.drink-item',
@@ -23,7 +24,8 @@ export class DrinksItemComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private burgerService: BurgerService
   ) { }
 
   ngOnInit(): void {
@@ -69,4 +71,9 @@ export class DrinksItemComponent implements OnInit {
     const firstComma = description.indexOf(",");
     this.descriptionDrink = description.substring(firstComma + 1);
   }
+
+  getImageUrl(imageId: number){
+    return this.burgerService.getProductImageById(imageId);
+  }
+
 }

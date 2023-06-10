@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('07\\d{8}')]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$')]]
     });
   }
 
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.subscriptions = this.auth$.subscribe(value => {
       if(value.loggedIn){
         this.form.reset();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/mainPage']);
         localStorage.removeItem("auth");
       }
     });

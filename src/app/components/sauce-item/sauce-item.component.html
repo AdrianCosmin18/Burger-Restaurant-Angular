@@ -1,6 +1,6 @@
 <p-card header={{sauce.name}} styleClass="p-card-shadow" [style]="{width: '360px'}">
   <ng-template pTemplate="header">
-    <img alt="Card" src="../../../../assets/sauces/garden.jpeg" style="width: 200px">
+    <img alt="Card" src="{{getImageUrl(sauce.imageId)}}" style="width: 200px">
   </ng-template>
   <p>{{sauce.ingredients}}</p>
   <ng-template pTemplate="footer">

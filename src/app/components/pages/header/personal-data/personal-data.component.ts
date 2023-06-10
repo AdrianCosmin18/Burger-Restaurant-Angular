@@ -9,6 +9,9 @@ import {MessageService} from "primeng/api";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as fromApp from "../../../../redux/app.reducer";
+import {NotificationService} from "../../../../services/notification.service";
+import * as Actions from "../../../../redux/auth.actions";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-personal-data',
@@ -20,6 +23,7 @@ export class PersonalDataComponent implements OnInit {
   public user!: User;
   public form!: FormGroup;
   private auth$!: Observable<{ email: string; firstName: string; loggedIn: boolean }>;
+  private email!: string;
 
   constructor(
     private dialogService: DialogService,
@@ -28,7 +32,9 @@ export class PersonalDataComponent implements OnInit {
     private userService: CustomerService,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private notificationService: NotificationService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -40,9 +46,9 @@ export class PersonalDataComponent implements OnInit {
 
     this.auth$ = this.store.select("auth");
     this.auth$.subscribe(value => {
-      const email = value.email;
+      this.email = value.email;
 
-      this.userService.getCustomerByEmail(email).subscribe({
+      this.userService.getCustomerByEmail(this.email).subscribe({
         next: value => {
           this.user = value;
           this.putUserInForm();
@@ -70,7 +76,7 @@ export class PersonalDataComponent implements OnInit {
   }
 
   updateUser(){
-    const email = localStorage.getItem("email");
+    // const email = localStorage.getItem("email");
 
     let user: User = {
       firstName: this.form.get("firstName")?.value,
@@ -81,10 +87,15 @@ export class PersonalDataComponent implements OnInit {
     }
 
     // @ts-ignore
-    this.userService.updateCustomerByEmail(email, user).subscribe({
+    this.userService.updateCustomerByEmail(this.email, user).subscribe({
       next: () => {
-        this.messageService.add({severity:'success', summary:'Datele au fost salvate'});
-        this.ngOnInit();
+        // this.messageService.add({severity:'success', summary:'Datele au fost salvate'});
+        this.store.dispatch(new Actions.Logout());
+        this.notificationService
+          .onInfo("modifyUserInfo", "Datele au fost salvate cu succes", "Autentifică-te pentru a putea intra în contul tău");
+        // this.ngOnInit();
+        this.router.navigate(['/mainPage']);
+        this.ref.close();
       }
     })
   }

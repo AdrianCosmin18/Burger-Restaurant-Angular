@@ -63,10 +63,31 @@
       <section>
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon">Parola</span>
-          <input type="password" pInputText formControlName="password">
+<!--          <input type="password" pInputText formControlName="password">-->
+          <p-password formControlName="password"
+                      [style]="{'width': '100%'}"
+                      [toggleMask]="true"
+                      [weakLabel]="'Slabă'"
+                      [mediumLabel]="'Medie'"
+                      [strongLabel]="'Puternică'"
+                      [promptLabel]="'Introduce o parolă'">
+            <ng-template pTemplate="header">
+              <h6>Alege o parolă</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <p-divider></p-divider>
+              <p class="mt-2">Obligatoriu</p>
+              <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                <li>Cel puțin o literă mică</li>
+                <li>Cel puțin o literă mare</li>
+                <li>Cel puțin o cifră</li>
+                <li>Minimum 6 caractere</li>
+              </ul>
+            </ng-template>
+          </p-password>
         </div>
         <div *ngIf="form.get('password')!.invalid && form.get('password')!.dirty" style="margin: 0px">
-          <small *ngIf="form.get('password')!.hasError('minlength')" class="p-error">Parola trebuie sa aiba minim 6 caractere</small>
+          <small *ngIf="form.get('password')!.hasError('minlength')" class="p-error">Parola are formă incorectă</small>
           <small *ngIf="form.get('password')!.hasError('required')" class="p-error">Parola este obligatorie</small>
         </div>
       </section>

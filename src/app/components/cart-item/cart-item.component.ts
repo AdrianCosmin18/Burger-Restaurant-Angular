@@ -13,15 +13,17 @@ export class CartItemComponent implements OnInit {
   @Input() item: OrderItem = new OrderItem(-1,-1,'','','', 0, Constant.BURGER_SHOP);
   @Output() productEvent = new EventEmitter<string>();
 
+  public image: any;
   public extraIngr: string[] = [];
   public extraPrice: number = 0;
   public product: Product = {
+    id: -1,
     name: '',
     price: -1,
     type: '',
     description: '',
     ingredients: '',
-    image: [],
+    imageId: -1,
     restaurantName: '',
     containsGluten: false,
     containsLactose: false,
@@ -51,6 +53,7 @@ export class CartItemComponent implements OnInit {
       next: data => {
         this.product = data;
         this.extraPrice = Number((this.item.price - this.product.price).toFixed(2));
+        this.image = this.getImageUrl(this.product.imageId);
       }
     });
   }
@@ -122,5 +125,9 @@ export class CartItemComponent implements OnInit {
       i1.extraIngredients === i2.extraIngredients &&
       i1.lessIngredients === i2.lessIngredients;
 
+  }
+
+  getImageUrl(imageId: number){
+    return this.burgerService.getProductImageById(imageId);
   }
 }

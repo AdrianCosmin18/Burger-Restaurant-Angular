@@ -34,6 +34,12 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  changePassword(email: string, oldPassword: string, newPassword: string){
+    let url = `${this.path}/change-password/${email}?oldPassword=${oldPassword}&newPassword=${newPassword}`;
+    return this.http.put<void>(url, null)
+      .pipe(catchError(this.handleError));
+  }
+
   getUserAddresses(email: string): Observable<Array<Address>>{
     let url = `${this.path}/get-user-addresses/${email}`;
     return this.http.get<Array<Address>>(url)

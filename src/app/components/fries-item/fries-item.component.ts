@@ -3,6 +3,7 @@ import {Product} from "../../interfaces/burger";
 import {DialogService} from "primeng/dynamicdialog";
 import {FriesItemOptionsComponent} from "./fries-item-options/fries-item-options.component";
 import {MessageService} from "primeng/api";
+import {BurgerService} from "../../services/burger.service";
 
 @Component({
   selector: '.fries-item',
@@ -22,7 +23,9 @@ export class FriesItemComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private burgerService: BurgerService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -64,7 +67,7 @@ export class FriesItemComponent implements OnInit {
     }
   }
 
-  // eraseFromCart(){
-  //   this.productInCart--;
-  // }
+  getImageUrl(imageId: number){
+    return this.burgerService.getProductImageById(imageId);
+  }
 }

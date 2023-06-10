@@ -3,6 +3,7 @@ import { Product } from "../../interfaces/burger";
 import {Confirmation, ConfirmationService, MessageService} from "primeng/api";
 import {DialogService} from "primeng/dynamicdialog";
 import {BurgerItemOptionsComponent} from "./burger-item-options/burger-item-options.component";
+import {BurgerService} from "../../services/burger.service";
 
 @Component({
   selector: '.burger-item',
@@ -23,13 +24,12 @@ export class BurgerItemComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private burgerService: BurgerService
+  ) {
   }
 
   ngOnInit(): void {
-
-    const imageDataBytes: number[] = this.burger.image;
-    //this.imageData = this.getUrl();
   }
 
   addToCart() {
@@ -69,19 +69,8 @@ export class BurgerItemComponent implements OnInit {
   }
 
 
-  getUrl(){
-
-    //return `data:image/png;base64,${this.toBase64(this.burger.image)}`
+  getImageUrl(imageId: number){
+    return this.burgerService.getProductImageById(imageId);
   }
 
-  // toBase64(arr: number[]) {
-  //   let data="";
-  //
-  //    for(let i=0;i<arr.length;i++){
-  //      data += String.fromCharCode(arr[i]);
-  //    }
-  //       return btoa(
-  //        data
-  //       );
-  // }
 }

@@ -20,10 +20,11 @@ import {MessageService} from "primeng/api";
 })
 export class BurgerItemOptionsComponent implements OnInit {
   public burger: Product = {
+    id: -1,
     name: "",
     price: 0,
     ingredients: "",
-    image: [],
+    imageId: -1,
     description: "",
     type: "",
     restaurantName:"",

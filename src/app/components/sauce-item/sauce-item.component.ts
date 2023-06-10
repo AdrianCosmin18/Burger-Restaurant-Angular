@@ -4,6 +4,7 @@ import {DialogService} from "primeng/dynamicdialog";
 import {MessageService} from "primeng/api";
 import {OrderItem} from "../../models/order-item";
 import {Constant, Constants} from "../../constants/constants";
+import {BurgerService} from "../../services/burger.service";
 
 @Component({
   selector: '.sauce-item',
@@ -22,7 +23,8 @@ export class SauceItemComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private burgerService: BurgerService
   ) { }
 
   ngOnInit(): void {}
@@ -56,15 +58,7 @@ export class SauceItemComponent implements OnInit {
     this.messageService.add({severity: 'success', summary: `${this.sauce.name} adaugat in cos`});
   }
 
-  // removeFromCart(){
-  //   this.count = 0;
-  // }
-  //
-  // decreaseQuantity() {
-  //   this.count -= 1;
-  // }
-  //
-  // increaseQuantity() {
-  //   this.count += 1;
-  // }
+  getImageUrl(imageId: number){
+    return this.burgerService.getProductImageById(imageId);
+  }
 }

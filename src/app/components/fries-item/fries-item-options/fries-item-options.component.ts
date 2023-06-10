@@ -18,10 +18,11 @@ import {OrderItem} from "../../../models/order-item";
 })
 export class FriesItemOptionsComponent implements OnInit {
   public fries: Product = {
+    id: -1,
     name: "",
     price: 0,
     ingredients: "",
-    image: [],
+    imageId: -1,
     description: "",
     type: "",
     restaurantName:"",
