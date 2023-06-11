@@ -55,6 +55,7 @@ export class AddressItemComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Da',
       rejectLabel: 'Nu',
+      key: 'deleteAddress',
       accept: () => {
         this.customerService.deleteAddress(this.email, this.address.id).subscribe({
           next: () => {

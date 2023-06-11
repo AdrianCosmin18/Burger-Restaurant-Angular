@@ -110,6 +110,7 @@ export class HistoryOrderItemDetailsComponent implements OnInit, OnDestroy {
       acceptLabel: 'Da',
       rejectLabel: 'Nu',
       icon: 'pi pi-exclamation-triangle',
+      key:'cancelOrder',
       accept: () => {
 
         this.userService.cancelOrder(this.email, this.orderId).subscribe({

@@ -25,6 +25,9 @@ export class StatisticsComponent implements OnInit {
         for (const key of keys) {
           this.mapItems.set(key, response[key]);
         }
+
+        this.initData();
+        this.initOptions();
       },
       error: err => {
         alert(err.error.message);
@@ -34,12 +37,18 @@ export class StatisticsComponent implements OnInit {
 
   initData(){
 
-    let labels = this.mapItems.keys();
+    let lbl: string[] = [];
+    let val: number[] = [];
+    for(let [key, value] of this.mapItems.entries()){
+      lbl.push(key);
+      val.push(value);
+    }
+    let labels = lbl;
     let dataSet = [
       {
         label: 'Produse vândute',
         backgroundColor: '#42A5F5',
-        data: this.mapItems.values()
+        data: val
       }
     ];
 
