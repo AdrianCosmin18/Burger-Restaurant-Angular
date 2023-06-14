@@ -36,15 +36,13 @@ export class AuthEffects{
         };
         return this.authService.login(user)
           .pipe(
-            map(response => {//aici returneaza la noi un AuthResponse, trebuie facut if-ul cu roluri
+            map(response => {
               let arrAuth: Array<AuthorityModel> = response.body?.authorities as Array<AuthorityModel>;
               let role = '';
               if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
                 role = Roles.ROLE_USER;
               }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_ADMIN)){
                 role = Roles.ROLE_ADMIN;
-              }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_COURIER)){
-                role = Roles.ROLE_COURIER;
               }
 
               this.notificationService.onSuccess('loginSuccess','Te-ai logat cu success');
@@ -78,15 +76,13 @@ export class AuthEffects{
         };
         return this.authService.register(user)
           .pipe(
-            map(value => {//aici returneaza la noi un AuthResponse, trebuie facut if-ul cu roluri
+            map(value => {
               let arrAuth: Array<AuthorityModel> = value.body?.authorities as Array<AuthorityModel>;
               let role = '';
               if(arrAuth?.some(elem => elem.authority === Roles.ROLE_USER)){
                 role = Roles.ROLE_USER;
               }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_ADMIN)){
                 role = Roles.ROLE_ADMIN;
-              }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_COURIER)){
-                role = Roles.ROLE_COURIER;
               }
 
               this.notificationService.onSuccess('loginSuccess','Ti-ai creat cont cu success');

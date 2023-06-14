@@ -5,8 +5,6 @@ import {CustomerService} from "../../../services/customer.service";
 import {MessageService} from "primeng/api";
 import {User} from "../../../interfaces/user";
 import {AuthService} from "../../../services/auth.service";
-import {AuthorityModel} from "../../../models/authority-model";
-import {Constants, Roles} from "../../../constants/constants";
 import * as AuthAction from "../../../redux/auth.actions";
 import * as fromApp from "../../../redux/app.reducer";
 import {Store} from "@ngrx/store";
@@ -27,9 +25,6 @@ export class LoginComponent implements OnInit ,OnDestroy{
   private auth$!: Observable<{ loggedIn: boolean }>;
 
   private subscriptions: Subscription= new Subscription();
-
-
-  private storeSub: Subscription = new Subscription();
 
 
   constructor(private service: CustomerService,

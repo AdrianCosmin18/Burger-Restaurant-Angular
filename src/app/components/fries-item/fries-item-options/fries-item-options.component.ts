@@ -212,4 +212,8 @@ export class FriesItemOptionsComponent implements OnInit {
   close(productName: string, productQuantity: number): void{
     this.ref.close({productName, productQuantity});
   }
+
+  getImageUrl(imageId: number){
+    return this.burgerService.getProductImageById(imageId);
+  }
 }

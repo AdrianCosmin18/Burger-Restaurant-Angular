@@ -19,9 +19,6 @@ import {Observable, Subscription} from "rxjs";
   providers: [MessageService]
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  // public email: string = "";
-  // public password: string = "";
-  // public fullName: string = "";
   public form!: FormGroup;
   private auth$!: Observable<{ loggedIn: boolean }>;
   private subscriptions: Subscription= new Subscription();
