@@ -56,7 +56,7 @@ export class Constant{
 export class Intolerance{
   public name: string;
 
-  public static LACTOSE: string = "Lactoza";
+  public static LACTOSE: string = "Lactoză";
   public static GLUTEN: string = "Gluten";
   public static VEGETARIAN: string = "Vegetarian";
 

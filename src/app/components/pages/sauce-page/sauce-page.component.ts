@@ -32,11 +32,7 @@ export class SaucePageComponent implements OnInit {
     })
   }
 
-  addToCart(){
-
-  }
-
   displayMessage(productName: string) {
-    this.messageService.add({severity:'success', summary:`${productName} adaugat in cos`});
+    this.messageService.add({severity:'success', summary:`${productName} adăugat in coș`});
   }
 }

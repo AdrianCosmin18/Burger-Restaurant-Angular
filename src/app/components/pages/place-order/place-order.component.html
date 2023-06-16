@@ -1,6 +1,6 @@
 <div class="container-xl mt-5">
 
-  <h2>Plaseaza comanda</h2>
+  <h2>Plasează comanda</h2>
 
   <section class="main d-flex gap-2">
 
@@ -13,7 +13,7 @@
           <button pButton pRipple type="button"
                   icon="pi pi-replay"
                   class="p-button-rounded p-button-warning"
-                  tooltipPosition="top" pTooltip="Alege alta adresa"
+                  tooltipPosition="top" pTooltip="Alege altă adresă"
                   (click)="selectAddress()"
           ></button>
         </section>
@@ -24,7 +24,7 @@
       <p-card [style]="{'width': '100%', 'margin-bottom': '2em', 'padding': '0px'}">
         <section class="d-flex flex-row gap-3" style="">
           <i class="pi pi-credit-card" style="font-size: 2em;"></i>
-          <h4 style="margin: 0px; margin-right: auto">Plata: </h4>
+          <h4 style="margin: 0px; margin-right: auto">Plată: </h4>
           <button pButton pRipple type="button"
                   icon="pi pi-replay"
                   class="p-button-rounded p-button-warning"
@@ -47,7 +47,7 @@
         <ng-template pTemplate="header">
           <div class="d-flex align-items-center gap-3">
             <img style="width: 50px; height: 50px;" src="./assets/delivery_guy.png">
-            <h5 style="margin: 0;">Tips pe bon? Alege o varianta:</h5>
+            <h5 style="margin: 0;">Tips pe bon? Alege o variantă:</h5>
           </div>
 
         </ng-template>
@@ -61,7 +61,7 @@
           <button pButton pRipple type="button" label="5 LEI" class="p-button-secondary"
                   [ngClass]="tip5" (click)="clickTipsButton5Lei()"></button>
 
-          <button pButton pRipple type="button" label="Alta suma" class="p-button-secondary"
+          <button pButton pRipple type="button" label="Altă sumă" class="p-button-secondary"
                   [ngClass]="tipCustom" (click)="clickTipsButtonCustomeTip()"></button>
         </div>
 
@@ -94,10 +94,10 @@
 
         <div *ngIf="totalAmountProducts() < 100" class="d-flex flex-column">
           <div class="d-flex justify-content-between gap-3">
-            <p style="margin: 0; ">Taxa transport</p>
+            <p style="margin: 0; ">Taxă transport</p>
             <p style="margin: 0;">{{transportPrice}} lei</p>
           </div>
-          <p>Fara taxa transport pentru comenzi peste 100 lei</p>
+          <p>Fără taxă transport pentru comenzi peste 100 lei</p>
         </div>
 
           <div *ngIf="tipPrice > 0" class="d-flex justify-content-between gap-3">

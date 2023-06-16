@@ -11,8 +11,8 @@
                    [style]="{'width':'100%'}"
       ></p-inputMask>
       <div *ngIf="form.get('cardNumber')?.invalid && form.get('cardNumber')?.dirty">
-        <small *ngIf="form.get('cardNumber')?.hasError('required')" class="p-error">Numarul cardului este obligatoriu</small>
-        <small *ngIf="form.get('cardNumber')?.hasError('pattern')" class="p-error">Numarul cardului este invalid</small>
+        <small *ngIf="form.get('cardNumber')?.hasError('required')" class="p-error">Numărul cardului este obligatoriu</small>
+        <small *ngIf="form.get('cardNumber')?.hasError('pattern')" class="p-error">Numărul cardului este invalid</small>
       </div>
     </div>
 
@@ -24,8 +24,8 @@
                [style]="{'width':'100%'}"
                formControlName="cardHolderName">
         <div *ngIf="form.get('cardHolderName')?.invalid && form.get('cardHolderName')?.dirty">
-          <small *ngIf="form.get('cardHolderName')?.hasError('required')" class="p-error">Numele detinatorului de card este obligatoriu</small>
-          <small *ngIf="form.get('cardHolderName')?.hasError('pattern')" class="p-error">Numele detinatorului de card este invalid</small>
+          <small *ngIf="form.get('cardHolderName')?.hasError('required')" class="p-error">Numele deținătorului de card este obligatoriu</small>
+          <small *ngIf="form.get('cardHolderName')?.hasError('pattern')" class="p-error">Numele deținătorului de card este invalid</small>
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
         <h6>Cod securitate:</h6>
 
         <i class="pi pi-question-circle" style="font-size: 1rem"
-           tooltipPosition="top" pTooltip="Codul de securitate din 3 sau 4 cifre (in zona cu semnatura dumneavoastra)"></i>
+           tooltipPosition="top" pTooltip="Codul de securitate din 3 cifre (in zona cu semnatura dumneavoastra)"></i>
       </section>
       <input id="securityCode"
              type="text"
@@ -78,7 +78,7 @@
     <div class="field-checkbox d-flex gap-2 col-lg-6 align-items-center" style="margin-top: 3%;">
       <p-checkbox formControlName="isDefault"
                   [binary]="true" inputId="binary"></p-checkbox>
-      <label>Seteaza card implicit</label>
+      <label>Setează card implicit</label>
     </div>
 
     <div class="d-flex flex-column col-lg-6">
@@ -91,7 +91,7 @@
   <p-divider></p-divider>
 
   <button
-          pButton pRipple label="Salveaza"
+          pButton pRipple label="Salvează"
           class="p-button-danger"
           [disabled]="form.invalid || !form.dirty"
           (click)="addCard()"

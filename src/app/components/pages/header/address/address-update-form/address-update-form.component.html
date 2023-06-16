@@ -6,7 +6,7 @@
 
       <article class="field col-12">
         <p-dropdown [options]="cities" [(ngModel)]="citySelected"
-                    class="dropdown-city" placeholder="Oras"
+                    class="dropdown-city" placeholder="Oraș"
                     optionLabel="name" optionValue="name"
                     styleClass="custom-dropdown"
                     formControlName="cities" [style]="{'width':'100%'}"
@@ -25,7 +25,7 @@
 
           <div *ngIf="form.get('street')?.invalid && form.get('street')?.dirty">
             <small *ngIf="form.get('street')?.hasError('required')" class="p-error">Strada este obligatorie</small>
-            <small *ngIf="form.get('street')?.hasError('minlength')" class="p-error">Strada trebuie sa aiba minim 4 caractere</small>
+            <small *ngIf="form.get('street')?.hasError('minlength')" class="p-error">Strada trebuie să aibă minim 4 caractere</small>
           </div>
         </span>
       </section>
@@ -38,10 +38,10 @@
                  pInputText
                  [style]="{'width':'100%'}"
                  formControlName="number">
-          <label for="number" style="margin-left: 1%;">Numarul</label>
+          <label for="number" style="margin-left: 1%;">Numărul</label>
 
           <div *ngIf="form.get('number')?.invalid && form.get('number')?.dirty">
-            <small *ngIf="form.get('number')?.hasError('required')" class="p-error">Numarul este obligatoriu</small>
+            <small *ngIf="form.get('number')?.hasError('required')" class="p-error">Numărul este obligatoriu</small>
           </div>
         </span>
       </section>
@@ -66,7 +66,7 @@
                  pInputText
                  [style]="{'width':'100%'}"
                  formControlName="staircase">
-          <label for="staircase" style="margin-left: 1%;">Scara</label>
+          <label for="staircase" style="margin-left: 1%;">Scară</label>
         </span>
       </section>
 
@@ -122,7 +122,7 @@
 
     <div class="field-checkbox" style="margin-top: 3%; gap: 5px">
       <p-checkbox formControlName="isDefault" [binary]="true" inputId="binary"></p-checkbox>
-      <label>Seteaza ca adresa principala</label>
+      <label>Setează ca adresă principală</label>
     </div>
 
   </section>
@@ -130,14 +130,14 @@
   <p-divider></p-divider>
 
   <button *ngIf="formType === 'Update address'"
-          pButton pRipple label="Salveaza adresa"
+          pButton pRipple label="Salvează adresa"
           class="p-button-danger button-new-address"
           [disabled]="form.invalid || !form.dirty"
           (click)="updateAddress()"
   ></button>
 
   <button *ngIf="formType === 'Add new address'"
-          pButton pRipple label="Adauga adresa"
+          pButton pRipple label="Adaugă adresa"
           class="p-button-danger button-new-address"
           [disabled]="form.invalid || !form.dirty"
           (click)="addAddress()"

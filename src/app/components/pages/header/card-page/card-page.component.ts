@@ -59,7 +59,7 @@ export class CardPageComponent implements OnInit {
   addNewCard() {
 
     const ref = this.dialogService.open(CardFormComponent, {
-      header: 'Adauga card',
+      header: 'Adaugă card',
       width: '50%',
       height: '60%'
     });

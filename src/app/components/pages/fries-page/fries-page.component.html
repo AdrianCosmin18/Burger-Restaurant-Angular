@@ -2,7 +2,6 @@
   <article class="container">
     <div class="fries-item"
          *ngFor="let fries of friesList"
-         (friesEvent)="addToCart(fries)"
          [fries]="fries"
     ></div>
   </article>

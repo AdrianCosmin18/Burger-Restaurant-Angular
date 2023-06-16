@@ -12,8 +12,8 @@
           <input type="text" pInputText formControlName="email">
         </div>
         <div *ngIf="form.get('email')!.invalid && form.get('email')!.dirty" style="margin: 0px">
-          <small *ngIf="form.get('email')!.hasError('email')" class="p-error">Introdu o adresa de mail valida</small>
-          <small *ngIf="form.get('email')!.hasError('required')" class="p-error">Emailul este obligatoriu</small>
+          <small *ngIf="form.get('email')!.hasError('email')" class="p-error">Introdu o adresă de mail validă</small>
+          <small *ngIf="form.get('email')!.hasError('required')" class="p-error">Mailul este obligatoriu</small>
         </div>
       </section>
 
@@ -21,26 +21,25 @@
       <section>
         <div class="p-inputgroup">
           <span class="p-inputgroup-addon">Parola</span>
-<!--          <input type="password" pInputText formControlName="password">-->
           <p-password formControlName="password"
                       [style]="{'width': '100%'}"
                       [toggleMask]="true"
                       [feedback]="false"></p-password>
         </div>
         <div *ngIf="form.get('password')!.invalid && form.get('password')!.dirty" style="margin: 0px">
-          <small *ngIf="form.get('password')!.hasError('minlength')" class="p-error">Parola trebuie sa conțină minim 6 caractere</small>
+          <small *ngIf="form.get('password')!.hasError('minlength')" class="p-error">Parola trebuie să conțină minim 6 caractere</small>
           <small *ngIf="form.get('password')!.hasError('required')" class="p-error">Parola este obligatorie</small>
         </div>
       </section>
 
     </div>
 
-    <button pButton pRipple type="button" label="Intra in cont"
+    <button pButton pRipple type="button" label="Intră în cont"
             class="p-button-raised p-button-danger"
             [disabled]="form.invalid || !form.dirty"
             (click)="login()"></button>
 
-    <button pButton pRipple type="button" label="Creaza cont nou"
+    <button pButton pRipple type="button" label="Crează cont nou"
             class="p-button-raised p-button-secondary go-to-register"
             (click)="goToRegister()"></button>
   </form>

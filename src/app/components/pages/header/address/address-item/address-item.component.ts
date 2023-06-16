@@ -50,8 +50,8 @@ export class AddressItemComponent implements OnInit {
 
   deleteAddress() {
     this.confirmationService.confirm({
-      message: 'Sunteti sigur ca doriti sa stergeti aceasta adresa?',
-      header: 'Sterge adresa',
+      message: 'Sunteți sigur că doriți să ștergeți această adresă?',
+      header: 'Șterge adresa',
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Da',
       rejectLabel: 'Nu',
@@ -59,7 +59,7 @@ export class AddressItemComponent implements OnInit {
       accept: () => {
         this.customerService.deleteAddress(this.email, this.address.id).subscribe({
           next: () => {
-            const summary = 'Adresa a fost stearsa cu succes';
+            const summary = 'Adresa a fost ștearsă cu succes';
             const detail = this.address.street;
             this.emitDeleteAddress.emit({summary, detail});
           },
@@ -74,7 +74,7 @@ export class AddressItemComponent implements OnInit {
   openUpdateAddressForm(): void{
 
     const ref = this.dialogService.open(AddressUpdateFormComponent, {
-      header: 'Modifica adresa',
+      header: 'Modifică adresa',
       width: '60%',
       data: {
         formType: FormType.UPDATE_FORM_ADDRESS,

@@ -44,11 +44,26 @@ export class CardFormComponent implements OnInit {
   initForm(){
     this.form = this.formBuilder.group({
       cardType: [''],
-      cardNumber: ['', [Validators.required, Validators.pattern(/^[245]\d{3}-\d{4}-\d{4}-\d{4}$/)]],
-      cardHolderName: ['', [Validators.required,Validators.pattern(/^[A-Za-z\s]{6,50}$/)]],
+      cardNumber: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^[245]\d{3}-\d{4}-\d{4}-\d{4}$/)
+        ]
+      ],
+      cardHolderName: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z\s]{6,50}$/)
+        ]
+      ],
       expiryMonth: ['', [Validators.required]],
       expiryYear: ['', [Validators.required]],
-      securityCode: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
+      securityCode: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^\d{3}$/)
+        ]
+      ],
       isDefault: [false]
     })
   }
@@ -121,12 +136,12 @@ export class CardFormComponent implements OnInit {
       const email = value.email;
       this.userService.addCard(email, newCard as Card).subscribe({
         next: response => {
-          const message = 'Card nou adaugat';
+          const message = 'Card nou adăugat';
           this.cancelDialogService(message);
         },
         error: err => {
           if(err === ErrorMessages.USER_CARD_ALREADY_EXISTS_EXCEPTION){
-            this.messageService.add({severity: 'error', summary: `Ai deja aceasta card inregistrat`});
+            this.messageService.add({severity: 'error', summary: `Ai deja acest card înregistrat`});
           }
         }
       })

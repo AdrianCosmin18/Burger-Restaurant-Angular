@@ -119,7 +119,7 @@ export class HistoryOrderItemDetailsComponent implements OnInit, OnDestroy {
             setTimeout(() => {
               this.loading = false;
               this.ngOnInit();
-              this.messageService.add({severity:'error', summary:'Comanda anulata'});
+              this.messageService.add({severity:'error', summary:'Comandă anulată'});
             }, 2000);
           }
         })

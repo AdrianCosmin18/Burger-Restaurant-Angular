@@ -37,7 +37,6 @@ export class CardItemComponent implements OnInit {
     }else{
       this.textColor = 'p-button-outlined'
     }
-    // console.log(this.card.fullExpiryDate);
   }
 
   getCardType(){
@@ -64,7 +63,7 @@ export class CardItemComponent implements OnInit {
   deleteCard() {
     this.userService.deleteCard(this.email, this.card.id).subscribe({
       next: () => {
-        const summary = `Cardul ${this.card.cardNumber} a fost sters cu succes`;
+        const summary = `Cardul ${this.card.cardNumber} a fost șters cu succes`;
         this.emitDeleteCard.emit(summary);
       },
       error: err => {

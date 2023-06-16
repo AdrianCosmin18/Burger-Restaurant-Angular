@@ -13,7 +13,6 @@ import {BurgerService} from "../../services/burger.service";
 })
 export class FriesItemComponent implements OnInit {
   @Input() fries!: Product;
-  @Output() friesEvent = new EventEmitter();
 
   public loggedIn: boolean = true;
   public isFavorite = false;
@@ -42,17 +41,9 @@ export class FriesItemComponent implements OnInit {
 
     ref.onClose.subscribe((productInfo: any) => {
       if(productInfo !== undefined && productInfo.productName !== null){
-        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
+        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adăugat in coș`});
       }
     });
-
-    // ref.onClose.subscribe((productInfo: any) => {
-    //   if(productInfo.productName !== null) {
-    //     this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
-    //   }
-    // });
-
-    this.friesEvent.emit(this.fries);
   }
 
   addToFavorites() {

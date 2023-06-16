@@ -117,7 +117,7 @@ export class AddressUpdateFormComponent implements OnInit {
 
         this.userService.updateAddress(email, this.address.id, updatedAddress as Address).subscribe({
           next: () => {
-            const message = 'Adresa actualizata cu success';
+            const message = 'Adresă actualizată cu succes';
             this.cancelDialogService(message);
           },
 
@@ -152,13 +152,13 @@ export class AddressUpdateFormComponent implements OnInit {
 
       this.userService.addAddress(email, newAddress as Address).subscribe({
         next: () => {
-          const message = 'Adresa noua adaugata';
+          const message = 'Adresă nouă adaugată';
           this.cancelDialogService(message);
         },
 
         error: err => {
           if(err === ErrorMessages.USER_ALREADY_OWN_ADDRESS_EXCEPTION){
-            this.messageService.add({severity: 'error', summary: `Ai deja aceasta adresa inregistrata`})}
+            this.messageService.add({severity: 'error', summary: `Ai deja această adresă înregistrată`})}
         }
       })
     })

@@ -4,7 +4,7 @@
     Nu exista nicio adresa inregistrata</h3>
 
   <section class="d-flex justify-content-center" style="margin-top: 25px;">
-    <button pButton pRipple label="Adauga adresa noua"
+    <button pButton pRipple label="Adaugă adresă nouă"
             icon="pi pi-plus"
             class="p-button-danger button-new-address"
             (click)="addNewAddress()"
@@ -17,7 +17,7 @@
 
   <p-orderList [listStyle]="{'max-height':'30rem'}"
                [value]="addresses" filterBy="street"
-               filterPlaceholder="Filtreaza dupa strada"
+               filterPlaceholder="Filtrează după stradă"
                controlsPosition="none"
                [dragdrop]="false">
 
@@ -38,7 +38,7 @@
   <p-divider></p-divider>
 
   <section class="d-flex justify-content-end">
-    <button pButton pRipple label="Adauga adresa noua"
+    <button pButton pRipple label="Adaugă adresă nouă"
             icon="pi pi-plus"
             class="p-button-danger button-new-address"
             (click)="addNewAddress()"

@@ -8,7 +8,7 @@
             class="p-button-text p-button-rounded p-button-secondary"
             routerLink="/mainPage"
     ></button>
-    <h3 class="d-flex align-items-center" style="margin: 0;">Preferintele mele</h3>
+    <h3 class="d-flex align-items-center" style="margin: 0;">Preferințele mele</h3>
   </section>
 
   <p-tabView>
@@ -16,14 +16,14 @@
 
       <p-multiSelect [options]="ingredientsBurgers"
                      [(ngModel)]="selectedBurgerIngredient"
-                     defaultLabel="Alege ingrendientele pe care vrei sa le contina burgerul tau"
+                     defaultLabel="Alege ingrendientele pe care vrei să le conțină burgerul tău"
                      optionLabel="name"
                      optionValue="name"
                      display="chip"
                      [style]="{'width': '100%'}"
                      (onChange)="filterBurgers()"
       ></p-multiSelect>
-      <p class="text-muted">(*Se vor afisa toate produsele care contin cel putin un ingredient din cele selectate de catre tine)</p>
+      <p class="text-muted">(*Se vor afișa toate produsele care conțin cel puțin un ingredient din cele selectate de către tine)</p>
 
       <div *ngIf="burgers.length > 0" class="container container-product">
         <div class="burger-item d-flex justify-content-center"
@@ -36,7 +36,7 @@
 
       <p-multiSelect [options]="ingredientsFries"
                      [(ngModel)]="selectedFriesIngredient"
-                     defaultLabel="Alege ingrendientele pe care vrei sa le contina cartofii tai"
+                     defaultLabel="Alege ingrendientele pe care vrei să le conțină cartofii tăi"
                      optionLabel="name"
                      optionValue="name"
                      display="chip"
@@ -44,7 +44,7 @@
                      [style]="{'width': '100%'}"
       ></p-multiSelect>
 
-      <p class="text-muted">(*Se vor afisa toate produsele care contin cel putin un ingredient din cele selectate de catre tine)</p>
+      <p class="text-muted">(*Se vor afișa toate produsele care conțin cel putțn un ingredient din cele selectate de către tine)</p>
 
       <div *ngIf="fries.length > 0" class="container container-product">
         <div class="fries-item d-flex justify-content-center"
@@ -58,7 +58,7 @@
 
       <p-multiSelect [options]="ingredientsSauces"
                      [(ngModel)]="selectedSauceIngredient"
-                     defaultLabel="Alege ingrendientele pe care vrei sa le contina sosul tau"
+                     defaultLabel="Alege ingrendientele pe care vrei să le conțină sosul tău"
                      optionLabel="name"
                      optionValue="name"
                      display="chip"
@@ -66,7 +66,7 @@
                      [style]="{'width': '100%'}"
       ></p-multiSelect>
 
-      <p class="text-muted">(*Se vor afisa toate produsele care contin cel putin un ingredient din cele selectate de catre tine)</p>
+      <p class="text-muted">(*Se vor afișa toate produsele care conțin cel puțin un ingredient din cele selectate de către tine)</p>
 
       <div *ngIf="sauces.length > 0" class="container container-product">
         <div class="sauce-item d-flex justify-content-center"

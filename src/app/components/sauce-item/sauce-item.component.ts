@@ -43,10 +43,6 @@ export class SauceItemComponent implements OnInit {
   }
 
   addCart(){
-    // this.count += 1;
-    // if(this.count === 1){
-    //   this.addedToCart.emit(this.sauce.name);
-    // }
     this.createBodyOrderItem();
   }
 
@@ -55,7 +51,7 @@ export class SauceItemComponent implements OnInit {
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     itemsList.push(orderItem);
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
-    this.messageService.add({severity: 'success', summary: `${this.sauce.name} adaugat in cos`});
+    this.messageService.add({severity: 'success', summary: `${this.sauce.name} adăugat in coș`});
   }
 
   getImageUrl(imageId: number){

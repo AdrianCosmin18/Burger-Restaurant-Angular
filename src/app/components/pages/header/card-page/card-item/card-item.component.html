@@ -10,14 +10,14 @@
       <button *ngIf="!isAPlacedOrder"
               pButton pRipple type="button" icon="pi pi-trash"
               class="p-button-rounded p-button-danger p-button-outlined"
-              pTooltip="Sterge cardul" tooltipPosition="top"
+              pTooltip="Șterge cardul" tooltipPosition="top"
               (click)="deleteCard()"
       ></button>
 
       <button *ngIf="isAPlacedOrder"
               pButton pRipple type="button" icon="pi pi-eject"
               class="p-button-rounded p-button-warning p-button-outlined"
-              pTooltip="Selecteaza cardul pentru adresa curenta" tooltipPosition="top"
+              pTooltip="Selectează cardul pentru livrarea curentă" tooltipPosition="top"
               (click)="selectCardToPlaceOrder()"
       ></button>
     </div>
@@ -29,7 +29,6 @@
 
     <p-divider></p-divider>
 
-<!--    <div class="col-md-3"></div>-->
     <div class="col-md-12 d-flex justify-content-center">
       <div class="d-flex align-items-center" style="margin-bottom: 15px;">
         <button pButton pRipple type="button"
@@ -42,6 +41,5 @@
         <label style="margin-left: 10px;">Card principal</label>
       </div>
     </div>
-<!--    <div class="col-md-3"></div>-->
   </div>
 </div>

@@ -19,7 +19,7 @@ export class BurgerItemComponent implements OnInit {
   public isFavorite = false;
   public favoriteColor = 'p-button-secondary p-button-outlined';
   public productInCart: number = 0;
-  public favoriteTooltipMessage = 'Adauga la favorite';
+  public favoriteTooltipMessage = 'Adaugă la favorite';
   public imageData: string = '';
 
   constructor(
@@ -46,7 +46,7 @@ export class BurgerItemComponent implements OnInit {
       if (productInfo !== undefined && productInfo.productName !== null) {
         this.messageService.add({
           severity: 'success',
-          summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`
+          summary: `${productInfo.productQuantity} x ${productInfo.productName} adăugat in coș`
         });
       }
     });
@@ -61,10 +61,10 @@ export class BurgerItemComponent implements OnInit {
     this.favoriteColor = this.isFavorite ? 'p-button-danger' : 'p-button-secondary p-button-outlined';
     if (this.isFavorite) {
       // Adaugă produsul la lista de favorite
-      this.favoriteTooltipMessage = 'Sterge de la favorite';
+      this.favoriteTooltipMessage = 'Șterge de la favorite';
     } else {
       // Elimină produsul din lista de favorite
-      this.favoriteTooltipMessage = 'Adauga la favorite';
+      this.favoriteTooltipMessage = 'Adaugă la favorite';
     }
   }
 

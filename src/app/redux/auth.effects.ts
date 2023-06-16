@@ -44,14 +44,12 @@ export class AuthEffects{
               }else if(arrAuth?.some(elem => elem.authority === Roles.ROLE_ADMIN)){
                 role = Roles.ROLE_ADMIN;
               }
-
               this.notificationService.onSuccess('loginSuccess','Te-ai logat cu success');
               return new AuthAction.AuthenticationSuccess({
                 email: response.body!.email,
                 firstName: response.body!.firstName,
                 token: response.body!.token,
                 role: role,
-
               })
             }),
             catchError(err => {

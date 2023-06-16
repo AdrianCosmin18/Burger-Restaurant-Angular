@@ -72,7 +72,7 @@ export class CartItemComponent implements OnInit {
     });
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
     if(initialSize > itemsList.length){
-      this.productEvent.emit('Produs sters');
+      this.productEvent.emit('Produs șters');
     }
   }
 
@@ -92,7 +92,7 @@ export class CartItemComponent implements OnInit {
       });
       localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
       if(changed){
-        this.productEvent.emit("Cantitate produs modificata");
+        this.productEvent.emit("Cantitate produs modificată");
       }
     }
   }
@@ -110,7 +110,7 @@ export class CartItemComponent implements OnInit {
     });
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
     if(changed){
-      this.productEvent.emit("Cantitate produs modificata");
+      this.productEvent.emit("Cantitate produs modificată");
     }
   }
 

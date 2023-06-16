@@ -111,7 +111,7 @@ export class HeaderComponent implements OnInit {
           separator: true
         },
         {
-          label: 'Iesire din cont',
+          label: 'Ieșire din cont',
           icon: 'pi pi-sign-out',
           command: () => this.logout()
         }
@@ -120,7 +120,7 @@ export class HeaderComponent implements OnInit {
       if(this.role === Roles.ROLE_ADMIN){
         this.accountMenuItems.push(
           {
-            label: 'Pagina admin',
+            label: 'Pagină admin',
             icon: 'pi pi-verified',
             routerLink: 'adminPage'
           }
@@ -145,7 +145,7 @@ export class HeaderComponent implements OnInit {
   openCart(): void{
 
     const ref = this.dialogService.open(CartComponent, {
-      header: 'Cosul meu',
+      header: 'Coșul meu',
       width: '60%',
     });
 

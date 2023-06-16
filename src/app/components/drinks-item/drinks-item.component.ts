@@ -45,7 +45,7 @@ export class DrinksItemComponent implements OnInit {
 
     ref.onClose.subscribe((productInfo: any) => {
       if(productInfo !== undefined && productInfo.productName !== null){
-        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adaugat in cos`});
+        this.messageService.add({severity: 'success', summary: `${productInfo.productQuantity} x ${productInfo.productName} adăugat in coș`});
       }
     });
 

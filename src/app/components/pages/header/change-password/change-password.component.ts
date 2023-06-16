@@ -55,7 +55,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
       this.customerService.changePassword(this.email, actualPassword, newPassword).subscribe({
         next: () => {
-          this.notificationService.onSuccess('modifyPassword', 'Parola modificată');
+          this.notificationService.onSuccess('modifyPassword', 'Parolă modificată');
           this.ref.close();
         }, error: err => {
           this.notificationService.onError('modifyPassword', 'Parola curentă este incorectă');

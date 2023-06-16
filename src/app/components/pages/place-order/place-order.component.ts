@@ -36,8 +36,8 @@ export class PlaceOrderComponent implements OnInit {
   public toStringAddress: string = '';
   public toStringCard: string = '';
 
-  public noAddressMessage: string = 'Va rugam sa selectati o adresa';
-  public noCardMessage: string = 'Va rugam sa selectati un card';
+  public noAddressMessage: string = 'Vă rugăm să selectați o adresă';
+  public noCardMessage: string = 'Vă rugăm să selectați un card';
 
   public classButtonForTips = 'p-button-raised p-button-text';
   public tip2 = '';
@@ -266,9 +266,9 @@ export class PlaceOrderComponent implements OnInit {
   load() {
 
     if(!this.hasSelectedCard){
-      this.messageService.add({key:'notSelected', severity:'error', summary: 'Selecteaza cardul pentru plata !'})
+      this.messageService.add({key:'notSelected', severity:'error', summary: 'Selectează cardul pentru plată !'})
     }else if(!this.hasSelectedAddress){
-      this.messageService.add({key:'notSelected', severity:'error', summary: 'Selecteaza adresa de livrare !'})
+      this.messageService.add({key:'notSelected', severity:'error', summary: 'Selectează adresa de livrare !'})
     }else{
 
       this.userService.placeOrder(this.createOrderRequest()).subscribe({
@@ -278,10 +278,10 @@ export class PlaceOrderComponent implements OnInit {
             this.loading = false;
 
             this.router.navigate(['/mainPage']);
-            this.notificationService.onInfo('placedOrder', 'Comanda plasata cu succes', 'Pentru mai multe detalii aceseaza Istoric comenzi');
+            this.notificationService.onInfo('placedOrder', 'Comandă plasată cu succes', 'Pentru mai multe detalii acesează Istoric comenzi');
           }, 3000);
         }, error: err => {
-          this.notificationService.onError('placedOrder', 'A aparut o eroare la plasarea comenzii');
+          this.notificationService.onError('placedOrder', 'A apărut o eroare la plasarea comenzii');
         }
       });
 

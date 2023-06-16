@@ -54,10 +54,10 @@
 
         <div *ngIf="order.productsAmount < 100" class="d-flex flex-column">
           <div class="d-flex justify-content-between gap-3">
-            <h5 style="margin: 0; ">Taxa transport</h5>
+            <h5 style="margin: 0; ">Taxă transport</h5>
             <h5 style="margin: 0;">{{order.deliveryTax}} lei</h5>
           </div>
-          <p>Fara taxa transport pentru comenzi peste 100 lei</p>
+          <p>Fără taxă transport pentru comenzi peste 100 lei</p>
         </div>
 
         <div *ngIf="order.tipsTax > 0" class="d-flex justify-content-between gap-3">
@@ -77,7 +77,7 @@
 
       <article *ngIf="!order.canceledOrder" class="d-flex flex-column gap-3 mt-5">
 
-        <h3>Status comanda</h3>
+        <h3>Status comandă</h3>
 
         <div class="status-order"
              [icon]="'pi-check'"
@@ -241,17 +241,17 @@
 
 
     <div class="d-flex flex-column gap-2" style="width: 100%;">
-      <h3>Produse in comanda</h3>
+      <h3>Produse în comandă</h3>
 
       <div *ngFor="let orderItem of orderItems" class="card border-0">
         <div class="card-body">
           <h5 class="card-title" style="margin: 0px;">{{orderItem.quantity}} X {{orderItem.productName}}</h5>
           <p *ngIf="orderItem.extraIngredients !== ''"
               class="card-text" style="margin: 0px;">
-            <strong>Extra optiuni: </strong>{{orderItem.extraIngredients}}</p>
+            <strong>Extra opțiuni: </strong>{{orderItem.extraIngredients}}</p>
           <p *ngIf="orderItem.lessIngredients !== ''"
              class="card-text" style="margin: 0px;">
-            <strong>Fara: </strong>{{orderItem.lessIngredients}}</p>
+            <strong>Fără: </strong>{{orderItem.lessIngredients}}</p>
           <p class="card-text" style="margin: 0px;">
             <strong>{{orderItem.price}} lei</strong></p>
         </div>
@@ -267,7 +267,7 @@
       <button *ngIf="order.status === 'Placed order' ||
                      order.status === 'Payment confirmed' ||
                      order.status === 'Order in preparation'"
-              pButton pRipple type="button" label="Anuleaza comanda"
+              pButton pRipple type="button" label="Anulează comanda"
               (click)="cancelOrder()"
               class="p-button-rounded p-button-danger"
               [loading]="loading" style="float: right"

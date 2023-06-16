@@ -2,7 +2,7 @@
 
   <h3 *ngIf="this.items.length === 0; else elseBlock"
       style="color: gray; display: flex; justify-content: center;"
-  >Cosul este gol</h3>
+  >Coșul este gol</h3>
 
   <ng-template #elseBlock>
     <div class="container">
@@ -16,7 +16,7 @@
 
     <article class="footer">
       <span class="badge text-bg-warning total-amount">Total: {{totalAmount()}} lei</span>
-      <button class="btn btn-danger" (click)="placeOrder()">Finalizeaza comanda</button>
+      <button class="btn btn-danger" (click)="placeOrder()">Finalizează comanda</button>
     </article>
 
   </ng-template>

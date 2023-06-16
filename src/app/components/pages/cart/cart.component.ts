@@ -67,7 +67,7 @@ export class CartComponent implements OnInit {
         this.router.navigate(['/placeOrder']);
         this.ref.close();
       }else{
-        this.notificationService.onInfo('needToBeAuth','Trebuie sa fi conectat pentru a putea plasa o comanda', '');
+        this.notificationService.onInfo('needToBeAuth','Trebuie să fii conectat pentru a putea plasa o comandă', '');
         this.ref.close();
         this.router.navigate(['/login']);
       }
