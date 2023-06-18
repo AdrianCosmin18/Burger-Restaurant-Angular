@@ -53,7 +53,7 @@ export class AuthEffects{
               })
             }),
             catchError(err => {
-              this.notificationService.onError('loginFailed','Email sau parola incorecta');
+              this.notificationService.onError('loginFailed','Mail sau parolă incorectă');
               return handleError(err);
             })
           )
@@ -83,7 +83,7 @@ export class AuthEffects{
                 role = Roles.ROLE_ADMIN;
               }
 
-              this.notificationService.onSuccess('loginSuccess','Ti-ai creat cont cu success');
+              this.notificationService.onSuccess('loginSuccess','Ți-ai creat cont cu success');
               return new AuthAction.AuthenticationSuccess({
                 email: value.body!.email,
                 firstName: value.body!.firstName,
@@ -93,9 +93,9 @@ export class AuthEffects{
             }),
             catchError(err => {
               if(err === ErrorMessages.USER_ALREADY_EXISTS_BY_EMAIL_EXCEPTION) {
-                this.notificationService.onError('registerFailed', 'Exista deja un cont cu acest email');
+                this.notificationService.onError('registerFailed', 'Există deja un cont cu acest mail');
               } else if(err === ErrorMessages.USER_ALREADY_EXISTS_PHONE_EXCEPTION){
-                this.notificationService.onError('registerFailed', 'Exista deja un cont cu acest numar de telefon');
+                this.notificationService.onError('registerFailed', 'Există deja un cont cu acest număr de telefon');
               }
                 return handleError(err);
             })
@@ -107,7 +107,7 @@ export class AuthEffects{
 
 const handleError = (errorRes: any) => {
   console.log(errorRes);
-  let errorMessage = 'Email sau parola incorecta';
+  let errorMessage = 'Mail sau parolă incorectă';
   // this.notificationService.onError('loginFailed','Email sau parola incorecta', '');
   // if (!errorRes.error || !errorRes.error.error) {
   //   return of(new AuthAction.AuthenticateFail(errorMessage));

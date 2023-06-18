@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {User} from "../../../../interfaces/user";
 import {CustomerService} from "../../../../services/customer.service";
-import {user} from "@angular/fire/auth";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Constants} from "../../../../constants/constants";
+import {Constants, ErrorMessages} from "../../../../constants/constants";
 import {MessageService} from "primeng/api";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
@@ -76,7 +75,6 @@ export class PersonalDataComponent implements OnInit {
   }
 
   updateUser(){
-    // const email = localStorage.getItem("email");
 
     let user: User = {
       firstName: this.form.get("firstName")?.value,
@@ -96,6 +94,13 @@ export class PersonalDataComponent implements OnInit {
         // this.ngOnInit();
         this.router.navigate(['/mainPage']);
         this.ref.close();
+      },
+      error: err => {
+        if(err === ErrorMessages.USER_ALREADY_EXISTS_BY_EMAIL_EXCEPTION){
+          this.notificationService.onError("modifyUserInfo", 'Există deja un cont cu acest mail');
+        }else if (err === ErrorMessages.USER_ALREADY_EXISTS_PHONE_EXCEPTION){
+          this.notificationService.onError("modifyUserInfo", "Există deja un cont cu acest număr de telefon")
+        }
       }
     })
   }

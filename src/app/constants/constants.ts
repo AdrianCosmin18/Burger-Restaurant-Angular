@@ -2,10 +2,8 @@ export enum FoodType{
   BURGER = "burger",
   FRIES = "fries",
   DRINK = "drinks",
-  DESERT = "desert",
   EXTRAS_BURGER = "extras-burger",
   EXTRAS_FRIES = "extras-fries",
-  EXTRAS_DESERT = "extras-desert",
   EXTRAS_DRINK = "extras-drink",
   SAUCES = "sauces",
   EXTRAS_SAUCE = "extras-sauce"
@@ -31,9 +29,7 @@ export enum Constants{
 
 export enum Roles{
   ROLE_USER = "ROLE_USER",
-  ROLE_ADMIN = "ROLE_ADMIN",
-  ROLE_COURIER = "ROLE_COURIER"
-}
+  ROLE_ADMIN = "ROLE_ADMIN",}
 
 export enum FormType{
   ADD_FORM_ADDRESS = "Add new address",
