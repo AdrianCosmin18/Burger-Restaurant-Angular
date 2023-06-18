@@ -9,7 +9,7 @@ import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {CityService} from "../../../../../services/city.service";
 import {CustomerService} from "../../../../../services/customer.service";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../../redux/app.reducer";
+import * as fromApp from "../../../../../store/app.reducer";
 import {MessageService} from "primeng/api";
 
 @Component({

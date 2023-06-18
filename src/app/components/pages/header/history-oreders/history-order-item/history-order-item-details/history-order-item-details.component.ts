@@ -6,7 +6,7 @@ import {OrderItem} from "../../../../../../models/order-item";
 import {CustomerService} from "../../../../../../services/customer.service";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../../../redux/app.reducer";
+import * as fromApp from "../../../../../../store/app.reducer";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {OrderStatus} from "../../../../../../constants/constants";
 

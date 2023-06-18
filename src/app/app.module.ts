@@ -40,7 +40,7 @@ import {StoreModule} from "@ngrx/store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {EffectsModule} from "@ngrx/effects";
-import * as fromApp from '../app/redux/app.reducer';
+import * as fromApp from './store/app.reducer';
 import {RippleModule} from "primeng/ripple";
 import { DrinksItemOptionsComponent } from './components/drinks-item/drinks-item-options/drinks-item-options.component';
 import { SaucePageComponent } from './components/pages/sauce-page/sauce-page.component';
@@ -52,7 +52,7 @@ import {DividerModule} from "primeng/divider";
 import { SizeDrinkButtonComponent } from './components/drinks-item/drinks-item-options/size-drink-button/size-drink-button.component';
 import { PersonalDataComponent } from './components/pages/header/personal-data/personal-data.component';
 import {InputTextModule} from "primeng/inputtext";
-import {AuthEffects} from "./redux/auth.effects";
+import {AuthEffects} from "./store/auth/auth.effects";
 import { AddressComponent } from './components/pages/header/address/address.component';
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import {OrderListModule} from "primeng/orderlist";
@@ -86,6 +86,8 @@ import { StatisticsComponent } from './components/admin-page/statistics/statisti
 import {ChartModule} from "primeng/chart";
 import { ChangePasswordComponent } from './components/pages/header/change-password/change-password.component';
 import {PasswordModule} from "primeng/password";
+import {AuthGuard} from "./guards/auth.guard";
+import {AdminGuard} from "./guards/admin.guard";
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -96,14 +98,14 @@ const appRoutes: Routes = [
   {path: "drinks", component: DrinksPageComponent},
   {path: "deserts", component: DesertPageComponent},
   {path: "sauces", component: SaucePageComponent},
-  {path: "placeOrder", component: PlaceOrderComponent},
-  {path: "historyOrders", component: HistoryOrdersComponent},
-  {path: "historyOrders/:id", component: HistoryOrderItemDetailsComponent},
+  {path: "placeOrder", component: PlaceOrderComponent, canActivate: [AuthGuard]},
+  {path: "historyOrders", component: HistoryOrdersComponent, canActivate: [AuthGuard]},
+  {path: "historyOrders/:id", component: HistoryOrderItemDetailsComponent,canActivate: [AuthGuard]},
   {path: "myPreferences", component: MyPreferencesComponent},
   {path: "intolerance", component: IntoleranceFoodComponent},
-  {path: "adminPage", component: AdminPageComponent},
-  {path: "adminPage/handleOrders", component: HandleOrdersComponent},
-  {path: "adminPage/statistics", component: StatisticsComponent}
+  {path: "adminPage", component: AdminPageComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: "adminPage/handleOrders", component: HandleOrdersComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: "adminPage/statistics", component: StatisticsComponent, canActivate: [AuthGuard, AdminGuard]}
 
 ]
 

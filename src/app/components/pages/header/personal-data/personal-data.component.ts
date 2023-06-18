@@ -7,9 +7,9 @@ import {Constants, ErrorMessages} from "../../../../constants/constants";
 import {MessageService} from "primeng/api";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../redux/app.reducer";
+import * as fromApp from "../../../../store/app.reducer";
 import {NotificationService} from "../../../../services/notification.service";
-import * as Actions from "../../../../redux/auth.actions";
+import * as Actions from "../../../../store/auth/auth.actions";
 import {Router} from "@angular/router";
 
 @Component({

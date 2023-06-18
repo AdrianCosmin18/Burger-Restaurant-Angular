@@ -79,3 +79,18 @@ export class OrderStatus{
   public static COMENZI_IN_CURS_DE_LIVRARE = "Comenzi in curs de livrare";
   public static COMENZI_LIVRATE = "Comenzi livrate";
 }
+
+export class PublicRoutes{
+
+  public static login = '/login';
+  public static register = '/register';
+  public static mainPage = '/mainPage';
+  public static burgers = '/burgers';
+  public static fries = '/fries';
+  public static drinks = '/drinks';
+  public static sauces = '/sauces';
+  public static myPreferences = '/myPreferences';
+  public static intolerance = '/intolerance';
+
+  public static publicRoutes: Array<string> = Object.values(PublicRoutes);
+}

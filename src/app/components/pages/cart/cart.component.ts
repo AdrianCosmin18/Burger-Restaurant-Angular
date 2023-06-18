@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from "../../../interfaces/burger";
 import {CustomerService} from "../../../services/customer.service";
 import {MessageService} from "primeng/api";
@@ -8,11 +8,11 @@ import {BurgerService} from "../../../services/burger.service";
 import {DynamicDialogRef} from "primeng/dynamicdialog";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../redux/app.reducer";
-import * as AuthAction from "../../../redux/auth.actions";
+import * as fromApp from "../../../store/app.reducer";
+import * as AuthAction from "../../../store/auth/auth.actions";
 import {Route, Router} from "@angular/router";
 import {NotificationService} from "../../../services/notification.service";
-import {AppState} from "../../../redux/app.reducer";
+import {AppState} from "../../../store/app.reducer";
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +20,7 @@ import {AppState} from "../../../redux/app.reducer";
   styleUrls: ['./cart.component.css'],
   providers: [MessageService]
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   public items: OrderItem[] = [];
   private auth$!: Observable<{ email: string, loggedIn: boolean }>;
   private itemList$!: Observable<{ it: OrderItem[]}>;
@@ -75,5 +75,7 @@ export class CartComponent implements OnInit {
   }
 
 
-
+  ngOnDestroy() {
+    this.storeSub.unsubscribe();
+  }
 }

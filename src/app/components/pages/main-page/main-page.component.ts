@@ -3,9 +3,9 @@ import {CustomerService} from "../../../services/customer.service";
 import {User} from "../../../interfaces/user";
 import {Constants} from "../../../constants/constants";
 import {Observable} from "rxjs";
-import * as Actions from "../../../redux/auth.actions";
+import * as Actions from "../../../store/auth/auth.actions";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../redux/app.reducer";
+import * as fromApp from "../../../store/app.reducer";
 import {Router} from "@angular/router";
 
 

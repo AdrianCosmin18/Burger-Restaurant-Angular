@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NotificationService} from "../../../../services/notification.service";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../redux/app.reducer";
+import * as fromApp from "../../../../store/app.reducer";
 import {CustomerService} from "../../../../services/customer.service";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 

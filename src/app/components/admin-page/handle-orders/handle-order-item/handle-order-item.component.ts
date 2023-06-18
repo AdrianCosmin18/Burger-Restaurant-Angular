@@ -8,7 +8,7 @@ import {NotificationService} from "../../../../services/notification.service";
 import {SelectCourierComponent} from "./select-courier/select-courier.component";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../redux/app.reducer";
+import * as fromApp from "../../../../store/app.reducer";
 
 @Component({
   selector: 'app-handle-order-item',

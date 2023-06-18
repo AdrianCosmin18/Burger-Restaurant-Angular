@@ -24,8 +24,6 @@ export class NotificationService {
   onError(key: string, summary: string): void {
     console.log(summary);
     this.messageService.add({key: key, severity: Severity.ERROR, summary: summary});
-    // this.messageService.add({severity:'error', summary: 'Error'});
-
   }
 }
 

@@ -6,7 +6,7 @@ import {CustomerService} from "../../../../services/customer.service";
 import {FormBuilder} from "@angular/forms";
 import {MessageService, PrimeNGConfig} from "primeng/api";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../redux/app.reducer";
+import * as fromApp from "../../../../store/app.reducer";
 import {UserCredentials} from "../../../../interfaces/user-credentials";
 import {Address} from "../../../../interfaces/address";
 import {AddressUpdateFormComponent} from "./address-update-form/address-update-form.component";

@@ -1,4 +1,4 @@
-import {OrderItem} from "../models/order-item";
+import {OrderItem} from "../../models/order-item";
 import * as Actions from './product.action';
 
 export interface State{
@@ -26,6 +26,12 @@ export function itemsReducer(
         ...state,
         itemList: action.items,
         info: 'get items'
+      }
+
+    case Actions.EDIT_ITEM:
+      return {
+        ...state,
+
       }
 
     default:

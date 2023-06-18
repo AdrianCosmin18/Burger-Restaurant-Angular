@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import {environment} from "../../environments/environment";
 import {AuthService} from "../services/auth.service";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../redux/app.reducer";
+import * as fromApp from "../store/app.reducer";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

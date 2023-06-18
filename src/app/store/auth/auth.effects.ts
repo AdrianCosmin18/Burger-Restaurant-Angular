@@ -1,13 +1,13 @@
 import * as AuthActions from "./auth.actions";
 import {Injectable} from "@angular/core";
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../../services/auth.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {catchError, map, of, switchMap, tap} from "rxjs";
-import {User} from "../interfaces/user";
+import {User} from "../../interfaces/user";
 import * as AuthAction from "./auth.actions";
-import {AuthorityModel} from "../models/authority-model";
-import {ErrorMessages, Roles} from "../constants/constants";
-import {NotificationService} from "../services/notification.service";
+import {AuthorityModel} from "../../models/authority-model";
+import {ErrorMessages, Roles} from "../../constants/constants";
+import {NotificationService} from "../../services/notification.service";
 
 
 @Injectable(

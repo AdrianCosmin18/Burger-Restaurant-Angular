@@ -155,12 +155,5 @@ export class CustomerService {
     return throwError('Something bad happened; please try again later.');
   };
 
-  isAuthenticated(): boolean{
-    let customerId = sessionStorage.getItem("id");
-    if(customerId){
-      return true;
-    }
-    return false;
-  }
 
 }

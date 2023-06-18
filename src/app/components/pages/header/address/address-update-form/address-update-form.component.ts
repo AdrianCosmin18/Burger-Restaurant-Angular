@@ -6,7 +6,7 @@ import {Address} from "../../../../../interfaces/address";
 import {CityService} from "../../../../../services/city.service";
 import {CustomerService} from "../../../../../services/customer.service";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../../redux/app.reducer";
+import * as fromApp from "../../../../../store/app.reducer";
 import {Observable} from "rxjs";
 import {MessageService} from "primeng/api";
 import {ErrorMessages, FormType} from "../../../../../constants/constants";

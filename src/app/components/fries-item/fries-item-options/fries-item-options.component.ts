@@ -5,8 +5,8 @@ import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dyna
 import {ActionIngredientsEnum, Constant, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
 import {ActionIngredient} from "../../../interfaces/action-ingredient";
 
-import * as fromApp from '../../../redux/app.reducer';
-import * as itemAction from '../../../redux/product.action';
+import * as fromApp from '../../../store/app.reducer';
+import * as itemAction from '../../../store/cart/product.action';
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {OrderItem} from "../../../models/order-item";

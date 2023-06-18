@@ -3,7 +3,7 @@ import {Card} from "../../../../interfaces/card";
 import {CustomerService} from "../../../../services/customer.service";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../redux/app.reducer";
+import * as fromApp from "../../../../store/app.reducer";
 import {MessageService} from "primeng/api";
 import {AddressUpdateFormComponent} from "../address/address-update-form/address-update-form.component";
 import {FormType} from "../../../../constants/constants";

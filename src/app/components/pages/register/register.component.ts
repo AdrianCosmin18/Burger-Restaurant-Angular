@@ -8,8 +8,8 @@ import {AuthService} from "../../../services/auth.service";
 import {AuthorityModel} from "../../../models/authority-model";
 import {Roles} from "../../../constants/constants";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../redux/app.reducer";
-import * as AuthAction from "../../../redux/auth.actions";
+import * as fromApp from "../../../store/app.reducer";
+import * as AuthAction from "../../../store/auth/auth.actions";
 import {Observable, Subscription} from "rxjs";
 
 @Component({

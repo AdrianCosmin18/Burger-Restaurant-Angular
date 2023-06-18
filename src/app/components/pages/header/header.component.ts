@@ -5,7 +5,7 @@ import {CustomerService} from "../../../services/customer.service";
 import {User} from "../../../interfaces/user";
 import {DialogService} from "primeng/dynamicdialog";
 import {CartComponent} from "../cart/cart.component";
-import {Constants, Roles} from "../../../constants/constants";
+import {Constants, PublicRoutes, Roles} from "../../../constants/constants";
 import {ConfirmationService, MenuItem, MessageService} from "primeng/api";
 import {City} from "../../../interfaces/city";
 import {CityService} from "../../../services/city.service";
@@ -13,8 +13,8 @@ import {AuthService} from "../../../services/auth.service";
 import {PersonalDataComponent} from "./personal-data/personal-data.component";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../redux/app.reducer";
-import * as Actions from '../../../redux/auth.actions';
+import * as fromApp from "../../../store/app.reducer";
+import * as Actions from '../../../store/auth/auth.actions';
 import {AddressComponent} from "./address/address.component";
 import {CardPageComponent} from "./card-page/card-page.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
@@ -57,7 +57,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.getInfoUser();
-    this.getCities();
     this.countProductsInCart();
   }
 
@@ -138,7 +137,12 @@ export class HeaderComponent implements OnInit {
     this.authService.logOut();
     this.store.dispatch(new Actions.Logout());
     this.messageService.add({severity:'info', summary: 'Te-ai delogat'});
-    this.router.navigate(['/mainPage']);
+
+    const arr = PublicRoutes.publicRoutes;
+    const url = this.router.url;
+    if(!arr.includes(url)){
+      this.router.navigate(['/mainPage']);
+    }
     this.ngOnInit();
   }
 
@@ -149,28 +153,22 @@ export class HeaderComponent implements OnInit {
       width: '60%',
     });
 
-    // ref.onClose.subscribe((productName: string) => {
-    //   if(productName !== null){
-    //     this.messageService.add({severity: 'success', summary: `${productName} sters din cos`});
-    //   }
-    // });
   }
 
   countProductsInCart(){
     this.count = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]").length;
   }
 
-  getCities():void{
-    this.cityService.getCities().subscribe({
-      next:value => {
-        this.cities = value;
-        console.log(this.cities);
-      },
-      error:err => {
-        alert("Something went wrong");
-      }
-    })
-  }
+  // getCities():void{
+  //   this.cityService.getCities().subscribe({
+  //     next:value => {
+  //       this.cities = value;
+  //     },
+  //     error:err => {
+  //       alert("Something went wrong");
+  //     }
+  //   })
+  // }
 
   openPersonalData(): void{
 

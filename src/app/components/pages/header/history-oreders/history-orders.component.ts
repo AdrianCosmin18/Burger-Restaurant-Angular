@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {CustomerService} from "../../../../services/customer.service";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../../redux/app.reducer";
+import * as fromApp from "../../../../store/app.reducer";
 import {Order} from "../../../../interfaces/order";
 
 @Component({

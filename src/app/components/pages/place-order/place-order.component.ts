@@ -2,7 +2,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MenuItem, MessageService} from "primeng/api";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromApp from "../../../redux/app.reducer";
+import * as fromApp from "../../../store/app.reducer";
 import {Address} from "../../../interfaces/address";
 import {CustomerService} from "../../../services/customer.service";
 import {AddressComponent} from "../header/address/address.component";
