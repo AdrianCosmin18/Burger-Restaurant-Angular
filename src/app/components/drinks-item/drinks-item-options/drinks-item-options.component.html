@@ -1,4 +1,4 @@
-<img alt="Card" src="{{getImageUrl(drinkList[0].imageId)}}" style="width: 200px; display: flex;justify-self: center; align-self: center">
+<img alt="Card" src="{{image}}" style="width: 200px; display: flex;justify-self: center; align-self: center">
 <h5 *ngIf="drinkList[0].ingredients !== ''">{{drinkList[0].ingredients}}</h5>
 
 <p-selectButton (click)="getDrinkTypePrice()" [options]="optionDrink" [(ngModel)]="optionSelected" optionLabel="icon">

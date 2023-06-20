@@ -32,6 +32,8 @@ export class BurgerItemOptionsComponent implements OnInit {
     containsLactose: false,
     isVegetarian: false
   };
+  public image: any;
+
   public extraList: Product[] = [];
   public lessList: Product[] = [];
   public ingredientsDB: Product[] = []; //lista tuturor ingredientelor din bd
@@ -75,7 +77,7 @@ export class BurgerItemOptionsComponent implements OnInit {
 
   getBurger(): void{
     this.burger = this.config.data.burger;
-    console.log(this.burger);
+    this.image = this.getImageUrl(this.burger.imageId);
   }
 
   createIngredientsLists(): void{

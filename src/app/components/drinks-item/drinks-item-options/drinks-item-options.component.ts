@@ -30,6 +30,9 @@ export class DrinksItemOptionsComponent implements OnInit {
   public piMinusCursor = 'not-allowed';
   public drinkPrice = -1;
 
+  public image: any;
+
+
   constructor(
     private burgerService: BurgerService,
     private dialogService: DialogService,
@@ -44,6 +47,7 @@ export class DrinksItemOptionsComponent implements OnInit {
     this.getDrinks();
     this.initSizesDrinks();
     this.drinkPrice = this.drinkList[0].price;
+    this.image = this.getImageUrl(this.drinkList[0].imageId);
   }
 
   getDrinkTypePrice(): void{

@@ -30,6 +30,8 @@ export class FriesItemOptionsComponent implements OnInit {
     containsLactose: false,
     isVegetarian: false
   };
+  public image: any;
+
   public extraList: Product[] = [];
   public lessList: Product[] = [];
   public ingredientsDB: Product[] = [];//lista tuturor ingredientelor din bd pt acesti cartofi
@@ -63,7 +65,7 @@ export class FriesItemOptionsComponent implements OnInit {
 
   getFries(): void{
     this.fries = this.config.data.fries;
-    console.log(this.fries);
+    this.image = this.getImageUrl(this.fries.imageId);
   }
 
   getAllExtraIngredients(): void{
