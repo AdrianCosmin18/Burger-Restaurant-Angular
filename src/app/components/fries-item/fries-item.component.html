@@ -7,16 +7,18 @@
   <p>{{fries.description}}</p>
   <ng-template pTemplate="footer">
 
-    <button pButton pRipple type="button"
-            icon="pi pi-heart" class="p-button-rounded"
-            (click)="addToFavorites()" [ngClass]="favoriteColor"
-            pTooltip="{{favoriteTooltipMessage}}" tooltipPosition="top"></button>
+<!--    <button pButton pRipple type="button"-->
+<!--            icon="pi pi-heart" class="p-button-rounded"-->
+<!--            (click)="addToFavorites()" [ngClass]="favoriteColor"-->
+<!--            pTooltip="{{favoriteTooltipMessage}}" tooltipPosition="top"></button>-->
 
     <p-button label="{{fries.price}} lei" icon="pi pi-cart-plus"
               (click)="addToCart()"
               badge="{{productInCart > 0 ? productInCart : null}}"
               badgeClass="p-badge-danger" styleClass="p-button-outlined p-button-secondary"
-              [style]="{'margin-left': '10px'}"></p-button>
+              [style]="{'margin-left': '10px'}"
+              pTooltip="Adaugă în coș" tooltipPosition="top"
+    ></p-button>
 
   </ng-template>
 </p-card>

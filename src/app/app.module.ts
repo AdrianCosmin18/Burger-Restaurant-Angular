@@ -169,7 +169,7 @@ const appRoutes: Routes = [
     CardModule,
     BadgeModule,
     StoreModule.forRoot(fromApp.appReducer, {
-      metaReducers: [localStorageSyncReducer]
+      metaReducers: [localStorageSyncReducer, localStorageSyncReducerCart]
     }),
     TooltipModule,
     FieldsetModule,
@@ -216,5 +216,12 @@ export function localStorageSyncReducer(reducer: any) {
   return localStorageSync({
     keys: ['auth', 'settings'], // Specify the state slices to synchronize with local storage
     rehydrate: true,
+  })(reducer);
+}
+
+export function localStorageSyncReducerCart(reducer: any){
+  return localStorageSync({
+    keys: ['items', 'settings'],
+    rehydrate: true
   })(reducer);
 }

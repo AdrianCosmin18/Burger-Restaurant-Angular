@@ -3,6 +3,11 @@ import {Product} from "../../interfaces/burger";
 import {OrderItem} from "../../models/order-item";
 import {BurgerService} from "../../services/burger.service";
 import {Constant, Constants} from "../../constants/constants";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../store/app.reducer";
+import {Observable, Subscription} from "rxjs";
+import * as Action from '../../store/cart/product.action';
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-cart-item',
@@ -31,7 +36,8 @@ export class CartItemComponent implements OnInit {
   };
 
   constructor(
-    private burgerService: BurgerService
+    private burgerService: BurgerService,
+    private store:Store<fromApp.AppState>,
   ) { }
 
   ngOnInit(): void {
@@ -60,7 +66,7 @@ export class CartItemComponent implements OnInit {
 
   removeFromCart(){
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
-    const initialSize = itemsList.length;
+    // const initialSize = itemsList.length;
     let hasRemovedItem = false;
     itemsList = itemsList.filter((item: OrderItem) => {
       if(this.equals(this.item, item) && !hasRemovedItem){
@@ -71,9 +77,12 @@ export class CartItemComponent implements OnInit {
       }
     });
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
-    if(initialSize > itemsList.length){
-      this.productEvent.emit('Produs șters');
-    }
+    // if(initialSize > itemsList.length){
+    //   this.productEvent.emit('Produs șters');
+    // }
+
+    this.store.dispatch(new Action.RemoveItem(this.item));
+    // this.productEvent.emit('Produs șters');
   }
 
   decreaseQuantity(){
@@ -81,6 +90,7 @@ export class CartItemComponent implements OnInit {
     if(this.item.quantity === 1){
       this.removeFromCart();
     }else{
+
       let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
       itemsList = itemsList.map((item: OrderItem) => {
         if(this.equals(item, this.item) && !changed){
@@ -91,9 +101,11 @@ export class CartItemComponent implements OnInit {
         }
       });
       localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
-      if(changed){
-        this.productEvent.emit("Cantitate produs modificată");
-      }
+      // if(changed){
+      //   this.productEvent.emit("Cantitate produs modificată");
+      // }
+
+      this.store.dispatch(new Action.DecreaseQuantity(this.item));
     }
   }
 
@@ -109,9 +121,11 @@ export class CartItemComponent implements OnInit {
       }
     });
     localStorage.setItem(Constants.ITEM_LIST, JSON.stringify(itemsList));
-    if(changed){
-      this.productEvent.emit("Cantitate produs modificată");
-    }
+    // if(changed){
+    //   this.productEvent.emit("Cantitate produs modificată");
+    // }
+
+    this.store.dispatch(new Action.IncreaseQuantity(this.item));
   }
 
   orderItemTotalPrice(): number{

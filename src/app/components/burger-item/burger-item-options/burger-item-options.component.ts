@@ -52,9 +52,7 @@ export class BurgerItemOptionsComponent implements OnInit {
     private dialogService: DialogService,
     private config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
-    private store:Store<fromApp.AppState>,
-    private router: Router,
-    private messageService: MessageService,) {
+    private store:Store<fromApp.AppState>) {
 
     this.extraIngredientMessage = ExtraRemoveIngredientMessage.EXTRA;
     this.removeIngredientMessage = ExtraRemoveIngredientMessage.REMOVE;

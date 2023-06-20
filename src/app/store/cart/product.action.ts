@@ -4,8 +4,9 @@ import {OrderItem} from "../../models/order-item";
 
 export const GET_ITEMS = 'GET ITEMS';
 export const ADD_ITEM = 'ADD ITEM';
-export const EDIT_ITEM = 'EDIT ITEM';
 export const REMOVE_ITEM = "REMOVE ITEM";
+export const DECREASE_QUANTITY = "DECREASE QUANTITY";
+export const INCREASE_QUANTITY = "INCREASE QUANTITY";
 
 export class GetItems implements Action{
 
@@ -21,15 +22,25 @@ export class AddItems implements Action{
   }
 }
 
-export class EditItem implements Action{
-
-  readonly type = EDIT_ITEM;
-}
-
 export class RemoveItem implements Action{
   readonly type = REMOVE_ITEM;
 
+  constructor(public item: OrderItem) {
+  }
 }
 
-export type ItemListAction = GetItems | AddItems | EditItem;
+export class DecreaseQuantity implements Action{
+  readonly type = DECREASE_QUANTITY;
+  constructor(public item: OrderItem) {
+  }
+}
+
+export class IncreaseQuantity implements Action{
+  readonly type = INCREASE_QUANTITY;
+  constructor(public item: OrderItem) {
+  }
+}
+
+
+export type ItemListAction = GetItems | AddItems | RemoveItem | DecreaseQuantity | IncreaseQuantity;
 

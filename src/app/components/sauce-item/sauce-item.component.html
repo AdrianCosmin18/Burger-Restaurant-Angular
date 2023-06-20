@@ -5,52 +5,14 @@
   <p>{{sauce.ingredients}}</p>
   <ng-template pTemplate="footer">
 
-    <section class="interact">
-
-      <div style="display: flex; justify-content: space-between;">
-        <article class="heart">
-          <button pButton pRipple type="button" id="heart"
-                  icon="pi pi-heart" class="p-button-rounded"
-                  (click)="addToFavorites()" [ngClass]="favoriteColor"
-                  pTooltip="{{favoriteTooltipMessage}}" tooltipPosition="top"></button>
-        </article>
-
-        <article class="price">
-          <p-button label="{{sauce.price}} lei"
-                    icon="pi pi-cart-plus"
-                    (click)="addCart()"
-                    badgeClass="p-badge-danger"
-                    styleClass="p-button-outlined p-button-secondary"
-                    [style]="{'margin-left': '10px'}"></p-button>
-        </article>
-      </div>
-
-<!--      <div *ngIf="count > 0" style="display: flex; justify-content: space-between;">-->
-<!--        <article class="delete">-->
-<!--          <button-->
-<!--            pButton pRipple type="button"-->
-<!--            icon="pi pi-trash"-->
-<!--            class="p-button-rounded p-button-danger p-button-text"-->
-<!--            style="margin-right: 10px;"-->
-<!--            (click)="removeFromCart()"-->
-<!--          ></button>-->
-<!--        </article>-->
-
-<!--        <article class="count">-->
-<!--              <span class="p-buttonset">-->
-<!--                  <button pButton pRipple icon="pi pi-minus" class="p-button-outlined p-button-warning" (click)="decreaseQuantity()"></button>-->
-<!--                  <button pButton pRipple label="{{count}}" class="p-button-outlined p-button-warning"></button>-->
-<!--                  <button pButton pRipple icon="pi pi-plus" class="p-button-outlined p-button-warning" (click)="increaseQuantity()"></button>-->
-<!--                </span>-->
-<!--        </article>-->
-
-<!--        <article class="money">-->
-<!--          <p style="margin: 0px;">{{(count * sauce.price).toFixed(2)}} lei</p>-->
-<!--        </article>-->
-<!--      </div>-->
-
-
-    </section>
+    <p-button label="{{sauce.price}} lei"
+              icon="pi pi-cart-plus"
+              (click)="addCart()"
+              badgeClass="p-badge-danger"
+              styleClass="p-button-outlined p-button-secondary"
+              [style]="{'margin-left': '10px'}"
+              pTooltip="Adaugă în coș" tooltipPosition="top"
+    ></p-button>
 
   </ng-template>
 </p-card>

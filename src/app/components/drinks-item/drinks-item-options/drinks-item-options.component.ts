@@ -5,7 +5,9 @@ import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dyna
 import {ActionIngredientsEnum, Constant, Constants, ExtraRemoveIngredientMessage} from "../../../constants/constants";
 import {ActionIngredient} from "../../../interfaces/action-ingredient";
 import {OrderItem} from "../../../models/order-item";
-import * as itemAction from "../../../redux/product.action";
+import * as itemAction from "../../../store/cart/product.action";
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../../store/app.reducer";
 
 @Component({
   selector: 'app-drinks-item-options',
@@ -33,6 +35,7 @@ export class DrinksItemOptionsComponent implements OnInit {
     private dialogService: DialogService,
     private config: DynamicDialogConfig,
     public ref: DynamicDialogRef,
+    private store:Store<fromApp.AppState>,
   ) {
     this.extraIngredientMessage = ExtraRemoveIngredientMessage.EXTRA;
   }
@@ -148,7 +151,7 @@ export class DrinksItemOptionsComponent implements OnInit {
       extraIngrPrice,
       Constant.BURGER_SHOP
     );
-    // this.store.dispatch(new itemAction.AddItems(orderItem));
+    this.store.dispatch(new itemAction.AddItems(orderItem));
 
     let itemsList = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
     itemsList.push(orderItem);

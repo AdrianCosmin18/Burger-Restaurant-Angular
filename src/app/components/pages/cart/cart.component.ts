@@ -23,7 +23,7 @@ import {AppState} from "../../../store/app.reducer";
 export class CartComponent implements OnInit, OnDestroy {
   public items: OrderItem[] = [];
   private auth$!: Observable<{ email: string, loggedIn: boolean }>;
-  private itemList$!: Observable<{ it: OrderItem[]}>;
+  private itemList$!: Observable<{ itemList: OrderItem[]}>;
   private storeSub: Subscription = new Subscription();
 
 
@@ -43,8 +43,16 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   initCartList(){
-    this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
-    console.log(this.items);
+    this.itemList$ = this.store.select("items");
+    this.storeSub = this.itemList$.subscribe({
+      next: value => {
+        this.items = value.itemList;
+        console.log(this.items);
+      }
+    })
+
+    //this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
+    // console.log(this.items);
   }
 
   totalAmount(): number{
