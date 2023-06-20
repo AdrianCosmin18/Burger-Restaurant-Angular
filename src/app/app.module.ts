@@ -27,7 +27,7 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import {ToastModule} from "primeng/toast";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FieldsetModule} from "primeng/fieldset";
-import {DialogService} from "primeng/dynamicdialog";
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {CardModule} from "primeng/card";
 import {BadgeModule} from "primeng/badge";
 import {TooltipModule} from "primeng/tooltip";
@@ -88,6 +88,7 @@ import { ChangePasswordComponent } from './components/pages/header/change-passwo
 import {PasswordModule} from "primeng/password";
 import {AuthGuard} from "./guards/auth.guard";
 import {AdminGuard} from "./guards/admin.guard";
+import { InfoCourierComponent } from './components/pages/header/history-oreders/history-order-item/history-order-item-details/info-courier/info-courier.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -155,6 +156,7 @@ const appRoutes: Routes = [
     SelectCourierComponent,
     StatisticsComponent,
     ChangePasswordComponent,
+    InfoCourierComponent,
   ],
   imports: [
     BrowserModule,
@@ -201,6 +203,8 @@ const appRoutes: Routes = [
     DialogService,
     MessageService,
     ConfirmationService,
+    DynamicDialogConfig,
+    DynamicDialogRef,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],

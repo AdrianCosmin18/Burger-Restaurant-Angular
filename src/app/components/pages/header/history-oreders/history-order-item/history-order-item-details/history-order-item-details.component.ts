@@ -9,6 +9,10 @@ import {Store} from "@ngrx/store";
 import * as fromApp from "../../../../../../store/app.reducer";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {OrderStatus} from "../../../../../../constants/constants";
+import {CourierService} from "../../../../../../services/courier.service";
+import {Courier} from "../../../../../../interfaces/courier";
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {InfoCourierComponent} from "./info-courier/info-courier.component";
 
 @Component({
   selector: 'app-history-order-item-details',
@@ -25,13 +29,19 @@ export class HistoryOrderItemDetailsComponent implements OnInit, OnDestroy {
   private storeSub: Subscription = new Subscription();
   public loading = false;
 
+  public courier!: Courier;
+
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
     private userService: CustomerService,
+    private courierService: CourierService,
     private store: Store<fromApp.AppState>,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public ref: DynamicDialogRef,
+    public config: DynamicDialogConfig,
+    public dialogService: DialogService,
 
   ) { }
 
@@ -59,6 +69,7 @@ export class HistoryOrderItemDetailsComponent implements OnInit, OnDestroy {
       next: value => {
         this.order = value;
         this.getOrderItemsOfOrder();
+        this.getCourierById();
         console.log(this.order);
       },
       error: err => {
@@ -130,7 +141,29 @@ export class HistoryOrderItemDetailsComponent implements OnInit, OnDestroy {
 
   }
 
+  getCourierById(){
+    if(this.order.courierId){
+      this.courierService.getCourierById(this.order.courierId).subscribe({
+        next: value => {
+          this.courier = value;
+          console.log(value);
+        }
+      })
+    }
+  }
+
   ngOnDestroy() {
     this.storeSub.unsubscribe();
+  }
+
+  detailsCourier() {
+
+    const ref = this.dialogService.open(InfoCourierComponent, {
+      width: '420px',
+      header: 'Informații curier',
+      data: {
+        courier: this.courier
+      }
+    })
   }
 }

@@ -81,6 +81,12 @@ export function itemsReducer(
         itemList: [...itemsListIncrease]
       }
 
+    case Actions.EMPTY_LIST:
+      return{
+        ...state,
+        itemList: []
+      }
+
     default:
       return state;
   }

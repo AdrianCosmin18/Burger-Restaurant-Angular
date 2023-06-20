@@ -1,7 +1,8 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {MenuItem, MessageService} from "primeng/api";
 import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
+import * as Action from '../../../store/cart/product.action';
 import * as fromApp from "../../../store/app.reducer";
 import {Address} from "../../../interfaces/address";
 import {CustomerService} from "../../../services/customer.service";
@@ -21,9 +22,11 @@ import {OrderRequest} from "../../../interfaces/OrderRequest";
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.css']
 })
-export class PlaceOrderComponent implements OnInit {
+export class PlaceOrderComponent implements OnInit, OnDestroy {
   private auth$!: Observable<{ email: string; }>;
-  private authSubscription: Subscription = new Subscription();
+  private subscriptions: Subscription = new Subscription();
+  private itemList$!: Observable<{ itemList: OrderItem[]}>;
+
   private email: string = '';
   public hasMainAddress!: boolean;
   public hasSelectedAddress!: boolean;
@@ -74,7 +77,7 @@ export class PlaceOrderComponent implements OnInit {
 
   getInfo(){
     this.auth$ = this.store.select("auth");
-    this.authSubscription = this.auth$.subscribe(value => {
+    this.subscriptions = this.auth$.subscribe(value => {
       this.email = value.email;
       this.hasAnyMainAddress();
       this.hasAnyMainCard();
@@ -236,8 +239,16 @@ export class PlaceOrderComponent implements OnInit {
   }
 
   initCartList(){
-    this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
-    console.log(this.items);
+
+    this.itemList$ = this.store.select("items");
+    this.subscriptions = this.itemList$.subscribe({
+      next: value => {
+        this.items = value.itemList;
+        console.log(this.items);
+      }
+    })
+    // this.items = JSON.parse(localStorage.getItem(Constants.ITEM_LIST) || "[]");
+    // console.log(this.items);
   }
 
   modifyCart(productName: string): void{
@@ -278,6 +289,7 @@ export class PlaceOrderComponent implements OnInit {
             this.loading = false;
 
             this.router.navigate(['/mainPage']);
+            this.store.dispatch(new Action.EmptyList());
             this.notificationService.onInfo('placedOrder', 'Comandă plasată cu succes', 'Pentru mai multe detalii acesează Istoric comenzi');
           }, 3000);
         }, error: err => {
@@ -302,6 +314,10 @@ export class PlaceOrderComponent implements OnInit {
     };
 
     return orderRequest;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
 }

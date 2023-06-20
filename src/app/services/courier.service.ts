@@ -20,6 +20,12 @@ export class CourierService {
       .pipe(catchError(this.handleError));
   }
 
+  getCourierById(id: number): Observable<Courier>{
+    let url = `${this.path}/${id}`;
+    return this.http.get<Courier>(url)
+      .pipe(catchError(this.handleError));
+  }
+
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

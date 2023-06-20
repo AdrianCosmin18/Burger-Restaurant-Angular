@@ -82,7 +82,7 @@ export class CartItemComponent implements OnInit {
     // }
 
     this.store.dispatch(new Action.RemoveItem(this.item));
-    // this.productEvent.emit('Produs șters');
+    this.productEvent.emit('Produs șters'); //folosit pentru place-order
   }
 
   decreaseQuantity(){
@@ -106,6 +106,8 @@ export class CartItemComponent implements OnInit {
       // }
 
       this.store.dispatch(new Action.DecreaseQuantity(this.item));
+      this.productEvent.emit("Cantitate produs modificată"); //folosit pentru place-order
+
     }
   }
 
@@ -126,6 +128,7 @@ export class CartItemComponent implements OnInit {
     // }
 
     this.store.dispatch(new Action.IncreaseQuantity(this.item));
+    this.productEvent.emit("Cantitate produs modificată"); //folosit pentru place-order
   }
 
   orderItemTotalPrice(): number{

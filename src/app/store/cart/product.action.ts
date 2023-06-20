@@ -7,6 +7,7 @@ export const ADD_ITEM = 'ADD ITEM';
 export const REMOVE_ITEM = "REMOVE ITEM";
 export const DECREASE_QUANTITY = "DECREASE QUANTITY";
 export const INCREASE_QUANTITY = "INCREASE QUANTITY";
+export const EMPTY_LIST = "EMPTY LIST";
 
 export class GetItems implements Action{
 
@@ -41,6 +42,10 @@ export class IncreaseQuantity implements Action{
   }
 }
 
+export class EmptyList implements Action{
+  readonly type = EMPTY_LIST
+}
 
-export type ItemListAction = GetItems | AddItems | RemoveItem | DecreaseQuantity | IncreaseQuantity;
+
+export type ItemListAction = GetItems | AddItems | RemoveItem | DecreaseQuantity | IncreaseQuantity | EmptyList;
 

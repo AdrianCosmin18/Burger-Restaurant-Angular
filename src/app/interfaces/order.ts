@@ -1,5 +1,6 @@
 export interface Order{
   id: number;
+  courierId: number;
   amount: number;
   status: string;
   deliverTime?: string;
