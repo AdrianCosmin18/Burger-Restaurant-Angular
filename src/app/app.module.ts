@@ -21,8 +21,6 @@ import {environment} from "../environments/environment";
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { DesertPageComponent } from './components/pages/desert-page/desert-page.component';
-import { DesertItemComponent } from './components/desert-item/desert-item.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import {ToastModule} from "primeng/toast";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -97,7 +95,6 @@ const appRoutes: Routes = [
   {path: "burgers", component: BurgerComponent},
   {path: "fries", component: FriesPageComponent},
   {path: "drinks", component: DrinksPageComponent},
-  {path: "deserts", component: DesertPageComponent},
   {path: "sauces", component: SaucePageComponent},
   {path: "placeOrder", component: PlaceOrderComponent, canActivate: [AuthGuard]},
   {path: "historyOrders", component: HistoryOrdersComponent, canActivate: [AuthGuard]},
@@ -125,8 +122,6 @@ const appRoutes: Routes = [
     CartComponent,
     LoginComponent,
     RegisterComponent,
-    DesertPageComponent,
-    DesertItemComponent,
     CartItemComponent,
     BurgerItemOptionsComponent,
     IngredientComponent,

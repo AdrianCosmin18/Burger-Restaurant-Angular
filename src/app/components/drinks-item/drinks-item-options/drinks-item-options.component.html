@@ -10,21 +10,22 @@
   </ng-template>
 </p-selectButton>
 
-<p-accordion class="accord" *ngIf="this.drinkList[0].ingredients !== ''" [multiple]="true">
-  <p-accordionTab [disabled]="!chosenSize">
+<div class="mt-4">
+  <p-accordion class="accord" *ngIf="this.drinkList[0].ingredients !== ''" [multiple]="true">
+    <p-accordionTab [disabled]="!chosenSize">
 
-    <ng-template pTemplate="header">
-      Extra <span id="adauga">Alege maxim {{ingredientsDB.length}} articole</span>
-    </ng-template>
+      <ng-template pTemplate="header">
+        Extra <span id="adauga">Alege maxim {{ingredientsDB.length}} articole</span>
+      </ng-template>
 
-    <section class="app-ingredient"
-             *ngFor="let ingredient of ingredientsDB"
-             [ingredient]="ingredient"
-             [message]="extraIngredientMessage"
-             (action)="addExtraIngredient($event)"></section>
-
-  </p-accordionTab>
-</p-accordion>
+      <section class="app-ingredient"
+               *ngFor="let ingredient of ingredientsDB"
+               [ingredient]="ingredient"
+               [message]="extraIngredientMessage"
+               (action)="addExtraIngredient($event)"></section>
+    </p-accordionTab>
+  </p-accordion>
+</div>
 
 <section class="count">
   <i class="pi pi-minus-circle"
