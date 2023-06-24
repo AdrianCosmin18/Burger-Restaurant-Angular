@@ -87,6 +87,7 @@ import {PasswordModule} from "primeng/password";
 import {AuthGuard} from "./guards/auth.guard";
 import {AdminGuard} from "./guards/admin.guard";
 import { InfoCourierComponent } from './components/pages/header/history-oreders/history-order-item/history-order-item-details/info-courier/info-courier.component';
+import {VirtualScrollerModule} from "primeng/virtualscroller";
 const appRoutes: Routes = [
   {path: '', redirectTo: "/mainPage", pathMatch: "full"},
   {path: 'login', component: LoginComponent},
@@ -193,6 +194,7 @@ const appRoutes: Routes = [
     CalendarModule,
     ChartModule,
     PasswordModule,
+    VirtualScrollerModule,
   ],
   providers: [
     DialogService,

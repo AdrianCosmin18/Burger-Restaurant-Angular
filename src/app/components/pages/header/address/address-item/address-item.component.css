@@ -11,9 +11,8 @@ img {
 
 .address-list-action {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
-  gap: 5px;
 }
 
 .address-category-icon {
